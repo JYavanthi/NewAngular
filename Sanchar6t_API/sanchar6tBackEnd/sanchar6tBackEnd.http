@@ -1,0 +1,6 @@
+@sanchar6tBackEnd_HostAddress = http://localhost:5086
+
+GET {{sanchar6tBackEnd_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,9 @@
+{
+    "/gds/api": {
+      "target": "http://gds-stg.ticketsimply.co.in",
+      "secure": false,
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }
+  }
+  

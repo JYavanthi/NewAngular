@@ -1,0 +1,2273 @@
+[
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AgentInstantRechargeController",
+    "Method": "CreateRecharge",
+    "RelativePath": "api/agent-instant-recharge/create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "sanchar6tBackEnd.Data.Entities.EAgentInstantRechargeDtl",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AgentInstantRechargeController",
+    "Method": "GetRechargeById",
+    "RelativePath": "api/agent-instant-recharge/get-by-id/{instantRechargeId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "instantRechargeId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AgentInstantRechargeController",
+    "Method": "UpdateRechargeStatus",
+    "RelativePath": "api/agent-instant-recharge/update-status",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "sanchar6tBackEnd.Data.Entities.EAgentInstantRechargeDtl",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AgentDtlsController",
+    "Method": "AgentApproval",
+    "RelativePath": "api/AgentDtls/AgentApproval",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "AgentApprovalRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AgentDtlsController",
+    "Method": "Delete",
+    "RelativePath": "api/AgentDtls/Delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AgentDtlsController",
+    "Method": "GetAgentDtls",
+    "RelativePath": "api/AgentDtls/GetAgentDtls",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AgentDtlsController",
+    "Method": "GetAgentDtlsByAgentId",
+    "RelativePath": "api/AgentDtls/GetAgentDtlsByAgentId/{agentDtlId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "agentDtlId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AgentDtlsController",
+    "Method": "GetAgentDtlsByUserId",
+    "RelativePath": "api/AgentDtls/GetAgentDtlsByUserId/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AmenityController",
+    "Method": "GetAmenitydetails",
+    "RelativePath": "api/Amenity/GetAmenity",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AmenityController",
+    "Method": "SaveAmenity",
+    "RelativePath": "api/Amenity/PostAmenity",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eAmenity",
+        "Type": "sanchar6tBackEnd.Data.Entities.EAmenity",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AreaController",
+    "Method": "GetArea",
+    "RelativePath": "api/Area/GetArea",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AreaController",
+    "Method": "SaveArea",
+    "RelativePath": "api/Area/PostArea",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eArea",
+        "Type": "sanchar6tBackEnd.Data.Entities.EArea",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AttachmentController",
+    "Method": "UploadFile",
+    "RelativePath": "api/Attachment/addFile",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PackageID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Section",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Sortorder",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "AttachmentName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "CreatedBy",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AttachmentController",
+    "Method": "DeleteFile",
+    "RelativePath": "api/Attachment/Delete/{attachmentId}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "attachmentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AttachmentController",
+    "Method": "DownloadFile",
+    "RelativePath": "api/Attachment/Download/{attachId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "attachId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AttachmentController",
+    "Method": "GetFileData",
+    "RelativePath": "api/Attachment/GetFileData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PackageID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Section",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AttachmentController",
+    "Method": "View",
+    "RelativePath": "api/Attachment/View/{attachmentId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "attachmentId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/Auth/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "login",
+        "Type": "sanchar6tBackEnd.Data.Entities.Login",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BitlaController",
+    "Method": "GetAvailability",
+    "RelativePath": "api/Bitla/GetAvailabilities/{originId}/{destinationId}/{travelDate}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "originId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "destinationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "travelDate",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BitlaController",
+    "Method": "GetAvailabilityBySchedule",
+    "RelativePath": "api/Bitla/GetAvailabilityBySchedule/{scheduleId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "scheduleId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BitlaController",
+    "Method": "GetBalance",
+    "RelativePath": "api/Bitla/GetBalance",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "travelId",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BitlaController",
+    "Method": "GetBookingDetails",
+    "RelativePath": "api/Bitla/GetBookingDetails",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pnrNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "agentRefNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BitlaController",
+    "Method": "GetCanCancelTicket",
+    "RelativePath": "api/Bitla/GetCanCancelTicket",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ticketNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "seatNumbers",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BitlaController",
+    "Method": "getCancelBooking",
+    "RelativePath": "api/Bitla/getCancelBooking",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ticketNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "seatNumbers",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BitlaController",
+    "Method": "GetCities",
+    "RelativePath": "api/Bitla/GetCities",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BitlaController",
+    "Method": "GetCityPairs",
+    "RelativePath": "api/Bitla/GetCityPairs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BitlaController",
+    "Method": "GetMasters",
+    "RelativePath": "api/Bitla/GetMasters",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BitlaController",
+    "Method": "GetOperators",
+    "RelativePath": "api/Bitla/GetOperators",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BitlaController",
+    "Method": "GetOperatorSchedules",
+    "RelativePath": "api/Bitla/GetOperatorSchedules/{travelId}/{travelDate}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "travelId",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "travelDate",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BitlaController",
+    "Method": "GetSchedule",
+    "RelativePath": "api/Bitla/GetSchedule/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BitlaController",
+    "Method": "GetSchedules",
+    "RelativePath": "api/Bitla/GetSchedules/{originId}/{destinationId}/{travelDate}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "originId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "destinationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "travelDate",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BitlaController",
+    "Method": "GetStages",
+    "RelativePath": "api/Bitla/GetStages",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BitlaController",
+    "Method": "GetTentativeBooking",
+    "RelativePath": "api/Bitla/GetTentativeBooking/{scheduleId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "scheduleId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BitlaController",
+    "Method": "PostConfirmBooking",
+    "RelativePath": "api/Bitla/PostConfirmBooking",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ticketNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "confirmData",
+        "Type": "System.Nullable\u00601[[System.Text.Json.JsonElement, System.Text.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BitlaController",
+    "Method": "PostTentativeBooking",
+    "RelativePath": "api/Bitla/PostTentativeBooking/{scheduleId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "scheduleId",
+        "Type": "System.Int64",
+        "IsRequired": true
+      },
+      {
+        "Name": "request",
+        "Type": "sanchar6tBackEnd.Controllers.BitlaController\u002BTentativeBookingRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BoardingPointController",
+    "Method": "GetBoardingPoint",
+    "RelativePath": "api/BoardingPoint/GetBoardingPoint",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BoardingPointController",
+    "Method": "SaveBoardingPoint",
+    "RelativePath": "api/BoardingPoint/PostBoardingPoint",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eBoardingPoint",
+        "Type": "sanchar6tBackEnd.Data.Entities.EBoardingPoint",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "BookingTicketEmailLogController",
+    "Method": "Create",
+    "RelativePath": "api/booking-ticket-email-log",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "sanchar6tBackEnd.Models.BookingTicketEmailLog",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BookItineraryController",
+    "Method": "BookItinerarydetails",
+    "RelativePath": "api/BookItinerary/PostBookItinerary",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bookItinerary",
+        "Type": "sanchar6tBackEnd.Data.Entities.EBookItinerary",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BusAmenitiesController",
+    "Method": "GetBusAmenitiesdetails",
+    "RelativePath": "api/BusAmenities/GetBusAmenities",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BusAmenitiesController",
+    "Method": "SaveBusAmenities",
+    "RelativePath": "api/BusAmenities/PostBusAmenities",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eBusAmenities",
+        "Type": "sanchar6tBackEnd.Data.Entities.EBusAmenities",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BusBookingDetailsController",
+    "Method": "GetBusBookingDtls",
+    "RelativePath": "api/BusBookingDetails/GetBookingDetails",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BusBookingDetailsController",
+    "Method": "GetBusBookingDtlByID",
+    "RelativePath": "api/BusBookingDetails/GetBookingDtlByID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "BookingID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BusBookingDetailsController",
+    "Method": "Bookingdetails",
+    "RelativePath": "api/BusBookingDetails/SaveBookingDetails",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "bookingDetails",
+        "Type": "sanchar6tBackEnd.Data.Entities.EBusBookingDetails",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BusBookingExportController",
+    "Method": "GetExcel",
+    "RelativePath": "api/BusBookingExport/GetExcel",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BusBookingSeatController",
+    "Method": "GetBookingSeatDtl",
+    "RelativePath": "api/BusBookingSeat/cc",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BusBookingSeatController",
+    "Method": "GetBookingSeatDtlsForAngular",
+    "RelativePath": "api/BusBookingSeat/GetBusBookingSeat",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BusBookingSeatController",
+    "Method": "GetBookingSeatDtlByID",
+    "RelativePath": "api/BusBookingSeat/GetBusBookingSeatByID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "BookingseatID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BusBookingSeatController",
+    "Method": "BookingSeatdetails",
+    "RelativePath": "api/BusBookingSeat/SaveBusBookingSeat",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "busBookingSeat",
+        "Type": "sanchar6tBackEnd.Data.Entities.EBusBookingSeat",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BusOperatorController",
+    "Method": "GetBusOperatordetails",
+    "RelativePath": "api/BusOperator/GetBusOperator",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.BusOperatorController",
+    "Method": "SaveBusOperator",
+    "RelativePath": "api/BusOperator/PostBusOperator",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eBusOperator",
+        "Type": "sanchar6tBackEnd.Data.Entities.EBusOperator",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.CitiesController",
+    "Method": "GetCities",
+    "RelativePath": "api/Cities/GetCities",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.CitiesController",
+    "Method": "GetCitiesByState",
+    "RelativePath": "api/Cities/GetCitiesByState",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "stateId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.CitiesController",
+    "Method": "SaveCities",
+    "RelativePath": "api/Cities/SaveCities",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cities",
+        "Type": "System.Collections.Generic.List\u00601[[sanchar6tBackEnd.Data.Entities.Ecities, sanchar6tBackEnd, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.countriesController",
+    "Method": "Getcountriestails",
+    "RelativePath": "api/countries/Getcountries",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.countriesController",
+    "Method": "GetCountriesdetailByID",
+    "RelativePath": "api/countries/GetCountryByID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CountryID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.countriesController",
+    "Method": "Savecountries",
+    "RelativePath": "api/countries/Postcountries",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ecountries",
+        "Type": "sanchar6tBackEnd.Data.Entities.Ecountries",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PackageController",
+    "Method": "GetPackageDtls",
+    "RelativePath": "api/Package/GetpackageDetails",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PackageController",
+    "Method": "GetPackageDtlByID",
+    "RelativePath": "api/Package/GetpackageDtlByID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PackageID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PackageController",
+    "Method": "Packagedetails",
+    "RelativePath": "api/Package/Postpackage",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "package",
+        "Type": "sanchar6tBackEnd.Data.Entities.EPackage",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PaymentController",
+    "Method": "GetPayment",
+    "RelativePath": "api/Payment/GetPayment",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PaymentController",
+    "Method": "Payment",
+    "RelativePath": "api/Payment/SavePayment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ePayment",
+        "Type": "sanchar6tBackEnd.Data.Entities.EPayment",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PaymentGatewayController",
+    "Method": "InitiatePaymentAsync",
+    "RelativePath": "api/PaymentGateway/initiate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderId",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "amount",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PaymentGatewayController",
+    "Method": "PaymentCallback",
+    "RelativePath": "api/PaymentGateway/payment/callback",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "callbackData",
+        "Type": "sanchar6tBackEnd.Controllers.PhonePeCallbackModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PhonePeController",
+    "Method": "CreateOrder",
+    "RelativePath": "api/PhonePe/CreateOrder",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "sanchar6tBackEnd.Controllers.OrderRequestV2",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PhonePeController",
+    "Method": "GetTestOAuthToken",
+    "RelativePath": "api/PhonePe/test-token",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PhonePeTestController",
+    "Method": "GetTestOAuthToken",
+    "RelativePath": "api/PhonePeTest/test-token",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgHighlightController",
+    "Method": "GetPkgHighlight",
+    "RelativePath": "api/PkgHighlight/Getpkghighlight",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgHighlightController",
+    "Method": "GetPkgHighlightByID",
+    "RelativePath": "api/PkgHighlight/GetpkghighlightByPackageID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PackageID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgHighlightController",
+    "Method": "PkgHighlight",
+    "RelativePath": "api/PkgHighlight/SavePostpackage",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pkghighlight",
+        "Type": "sanchar6tBackEnd.Data.Entities.EPkgHighlight",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgImageDtlsController",
+    "Method": "GetPkgImageDtlByID",
+    "RelativePath": "api/PkgImageDtls/GetpkgImageDtlByID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PkgImageID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgImageDtlsController",
+    "Method": "GetPkgImageDtlByPackageID",
+    "RelativePath": "api/PkgImageDtls/GetpkgImageDtlByPackageID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PackageID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgImageDtlsController",
+    "Method": "GetPkgImageDtls",
+    "RelativePath": "api/PkgImageDtls/GetpkgImageDtls",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgImageDtlsController",
+    "Method": "PkgImageDtls",
+    "RelativePath": "api/PkgImageDtls/SavePkgImageDtls",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pkgImageDtls",
+        "Type": "sanchar6tBackEnd.Data.Entities.EPkgImageDtls",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgImpNotesController",
+    "Method": "GetPkgImpNotes",
+    "RelativePath": "api/PkgImpNotes/GetPkgImpNotes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgImpNotesController",
+    "Method": "GetpkgImpNotesByID",
+    "RelativePath": "api/PkgImpNotes/GetPkgImpNotesByID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PkgImpNotesID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgImpNotesController",
+    "Method": "GetPkgImpNotesByPackageID",
+    "RelativePath": "api/PkgImpNotes/GetPkgImpNotesByPackageID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PackageID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgImpNotesController",
+    "Method": "PkgImpNotes",
+    "RelativePath": "api/PkgImpNotes/SavePkgImpNotes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pkgImpNotes",
+        "Type": "sanchar6tBackEnd.Data.Entities.EPkgImpNotes",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgIncludeController",
+    "Method": "GetpkgInclude",
+    "RelativePath": "api/PkgInclude/GetpkgInclude",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgIncludeController",
+    "Method": "GetpkgIncludeByID",
+    "RelativePath": "api/PkgInclude/GetpkgIncludeByID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PkgImageID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgIncludeController",
+    "Method": "GetpkgIncludeByPackageID",
+    "RelativePath": "api/PkgInclude/GetpkgIncludeByPackageID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PackageID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgIncludeController",
+    "Method": "PkgInclude",
+    "RelativePath": "api/PkgInclude/SavepkgInclude",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pkgInclude",
+        "Type": "sanchar6tBackEnd.Data.Entities.EPkgInclude",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgItineraryController",
+    "Method": "GetPkgImageDtlByPackageID",
+    "RelativePath": "api/PkgItinerary/GetpkgImageDtlByPackageID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PackageID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgItineraryController",
+    "Method": "GetpkgItinerary",
+    "RelativePath": "api/PkgItinerary/GetpkgItinerary",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgItineraryController",
+    "Method": "GetpkgItineraryByID",
+    "RelativePath": "api/PkgItinerary/GetpkgItineraryByID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PkgImageID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgItineraryController",
+    "Method": "PkgItinerary",
+    "RelativePath": "api/PkgItinerary/SavepkgItinerary",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pkgItinerary",
+        "Type": "sanchar6tBackEnd.Data.Entities.EPkgItinerary",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgOfferController",
+    "Method": "GetpkgOffer",
+    "RelativePath": "api/PkgOffer/GetpkgOffer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgOfferController",
+    "Method": "GetpkgOfferByID",
+    "RelativePath": "api/PkgOffer/GetPkgofferByID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PkgOfferID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgOfferController",
+    "Method": "GetpkgOfferByPackageID",
+    "RelativePath": "api/PkgOffer/GetpkgOfferByPackageID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PackageID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.PkgOfferController",
+    "Method": "PkgOffer",
+    "RelativePath": "api/PkgOffer/SavepkgOffer",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pkgOffer",
+        "Type": "sanchar6tBackEnd.Data.Entities.EPkgOffer",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.ReviewsController",
+    "Method": "GetReviews",
+    "RelativePath": "api/Reviews/GetReviews",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.ReviewsController",
+    "Method": "Reviews",
+    "RelativePath": "api/Reviews/SaveReviews",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reviews",
+        "Type": "sanchar6tBackEnd.Data.Entities.EReviews",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.SavedPassengerDtlsController",
+    "Method": "GetSavedPassengerDtlsbyUserID",
+    "RelativePath": "api/SavedPassengerDtls/GetSavedPassengerDtlsbyUserID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "UserID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.SavedPassengerDtlsController",
+    "Method": "SaveOrUpdate",
+    "RelativePath": "api/SavedPassengerDtls/SaveOrUpdate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "sanchar6tBackEnd.Models.SavedPassengerDtl",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.ServiceDtlsController",
+    "Method": "GetServiceDtlsByPackageID",
+    "RelativePath": "api/ServiceDtls/GetpkgImageDtlByPackageID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PackageID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.ServiceDtlsController",
+    "Method": "GetServiceDtls",
+    "RelativePath": "api/ServiceDtls/GetServiceDtls",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.ServiceDtlsController",
+    "Method": "GetServiceDtlsByID",
+    "RelativePath": "api/ServiceDtls/GetServiceDtlsByID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "PkgImageID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.ServiceDtlsController",
+    "Method": "ServiceDtls",
+    "RelativePath": "api/ServiceDtls/SaveServiceDtls",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "serviceDtls",
+        "Type": "sanchar6tBackEnd.Data.Entities.EServiceDtls",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.StateController",
+    "Method": "GetState",
+    "RelativePath": "api/State/GetState",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Country-Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.StateController",
+    "Method": "GetStatebycountryID",
+    "RelativePath": "api/State/GetStateByCountry/{countryID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "countryID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.StateController",
+    "Method": "GetStateByID",
+    "RelativePath": "api/State/GetStateByID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "stateID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.StateController",
+    "Method": "SaveState",
+    "RelativePath": "api/State/PostState",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eState",
+        "Type": "sanchar6tBackEnd.Data.Entities.EState",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.UserController",
+    "Method": "GetData",
+    "RelativePath": "api/User/GetUser",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.UserController",
+    "Method": "GetData",
+    "RelativePath": "api/User/GetUserByID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.UserController",
+    "Method": "SaveUser",
+    "RelativePath": "api/User/PostUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "sanchar6tBackEnd.Data.Entities.User",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.UserLogsController",
+    "Method": "GetUserlogsdata",
+    "RelativePath": "api/UserLogs/GetUserLogs",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.UserLogsController",
+    "Method": "SaveUserLogs",
+    "RelativePath": "api/UserLogs/PostUserLogs",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userLogs",
+        "Type": "sanchar6tBackEnd.Data.Entities.EUserLogs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.UserSearchController",
+    "Method": "GetUserSearch",
+    "RelativePath": "api/UserSearch/GetPayment",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.UserSearchController",
+    "Method": "SaveUserSearch",
+    "RelativePath": "api/UserSearch/PostPayment",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eUserSearch",
+        "Type": "sanchar6tBackEnd.Data.Entities.EUserSearch",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.UsertypeController",
+    "Method": "GetUsertype",
+    "RelativePath": "api/Usertype/GetUsertype",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.UsertypeController",
+    "Method": "SaveUsertype",
+    "RelativePath": "api/Usertype/PostUsertype",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eUsertype",
+        "Type": "sanchar6tBackEnd.Data.Entities.EUsertype",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.WalletTransactionController",
+    "Method": "GetWalletTransaction",
+    "RelativePath": "api/WalletTransaction/GetWalletTransaction",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.WalletTransactionController",
+    "Method": "GetWalletTransactionByID",
+    "RelativePath": "api/WalletTransaction/GetWalletTransactionByID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.WalletTransactionController",
+    "Method": "WalletTransaction",
+    "RelativePath": "api/WalletTransaction/SaveWalletTransaction",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "walletTransaction",
+        "Type": "sanchar6tBackEnd.Data.Entities.EWalletTransaction",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "sanchar6tBackEnd.Data.Entities.CommonRsult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "sanchar6tBackEnd.Controllers.WeatherForecastController",
+    "Method": "Get",
+    "RelativePath": "WeatherForecast",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[sanchar6tBackEnd.WeatherForecast, sanchar6tBackEnd, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "EndpointName": "GetWeatherForecast"
+  }
+]
