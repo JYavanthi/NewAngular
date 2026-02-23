@@ -1,0 +1,96 @@
+<div class="page-wrapper">
+
+  <div class="red-frame">
+
+    <!-- Top Ornament -->
+    <div class="ornament top"></div>
+
+    <!-- White Login Card -->
+    <div class="login-card">
+
+      <!-- FORM START -->
+      <form [formGroup]="agentLoginForm">
+
+        <!-- Logo & Heading -->
+        <div class="logo-section">
+          <img src="\assets\s6t.png" alt="Sanchar6T" />
+          <!-- <span style="color:#c80000;">Sanchar6T</span> -->
+
+          <h2>
+            <span class="brand">Sanchar6T</span>
+            <span class="role"> Agent</span> Log-In
+          </h2>
+
+          <p>Create your account – Sanchar6T makes travel simple and hassle-free.</p>
+        </div>
+
+        <!-- Google Button -->
+        <button type="button" class="google-btn">
+          <img src="/assets/google.png" alt="Google" />
+          Continue with Google
+        </button>
+
+        <!-- Divider -->
+        <div class="divider">
+          <span>or, sign up with Email.</span>
+        </div>
+
+        <!-- Email / Phone (SINGLE INPUT) -->
+        <label>Email/ Phone No.</label>
+        <div class="input-box">
+          <i class="fa-solid fa-envelope" style="color: #f6a400;"></i>
+          <input
+            type="text"
+            placeholder="Enter Email Address/ Phone No."
+            formControlName="loginId"
+          />
+        </div>
+
+        <!-- Password -->
+        <label>Password</label>
+        <div class="input-box">
+          <i
+            class="fa-solid"
+            [class.fa-eye]="isPasswordVisible"
+            [class.fa-eye-slash]="!isPasswordVisible"
+            style="color: #f6a400; cursor:pointer;"
+            (click)="isPasswordVisible = !isPasswordVisible">
+          </i>
+
+          <input
+            [type]="isPasswordVisible ? 'text' : 'password'"
+            placeholder="Password"
+            formControlName="password"
+          />
+        </div>
+
+        <!-- Login Button -->
+        <button
+          type="button"
+          class="login-btn"
+          (click)="submitLogin()">
+          Log-In
+        </button>
+
+        <!-- Signup -->
+        <div class="footer-text">
+          Don’t have an account? <a href="#">Sign up</a>
+        </div>
+
+        <!-- Terms -->
+        <div class="terms">
+          By Signing Up, you agree to our
+          <a href="#">Terms</a> and <a href="#">Privacy Policy</a>
+        </div>
+
+      </form>
+      <!-- FORM END -->
+
+    </div>
+
+    <!-- Bottom Ornament -->
+    <div class="ornament bottom"></div>
+
+  </div>
+
+</div>

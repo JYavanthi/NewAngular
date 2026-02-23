@@ -1,0 +1,181 @@
+@import '../../../styles.scss';
+
+.sidebar-opener {
+    cursor: pointer;
+}
+
+.sidebar-slider {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    bottom: 0;
+    background-color: #f7f7f7;
+    transform: translateX(-100%);
+    transition: ease-in-out 300ms transform;
+    width: 300px;
+}
+
+.sidebar-slider.sidebar-slide-in {
+    transform: translateX(0%);
+    transition: ease-in-out 600ms transform;
+}
+
+.sidebar-close {
+    position: fixed;
+    top: 0;
+    right: 0;
+    color: $darkGreyColor;
+    cursor: pointer;
+    padding: 16px;
+}
+
+.sidebar-content {
+    display: grid;
+    gap: 30px;
+    color: $darkGreyColor;
+    margin-top: 60px;
+    padding: 5px;
+
+    .busDashboard,
+    .cabDashboard {
+        cursor: pointer;
+    }
+
+    .user {
+        @extend .alignItemsCenter;
+        gap: 10px;
+        background-color: $whiteColor;
+        color: black;
+        border-radius: 10px;
+        padding: 5px 0;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
+        i {
+            @extend .paddingBorder;
+            font-size: 25px;
+            background-color: #ebeef0;
+            margin-left: 5px;
+        }
+
+        div:first-of-type {
+            display: inline-grid;
+
+            span:first-of-type {
+                font-size: 12px;
+                color: $darkGreyColor;
+            }
+        }
+    }
+}
+
+header {
+    @extend .flexJustifySpaceBetweenAlignCenter;
+    flex-wrap: wrap;
+    background-color: $whiteColor;
+    padding: 0 15px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+
+    .logoWithBarIcon {
+        @extend .flexJustifySpaceBetweenAlignCenter;
+        gap: 20px;
+    }
+
+    .menu-icon {
+        display: none;
+        cursor: pointer;
+    }
+}
+
+.logoWithNav {
+    @extend .flexJustifyStart;
+    align-items: center;
+    gap: 30px;
+
+    .title {
+        font-weight: bold;
+        color: #c02624;
+        font-size: 30px;
+    }
+
+    img {
+        height: 78px;
+        width: 112px;
+        cursor: pointer;
+        padding: 5px;
+
+    }
+
+}
+
+.loginSignup {
+    @extend .alignItemsCenter;
+
+    button {
+        border: none !important;
+        border-radius: 50px !important;
+        background-color: #c02624 !important;
+        color: $whiteColor !important;
+        padding: 2px 20px;
+    }
+
+    .helpBtn {
+        background-color: $whiteColor !important;
+        color: #c02624 !important;
+    }
+
+    .fa-headphones {
+        color: #c02624;
+    }
+}
+
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled),
+button:not(:disabled) {
+    border: none;
+    background-color: $whiteColor;
+    outline-color: $whiteColor;
+    font-size: 18px;
+}
+
+.dropdown-menu {
+    font-size: clamp(14px, 2.5vw, 18px);
+}
+
+@media (max-width: 768px) {
+    .loginSignup {
+        display: none;
+    }
+
+    .navClass {
+        display: none;
+    }
+
+    .menu-icon {
+        display: block !important;
+
+        button {
+            font-size: 18px;
+        }
+    }
+}
+
+@media(max-width: 574px) {
+    .menu-icon button {
+        font-size: 14px;
+    }
+
+    .logoWithNav {
+        gap: 15px;
+
+        .title {
+            font-size: 20px !important;
+        }
+    }
+
+}

@@ -1,0 +1,26 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Sanchar6t_API/obj
+/Sanchar6t_API/.vs
+/Sanchar6t_API/sanchar6tBackEnd/obj/Debug
+/Sanchar6t_API/sanchar6tBackEnd/sanchar6tBackEnd.csproj
+/Sanchar6t_API/sanchar6tBackEnd/bin/Debug/net7.0/sanchar6tBackEnd.dll
+/Sanchar6t_API/sanchar6tBackEnd/bin/Debug/net7.0/sanchar6tBackEnd.pdb
+/Sanchar6t_API/sanchar6tBackEnd/bin/Debug/net7.0/sanchar6tBackEnd.dll
+/Sanchar6t_API/sanchar6tBackEnd/bin/Debug/net7.0/sanchar6tBackEnd.dll
+/Sanchar6t_API.zip
+/Sanchar6t_API/sanchar6tBackEnd/bin/Debug/net7.0/sanchar6tBackEnd.pdb
+/Sanchar6t_API/sanchar6tBackEnd/bin/Debug/net7.0/sanchar6tBackEnd.dll
+/Sanchar6t_API/sanchar6tBackEnd/bin/Debug/net7.0/sanchar6tBackEnd.exe
+/Sanchar6t_API/sanchar6tBackEnd/bin/Debug/net7.0/sanchar6tBackEnd.staticwebassets.endpoints.json
+/Sanchar6t_API/sanchar6tBackEnd/bin/Debug/net7.0/sanchar6tBackEnd.exe
+/Sanchar6t_API/sanchar6tBackEnd/bin/Debug/net7.0/sanchar6tBackEnd.exe
+/Sanchar6t_API/sanchar6tBackEnd/Sanchar6tFile/Uploads
+/Sanchar6t_API/sanchar6tBackEnd/bin/Debug/net7.0/Newtonsoft.Json.Bson.dll
+/Sanchar6t_API/sanchar6tBackEnd/bin/Debug/net7.0
+/Sanchar6t_API/sanchar6tBackEnd/Models/VwState1.cs
+/Sanchar6t_API/sanchar6tBackEnd/Services/Interface.cs
+/Sanchar6t_UI/src/app/layout/bus-booking/bus-booking/bus-booking
+/Sanchar6t_UI/src/app/layout/bus-booking/bus-booking

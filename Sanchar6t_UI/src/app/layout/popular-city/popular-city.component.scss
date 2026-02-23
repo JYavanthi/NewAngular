@@ -1,0 +1,310 @@
+@import '../../../styles.scss';
+
+.busContent {
+    .banner {
+        @extend .alignItemsCenter;
+        position: relative;
+        height: 90vh;
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .bannerContent {
+            @extend .absolutePositioning;
+
+            .headingTitleContent {
+                @extend .flexDirectionColumn;
+                font-size: 40px;
+                font-weight: bold;
+                color: $whiteColor;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+                margin-left: 50px;
+
+                p:nth-child(2) {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}
+
+// .busRoutes1 {
+//     position: relative;
+//     @extend .flexJustifyCenterAlignCenter;
+
+//     .headingTitleContent {
+//         font-size: 40px;
+//         font-weight: bold;
+//         color: white;
+//         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+//     }
+// }
+
+.fa-calendar-days {
+    display: flex;
+    flex-direction: column;
+}
+
+.busRoutes2 {
+    width: 80%;
+    position: absolute;
+    left: 10%;
+    bottom: 20%;
+    padding: 40px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 40px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
+
+    button,
+    input {
+        border: none;
+        background-color: lightgray;
+        outline-color: lightgray;
+        padding: 10px;
+        border-radius: 30px;
+    }
+
+    button {
+        background-color: $violetColor;
+        color: white;
+        padding: 10px 35px;
+    }
+
+    i {
+        font-size: 20px;
+    }
+
+    span:nth-child(6) {
+        border-right: 1px lightgray;
+        padding: 10px;
+    }
+}
+
+#busRoutes3 {
+    margin: 35px 0px;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.busRoutes3 {
+    margin: 20px 45px;
+    border-radius: 40px;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
+}
+
+.busRoutes4,
+.busRoutes5 {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 40px;
+}
+
+.busRoutes4 {
+    p:first-child {
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
+
+.busRoutes5 {
+    color: gray;
+}
+
+.boxContainer {
+    border-radius: 5px;
+    padding: 20px;
+    background-color: $whiteColor;
+    width: 95%;
+    margin: 0 auto;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
+    .way {
+        margin: 5px;
+
+        label {
+            font-size: 16px;
+            background-color: $lightVioletColor;
+            border-radius: 30px;
+            padding: 0 5px;
+        }
+    }
+
+    .addingDetails {
+        position: relative;
+
+        .inputFields {
+            display: flex;
+
+            label {
+                display: inline-block;
+                font-size: 18px;
+                transition: all .2s ease;
+                z-index: 10;
+                position: relative;
+                top: -50px;
+                left: 10px;
+                color: $darkGreyColor;
+            }
+
+            .inputContainer {
+                width: 75%;
+                position: relative;
+
+                &:nth-child(1) {
+                    input {
+                        border-radius: 5px 0 0 5px;
+                    }
+                }
+
+                &:nth-child(2) {
+                    input {
+                        border-radius: 0;
+                    }
+                }
+
+                &:nth-child(3) {
+                    input {
+                        border-radius: 0 5px 5px 0;
+                    }
+                }
+            }
+
+            input {
+                width: 100%;
+                position: relative;
+                display: inline-block;
+                font-size: 1.25em;
+                padding: 20px 10px;
+                background-color: transparent;
+                border: 1px solid lightgray;
+                outline: none;
+                z-index: 20;
+                font-weight: bold;
+            }
+
+            input:focus~label,
+            input:valid~label {
+                top: -75px;
+                font-size: 16px;
+            }
+
+            input:placeholder-shown~label {
+                top: 40px;
+            }
+
+            input[type='date']:in-range::-webkit-datetime-edit-year-field,
+            input[type='date']:in-range::-webkit-datetime-edit-month-field,
+            input[type='date']:in-range::-webkit-datetime-edit-day-field,
+            input[type='date']:in-range::-webkit-datetime-edit-text {
+                color: transparent;
+            }
+        }
+
+        .searchBtn {
+            text-align: center;
+
+            button {
+                @extend .violetWhite;
+                font-weight: bold;
+                border: none;
+                border-radius: 30px;
+                padding: 10px 50px;
+            }
+        }
+
+        .serviceBox {
+            @extend .flexJustifySpaceBetweenAlignCenter;
+            position: absolute;
+            background-color: $whiteColor;
+            width: 80%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            padding: 30px;
+            top: -150px;
+            left: 10%;
+            gap: 30px;
+
+            a {
+                .svgIcon {
+                    display: inline-block;
+                    width: 50px;
+                    height: 30px;
+                    color: $darkGreyColor;
+                    transition: color 0.3s ease;
+                }
+
+                .flip {
+                    transform: scaleX(-1);
+                }
+
+                color: $darkGreyColor;
+                font-size: 16px;
+                @extend .flexDirectionColumn;
+                align-items: center;
+                transition: color 0.3s ease;
+
+                &.active {
+                    color: $violetColor;
+                    font-weight: bold;
+
+                    .svgIcon {
+                        color: $violetColor;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+@media (max-width:768px) {
+    #busRoutes3 {
+        margin: 15px 0px;
+        font-size: 30px;
+    }
+
+    .busRoutes4,
+    .busRoutes5 {
+        padding: 10px 40px;
+    }
+
+    .busRoutes4 {
+        p:first-child {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    }
+}
+
+@media (max-width:574px) {
+    #busRoutes3 {
+        font-size: 18px;
+    }
+
+    .busRoutes3 {
+        margin: 20px 0px;
+        border-radius: 25px;
+    }
+
+    .busRoutes4,
+    .busRoutes5 {
+        padding: 7px 10px;
+    }
+
+    .busRoutes4 {
+        p:first-child {
+            font-size: 12px;
+            font-weight: bold;
+        }
+    }
+}

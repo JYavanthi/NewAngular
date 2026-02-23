@@ -1,0 +1,111 @@
+@import '../../../styles.scss';
+
+.reactiveForm {
+
+    .input-container {
+        position: relative;
+    }
+
+    span {
+        justify-content: center;
+        display: flex;
+        font-weight: bold;
+
+    }
+
+    .fa-ticket {
+        position: absolute;
+        left: 10px;
+        margin-top: 65px;
+        bottom: 10px;
+
+    }
+
+    .fa-phone {
+        position: absolute;
+        right: 202px;
+        margin-top: 65px;
+        bottom: 10px;
+    }
+
+    .form-tickets {
+        display: flex;
+        justify-content: center;
+        gap: 25%;
+        margin-top: 30px;
+    }
+
+
+    lable {
+        color: grey;
+    }
+
+    input {
+        padding: 5px;
+        text-indent: 30px;
+    }
+
+    .selectButton {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+
+        button {
+            @extend .violetWhite;
+            padding: 8px 40px 8px 40px;
+            border-radius: 25px;
+            font-size: 15px;
+            border: none;
+        }
+    }
+    @media(max-width: 768px) {
+
+        .fa-phone {
+            right: 204px;
+            bottom: 10px;
+        }
+
+        .fa-ticket {
+            position: absolute;
+            left: 12px;
+            bottom: 10px;
+        }
+
+    }
+
+    @media(max-width: 574px) {
+        input {
+            width: 100%;
+        }
+
+        .form-tickets {
+            flex-direction: column;
+            gap: 15px;
+
+        }
+
+
+        .fa-ticket {
+            left: 12px;
+            bottom: 10px;
+        }
+
+        .fa-phone {
+            left: 12px;
+            bottom: 10px;
+
+        }
+
+        .selectButton {
+            margin-top: 15px;
+        }
+
+        .selectButton {
+            button {
+                padding: 5px 30px;
+                border-radius: 25px;
+                font-size: 12px;
+            }
+        }
+    }
+}

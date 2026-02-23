@@ -1,0 +1,170 @@
+<div class="banner mb-4">
+    <img [src]="imageDetails" alt="Tirupati">
+    <span>
+        <span>{{packageImgDtlList?.heading}}</span><br>
+        <a [href]="packageImgDtlList?.btnUrl" target="home"><button>{{packageImgDtlList?.btnName}}</button></a>
+        <span>{{packageImgDtlList?.subHeading}}</span>
+    </span>
+</div>
+
+<div class="contents mb-4">
+    <p>{{packageDtls?.shortdescription}}</p>
+    <p>{{packageDtls?.description}}</p>
+    <p>{{packageDtls?.additionalNotes}}</p>
+</div>
+
+<div class="packageBanner mb-4">
+    <img src="assets/black-tirupati-banner.png" alt="Tirupati">
+    <div>
+        <span>{{packageDtls?.packageName}} <span>Rs {{packageDtls?.packagePrice}}</span></span><br>
+        <button (click)="bookNow(packageDtls)">Book Now</button>
+    </div>
+</div>
+
+<div class="hightlights mb-4">
+    <h1 class="fw-bold">Highlights</h1>
+
+    <ng-container *ngFor="let item of packagHighlightDtls">
+        <span class="content">
+            <i class="fa-solid fa-circle-dot"></i>
+            <span>{{item.title}}</span>
+            <p>{{item.description}}</p>
+        </span>
+    </ng-container>
+</div>
+
+<!-- <div class="IDCardRequirement mb-4">
+    <h1 class="fw-bold">ID Card Requirement</h1>
+    <span class="content">
+        <i class="fa-solid fa-circle-dot"></i>
+        <span>Kindly bring original government-issued ID cards for all travelers for verification
+            purposes.</span>
+    </span>
+</div> -->
+
+<div class="detailedItinerary mb-4">
+    <h1 class="fw-bold">Detailed Itinerary</h1>
+    <ng-container *ngFor="let day of groupedItinerary | keyvalue">
+        <h2 class="fw-bold">Day {{ day.key }}:</h2>
+        <div id="carouselExampleAutoplaying1" class="carousel slide" data-bs-interval="3000">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="assets/bus1.jpg" class="d-block w-50" alt="Bus ">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/bus2.png" class="d-block w-50" alt="Bus ">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/bus3.png" class="d-block w-50" alt="Bus ">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying1"
+                data-bs-slide="prev">
+                <i class="fa-solid fa-angle-left"></i>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying1"
+                data-bs-slide="next">
+                <i class="fa-solid fa-angle-right"></i>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div><br>
+
+        <ng-container *ngFor="let description of day.value">
+            <span class="content">
+                <i class="fa-solid fa-circle-dot"></i>
+                <span>{{ description }}</span>
+            </span>
+        </ng-container>
+        <br>
+    </ng-container>
+</div>
+
+<div class="includedNotIncluded mb-4">
+    <div class="included">
+        <h1 class="fw-bold">INCLUDED</h1>
+        <ng-container *ngFor="let item of includedList">
+            <span>
+                <i class="fa-solid fa-circle-check"></i>
+                <span>{{item.description}}</span>
+            </span>
+        </ng-container>
+    </div>
+
+    <div class="notIncluded">
+        <h1 class="fw-bold">NOT INCLUDED</h1>
+        <ng-container *ngFor="let item of notIncludedList">
+            <span>
+                <i class="fa-solid fa-circle-xmark"></i>
+                <span>{{item.description}}</span>
+            </span>
+        </ng-container>
+    </div>
+</div>
+
+<div class="importantNotes mb-4">
+    <h1 class="fw-bold">Important Notes</h1>
+    <ng-container *ngFor="let item of importantNoteList">
+        <span class="content">
+            <i class="fa-solid fa-circle-dot"></i>
+            <span>{{item.description}}</span>
+        </span>
+    </ng-container>
+</div>
+
+<div class="termsConditions">
+    <div class="tableContainer">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="4" class="text-center">Once the Booking is Completed, Cancellations will not be
+                        Allowed.
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Service</td>
+                    <td>{{serviceList?.servicename}}</td>
+                </tr>
+                <tr>
+                    <td>Bus Type</td>
+                    <td>{{serviceList?.busType}}</td>
+                </tr>
+                <tr>
+                    <td>Departure</td>
+                    <td>{{serviceList?.departure}}</td>
+                </tr>
+                <tr>
+                    <td>Duration</td>
+                    <td>{{serviceList?.duration}}</td>
+                </tr>
+                <tr>
+                    <td>Arrival</td>
+                    <td>{{serviceList?.arrival}}</td>
+                </tr>
+                <!-- <tr>
+                    <td>Fare</td>
+                    <td>{{serviceList.fare}} INR</td>
+                </tr> -->
+                <tr>
+                    <td>Weekdays (Sunday to Thursday)</td>
+                    <td>{{serviceList?.wdFare}} INR</td>
+                </tr>
+                <tr>
+                    <td>Weekend (Friday to Saturday)</td>
+                    <td>{{serviceList?.weFrom}} INR</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="CTA">
+        <h3 class="fw-bold">For Booking Information Please Call: +91 9731312275, 8197882511</h3>
+        <div class="btns">
+            <button>Enquire Us</button>
+            <button (click)="bookNow(packageDtls)">Book Now</button>
+        </div>
+    </div>
+
+</div>

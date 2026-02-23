@@ -1,0 +1,46 @@
+<form [formGroup]="importantNotesForm">
+    <div class="importantNotes">
+        <span>
+            <button (click)="isImportantNotes = !isImportantNotes"><i
+                    [ngClass]="isImportantNotes ? 'fa-solid fa-minus' : 'fa-solid fa-plus'"></i>
+                {{isImportantNotes?'Hide Field' : 'Add New
+                Field'}}</button>
+        </span>
+        <ng-container *ngIf="isImportantNotes">
+            <div class="inputFields mt-2" [@expandCollapse]>
+                <div class="textAreaDiv">
+                    <textarea formControlName="importantNotes"></textarea>
+                </div>
+                <div class="submitClear">
+                    <button class="submit" (click)="Submit('submit')">{{selectedRow? 'Update':'Submit'}}</button>
+                    <button class="clear" (click)="importantNotesForm.reset();selectedRow = null">Clear</button>
+                </div>
+            </div>
+        </ng-container>
+        <div class="tableDivcontainer">
+            <table class="tableContainer">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Notes</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="importantNoteList.length == 0">
+                        <p style="margin: 10px;">No Data to Display</p>
+                    </tr>
+                    <tr *ngFor="let item of importantNoteList;let i=index;">
+                        <td>{{ i+1 }}</td>
+                        <td>{{ item.description }}</td>
+                        <td>
+                            <i class="fa-solid fa-pen-to-square" (click)="edit(item)"></i>&nbsp;
+                            <i class="fa-solid fa-trash" (click)="confirmDelete(item)"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</form>

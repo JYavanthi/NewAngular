@@ -1,0 +1,40 @@
+<div class="headingDiv">
+  <span class="fw-bold"><i class="fa-solid fa-bus"></i> Bus Package Configuration</span>
+</div>
+
+<mat-tab-group [(selectedIndex)]="selectedTab" (selectedTabChange)="onTabChange($event)">
+  <mat-tab label="Bus Package">
+    <app-bus-package (packageGenerated)="onPackageGenerated($event)"/>
+  </mat-tab>
+
+  <mat-tab label="Package Image Details">
+    <app-package-image-details *ngIf="selectedTab === 1"
+    [packageID]="packageID"/>
+  </mat-tab>
+
+  <mat-tab label="Highlights">
+    <app-highlights *ngIf="selectedTab === 2"/>
+  </mat-tab>
+
+  <mat-tab label="Detailed Itinerary">
+    <app-detailed-itinerary *ngIf="selectedTab === 3"/>
+  </mat-tab>
+
+  <mat-tab label="Included">
+    <app-included *ngIf="selectedTab === 4"/>
+  </mat-tab>
+
+  <mat-tab label="Not Included">
+    <app-not-included *ngIf="selectedTab === 5"/>
+  </mat-tab>
+
+  <mat-tab label="Important Notes">
+    <app-important-notes *ngIf="selectedTab === 6"/>
+  </mat-tab>
+
+  <mat-tab label="Schedule and Pricing">
+    <app-additional-details *ngIf="selectedTab === 7"/>
+  </mat-tab>
+</mat-tab-group>
+
+<router-outlet></router-outlet>

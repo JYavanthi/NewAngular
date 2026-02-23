@@ -1,0 +1,619 @@
+<div class="page">
+
+  <!-- 🔹 PAGE CONTENT -->
+  <div class="page-content" [class.shift]="isSidebarOpen">
+
+    <div class="hero-area">
+      <div class="menu-box" (click)="toggleSidebar()">
+        <i class="fa-solid fa-bars" style="color: black"></i>
+      </div> 
+
+      <div class="hero-box">
+        <img src="..\assets\heroImage2.png" alt="Hero" class="hero-img">
+      </div>
+    </div>
+    <!-- SEARCH PANEL -->
+    <div class="search-panel">
+      <div class="field-row">
+
+        <!-- ORIGIN -->
+        <div class="field">
+          <span class="field-label">
+            <i class="fa-solid fa-location-dot" style="color: red;"></i> Origin
+          </span>
+
+          <div class="field-input">
+            <input type="text" placeholder="Type to search..." (input)="filterOrigin($event)"
+              (focus)="showOriginList = true" (click)="$event.stopPropagation()" (keydown)="onOriginKeyDown($event)"
+              [value]="originInputText" class="search-input" />
+
+
+            <ul class="dropdown-list" *ngIf="showOriginList">
+              <li *ngFor="let c of filteredDepartureCities; let i = index" [class.active]="i === originActiveIndex"
+                (click)="selectOrigin(c)">
+                {{ c.name }}
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 🔁 SWAP BUTTON -->
+        <div class="swap-field" (click)="swapOriginDestination()">
+          <i class="fa-solid fa-right-left"></i>
+        </div>
+
+        <!-- DESTINATION -->
+        <div class="field">
+          <span class="field-label">
+            <i class="fa-solid fa-map-pin" style="color: red;"></i> Destination
+          </span>
+
+          <div class="field-input">
+            <input type="text" placeholder="Type to search..." (input)="filterDestination($event)"
+              (focus)="showDestinationList = true" (click)="$event.stopPropagation()"
+              (keydown)="onDestinationKeyDown($event)" [value]="destinationInputText" class="search-input" />
+
+            <ul class="dropdown-list" *ngIf="showDestinationList">
+              <li *ngFor="let d of filteredDestinationCities; let i = index"
+                [class.active]="i === destinationActiveIndex" (click)="selectDestination(d)">
+                {{ d.name }}
+              </li>
+            </ul>
+
+          </div>
+        </div>
+
+        <!-- ONWARDS -->
+        <div class="field">
+          <span class="field-label">
+            <i class="fa-regular fa-calendar-days" style="color: red;"></i> Onwards
+          </span>
+
+          <div class="field-input" (click)="toggleOnwards($event)">
+            <input type="text" class="search-input" placeholder="Select" readonly [value]="selectedOnwardDate" />
+
+            <!-- 🔽 CUSTOM DROPDOWN -->
+            <div class="onwards-dropdown" *ngIf="showOnwards " (click)="$event.stopPropagation()">
+
+              <!-- LEFT : HOLIDAY LIST -->
+              <div class="holiday-panel">
+                <h6>Holidays List</h6>
+                <p class="green">• 30 November - SubhaMuhurtam</p>
+                <p class="green">• 01 December - SubhaMuhurtam</p>
+                <p>• 02 December</p>
+                <p>• 03 December</p>
+              </div>
+
+              <div class="calendar-panel">
+                <div class="calendar-header">
+                  <span (click)="prevMonth()" style="cursor:pointer;">&#10094;</span>
+                  <strong>{{ monthNames[currentMonth] }} {{ currentYear }}</strong>
+                  <span (click)="nextMonth()" style="cursor:pointer;">&#10095;</span>
+                </div>
+
+                <div class="calendar-grid">
+                  <span class="day-name" *ngFor="let d of days">{{ d }}</span>
+
+                  <span class="day" *ngFor="let date of calendarDates" [class.empty]="!date"
+                    (click)="date && selectOnwardDate(date)">
+                    {{ date || '' }}
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- CODE -->
+        <div class="field">
+          <span class="field-label">Code</span>
+          <div class="field-input">
+            <select>
+              <option>Select</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- SEARCH -->
+        <button class="btn-search" (click)="searchSchedules()">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+
+      </div>
+    </div>
+    <div class="below-search-row">
+
+      <div class="bothDiv">
+        <div class="date-strip-wrapper">
+
+          <button class="nav-btn" (click)="prevDates()">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <div class="date-strip">
+            <span class="date-item" *ngFor="let d of visibleDates; let i = index"
+              [class.active]="activeIndex === (startIndex + i)" (click)="selectDate(i)">
+              {{ d.label }}
+            </span>
+          </div>
+
+          <button class="btn-search" (click)="searchSchedules()">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+
+        <!-- <div class="bus-card" *ngFor="let bus of schedules">
+
+          <div class="bus-header">
+            <span>Service</span>
+            <span>Bus Type</span>
+            <span>Dept</span>
+            <span>Arrival</span>
+            <span>Fare (₹)</span>
+          </div>
+
+          <div class="bus-body">
+
+            <div class="service">
+              <span class="route">
+                {{ getCityName(bus.origin_id) }} → {{ getCityName(bus.destination_id) }}
+              </span>
+            </div>
+
+            <div class="bus-type">
+              <span>{{ bus.bus_type }}</span>
+              <span class="sub">
+                {{ parseAmenities(bus.amenities) }} • {{ bus.available_seats }} seats
+              </span>
+            </div>
+
+            <div class="time">
+              <span class="main">{{ bus.dep_time }}</span>
+              <span class="sub">{{ selectedOnwardDate }}</span>
+            </div>
+
+            <div class="time">
+              <span class="main">{{ bus.arr_time }}</span>
+              <span class="sub">{{ selectedOnwardDate }}</span>
+            </div>
+
+            <div class="fare" (click)="openSeatLayout(bus)">
+              <span class="amount">₹{{ extractFare(bus) }}</span>
+              <span class="sold">
+                {{ bus.available_seats }} / {{ getTotalSeatsFromAvailable(bus) }} Seats
+              </span>
+            </div>
+          </div>
+        </div> -->
+
+        <div class="bus-card" *ngFor="let bus of schedules">
+
+          <div class="bus-header">
+            <span>Service</span>
+            <span>Bus Type</span>
+            <span>Dept</span>
+            <span>Arrival</span>
+            <span>Fare (₹)</span>
+          </div>
+
+          <div class="bus-body">
+
+            <div class="service">
+              <span class="route">
+                {{ getCityName(bus.origin_id) }} → {{ getCityName(bus.destination_id) }}
+              </span>
+            </div>
+
+            <div class="bus-type">
+              <span>{{ bus.bus_type }}</span>
+
+              <!-- ✅ CLICK HERE -->
+              <span class="sub" (click)="toggleBusInfo(bus); $event.stopPropagation()" style="cursor:pointer">
+                {{ parseAmenities(bus.amenities) }} • {{ bus.available_seats }} seats
+              </span>
+            </div>
+
+            <div class="time">
+              <span class="main">{{ bus.dep_time }}</span>
+              <span class="sub">{{ selectedOnwardDate }}</span>
+            </div>
+
+            <div class="time">
+              <span class="main">{{ bus.arr_time }}</span>
+              <span class="sub">{{ selectedOnwardDate }}</span>
+            </div>
+
+            <div class="fare fare-click" (click)="openSeatLayout(bus)">
+              <span class="amount">₹{{ extractFare(bus) }}</span>
+              <span class="sold">
+                {{ bus.available_seats }} / {{ getTotalSeatsFromAvailable(bus) }} Seats
+              </span>
+            </div>
+          </div>
+          <!-- ✅ INFO BOX MUST BE HERE (INSIDE *ngFor) -->
+          <div class="bus-info-box" *ngIf="selectedBus === bus">
+            <div class="info-grid">
+
+              <!-- LEFT : SEAT DETAILS -->
+              <div class="info-card">
+                <h4>No. of Seats</h4>
+
+                <div class="info-row">
+                  <span>Available</span>
+                  <strong>{{ bus.available_seats }}</strong>
+                </div>
+
+                <div class="info-row">
+                  <span>Selected</span>
+                  <strong>{{ selectedSeats.size }}</strong>
+                </div>
+
+                <hr />
+
+                <div class="info-row total">
+                  <span>Total</span>
+                  <strong>{{ selectedSeats.size }}</strong>
+                </div>
+              </div>
+
+              <!-- RIGHT : PRICE DETAILS -->
+              <div class="info-card">
+                <h4>Price Details</h4>
+
+                <div class="info-row">
+                  <span>Base Fare</span>
+                  <strong>
+                    ₹ {{ extractFare(bus) * (selectedSeats.size || 1) }}
+                  </strong>
+                </div>
+
+                <div class="info-row">
+                  <span>GST (5%)</span>
+                  <strong>
+                    ₹ {{
+                    (extractFare(bus) * (selectedSeats.size || 1) * 0.05)
+                    | number:'1.0-0'
+                    }}
+                  </strong>
+                </div>
+
+                <div class="info-row">
+                  <span>Convenience Fee</span>
+                  <strong>₹ 20</strong>
+                </div>
+
+                <hr />
+
+                <div class="info-row total">
+                  <span>Total Payment</span>
+                  <strong class="amount">
+                    ₹ {{
+                    (extractFare(bus) * (selectedSeats.size || 1)) +
+                    (extractFare(bus) * (selectedSeats.size || 1) * 0.05) +
+                    20
+                    | number:'1.0-0'
+                    }}
+                  </strong>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- CONTINUE BUTTON -->
+            <div class="continue-wrap">
+              <button class="btn-continue" (click)="openPassengerForm()">
+                Continue <i class="fa-solid fa-angles-right"></i>
+              </button>
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+      <div class="right-placeholder">
+
+        <div class="bp-dp-box" *ngIf="boardingPoints.length">
+
+          <div class="brddrp">
+            <div class="field">
+              <span class="field-label">Boarding Point</span>
+              <select class="search-input" [(ngModel)]="selectedBoardingPoint">
+                <option [ngValue]="null">Select Boarding Point</option>
+                <option *ngFor="let b of boardingPoints" [ngValue]="b">
+                  {{ b.name }} – {{ b.time }}
+                </option>
+              </select>
+            </div>
+
+            <div class="field">
+              <span class="field-label">Dropping Point</span>
+              <select class="search-input" [(ngModel)]="selectedDroppingPoint">
+                <option [ngValue]="null">Select Dropping Point</option>
+                <option *ngFor="let d of droppingPoints" [ngValue]="d">
+                  {{ d.name }} – {{ d.time }}
+                </option>
+              </select>
+            </div>
+
+          </div>
+          <div class="bus-layout">
+            <div class="deck">
+              <h3>Lower Deck</h3>
+              <div class="seat-grid">
+                <div class="seat-row" *ngFor="let row of lowerDeck; let rowIndex = index"> <!-- LEFT : ONE SEAT -->
+                  <div class="left-seat"> <img src="assets\seat-img.jpeg" class="seat"
+                      [ngClass]="getSeatClass('L', rowIndex, 1)" (click)="toggleSeat('L', rowIndex, 1)" /> </div>
+
+                  <div class="aisle"></div>
+                  <div class="right-seats"> <img src="assets\seat-img.jpeg" class="seat"
+                      [ngClass]="getSeatClass('L', rowIndex, 2)" (click)="toggleSeat('L', rowIndex, 2)" /> <img
+                      src="assets\seat-img.jpeg" class="seat" [ngClass]="getSeatClass('L', rowIndex, 3)"
+                      (click)="toggleSeat('L', rowIndex, 3)" /> </div>
+                </div>
+              </div>
+            </div>
+            <div class="deck">
+              <h3>Upper Deck</h3>
+              <div class="seat-grid">
+                <div class="seat-row" *ngFor="let row of upperDeck; let rowIndex = index">
+                  <div class="left-seat"> <img src="assets\seat-img.jpeg" class="seat"
+                      [ngClass]="getSeatClass('U', rowIndex, 1)" (click)="toggleSeat('U', rowIndex, 1)" /> </div>
+                  <div class="aisle"></div>
+                  <div class="right-seats"> <img src="assets\seat-img.jpeg" class="seat"
+                      [ngClass]="getSeatClass('U', rowIndex, 2)" (click)="toggleSeat('U', rowIndex, 2)" /> <img
+                      src="assets\seat-img.jpeg" class="seat" [ngClass]="getSeatClass('U', rowIndex, 3)"
+                      (click)="toggleSeat('U', rowIndex, 3)" /> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="text-align: center;">
+            <button class="btn-continue" (click)="openPassengerForm()">
+              Continue <i class="fa-solid fa-angles-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar" [class.open]="isSidebarOpen">
+      <div class="sidebar-item active">
+        <i class="fa-solid fa-bus" style="color: #2d3e8b;"></i>
+        <span>Bookings</span>
+      </div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-wallet" style="color: #2d3e8b;"></i>
+        <span>Account</span>
+      </div>
+
+      <div class="sidebar-item">
+        <i class="fa-solid fa-table" style="color: #2d3e8b;"></i>
+        <span>Reports</span>
+      </div>
+      <div class="sidebar-item">
+        <i class="fa-solid fa-user" style="color: #2d3e8b;"></i>
+        <span>Manage</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔥 PASSENGER DETAILS MODAL -->
+  <div class="modal-overlay" *ngIf="showPassengerModal">
+    <div class="modal-container">
+
+      <div class="modal-header">
+        <h3>Traveller Details</h3>
+        <button class="close-btn" (click)="closePassengerForm()">×</button>
+      </div>
+
+      <!-- <div formArrayName="passengers">
+
+    <div
+      class="passenger-card"
+      *ngFor="let p of passengers.controls; let i = index"
+      [formGroupName]="i"
+    >
+
+      <div class="seat-label">
+        Seat {{ p.get('seatNo')?.value }}
+      </div>
+
+=      <input
+        type="text"
+        placeholder="Passenger Name"
+        formControlName="name"
+      />
+
+=      <input
+        type="number"
+        placeholder="Age"
+        formControlName="age"
+      />
+
+=      <div class="row gender">
+        <label>
+          <input
+            type="radio"
+            [name]="'gender_' + i"
+            value="M"
+            formControlName="gender"
+          />
+          Male
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            [name]="'gender_' + i"
+            value="F"
+            formControlName="gender"
+          />
+          Female
+        </label>
+      </div>
+
+=      <input
+        type="text"
+        placeholder="Mobile Number"
+        formControlName="phone"
+      />
+
+=      <input
+        type="text"
+        placeholder="Address"
+        formControlName="address"
+      />
+
+=      <select formControlName="documentType">
+        <option value="AADHAR">Aadhar</option>
+        <option value="PASSPORT">Passport</option>
+      </select>
+
+=      <input
+        type="text"
+        placeholder="Document Number"
+        formControlName="documentNumber"
+      />
+
+=      <div class="row checkbox-row">
+        <label>
+          <input type="checkbox" formControlName="isNri" />
+          NRI
+        </label>
+
+        <label>
+          <input type="checkbox" formControlName="isPregnant" />
+          Pregnant
+        </label>
+      </div>
+
+    </div>
+  </div>
+
+=  <div class="contact-section">
+    <h4>Contact Details</h4>
+
+    <input
+      type="text"
+      placeholder="Alternative Mobile Number"
+      formControlName="alternativePhone"
+    />
+
+    <input
+      type="email"
+      placeholder="Email Address"
+      formControlName="email"
+    />
+  </div>
+
+=  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn-primary"
+      (click)="generateTicketAndSave()"
+      [disabled]="passengerForm.invalid"
+    >
+      Confirm Booking
+    </button>
+  </div>
+ -->
+
+      <form [formGroup]="passengerForm">
+
+        <div formArrayName="passengers">
+
+          <div class="passenger-card-new" *ngFor="let p of passengers.controls; let i = index" [formGroupName]="i">
+
+            <!-- HEADER -->
+            <div class="passenger-header">
+              <h4 class="passenger-title">Passenger {{ i + 1 }}</h4>
+              <span class="seat-badge">
+                Seat {{ p.get('seatNo')?.value }}
+              </span>
+            </div>
+
+            <!-- PASSENGER NAME -->
+            <input type="text" class="form-input" placeholder="Passenger Name" formControlName="name" />
+
+            <!-- AGE + GENDER -->
+            <div class="form-row">
+              <input type="number" class="form-input" placeholder="Age" formControlName="age" />
+
+              <select class="form-input" formControlName="gender">
+                <option value="">Gender</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+              </select>
+            </div>
+
+            <input type="text" class="form-input" placeholder="Mobile Number" formControlName="phone" />
+
+            <input type="text" class="form-input" placeholder="Address" formControlName="address" />
+
+            <div class="form-row">
+              <select class="form-input" formControlName="documentType">
+                <option value="">Document Type</option>
+                <option value="AADHAR">Aadhar</option>
+                <option value="PASSPORT">Passport</option>
+              </select>
+
+              <input type="text" class="form-input" placeholder="Document Number" formControlName="documentNumber" />
+            </div>
+
+            <div class="checkbox-flex">
+              <label>
+                <input type="checkbox" formControlName="isNri" />
+                NRI
+              </label>
+
+              <label>
+                <input type="checkbox" formControlName="isPregnant" />
+                Pregnant
+              </label>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- CONTACT DETAILS (NO SEPARATE BOX) -->
+        <div class="form-row">
+          <input type="text" class="form-input" placeholder="Alternative Mobile Number"
+            formControlName="alternativePhone" />
+
+          <input type="email" class="form-input" placeholder="Email Address" formControlName="email" />
+        </div>
+
+        <!-- FOOTER -->
+        <div class="modal-footer">
+          <button type="button" class="btn-primary" (click)="generateTicketAndSave()"
+            [disabled]="passengerForm.invalid">
+            Confirm Booking
+          </button>
+        </div>
+
+      </form>
+    </div>
+    <div *ngIf="isRechargeMode" class="recharge-container">
+
+      <h3>Recharges</h3>
+
+      <div class="recharge-form">
+
+        <label>Amount</label>
+        <input type="number" class="search-input" [(ngModel)]="rechargeAmount" placeholder="Enter recharge amount" />
+
+        <button class="btn-search" (click)="goToRechargePayment()">
+          Proceed to Recharge
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>

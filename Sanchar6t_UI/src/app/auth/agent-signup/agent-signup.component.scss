@@ -1,0 +1,438 @@
+// @import '../../../styles.scss';
+
+// .mainDiv {
+//     display: grid;
+//     gap: 30px;
+//     background: white;
+//     padding: 40px;
+
+//     .register-Agenct {
+//         color: gray;
+//     }
+
+//     .inputContainer {
+//         width: 100%;
+//         position: relative;
+//     }
+
+//     .Registration {
+//         border-bottom: 1px solid lightgray;
+//         border-top: 1px solid lightgrey;
+//         display: flex;
+//         flex-direction: column;
+//         gap: 5px;
+//         padding: 10px 0;
+
+//         div:first-of-type {
+//             display: flex;
+//             gap: 50px;
+//         }
+
+//         i {
+//             color: #8c52ff;
+//         }
+
+//         span {
+//             color: gray;
+//         }
+//     }
+
+//     .form-container {
+//         box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+//         padding: 20px;
+//     }
+
+//     h2 {
+//         color: #333;
+//     }
+
+//     .agent-registration {
+//         display: grid;
+//         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+//         gap: 20px;
+
+//         input {
+//             width: 100%;
+//         }
+//         select{
+//             width: 100%;
+//             height: 41px !important;
+//         }
+//     }
+
+//     .form-row {
+//         display: flex;
+//         justify-content: space-between;
+//         gap: 20px;
+//     }
+
+//     .form-group {
+//         width: 100%;
+//         display: flex;
+//         flex-direction: column;
+//     }
+
+//     label {
+//         font-weight: bold;
+//         margin-bottom: 5px;
+//     }
+
+//     input {
+//         padding: 8px;
+//         border: 1px solid #ccc;
+//         // border-radius: 5px;
+//         font-size: 16px;
+//     }
+
+//     // button {
+//     //     margin-top: 10px;
+//     //     padding: 10px;
+//     //     color: $violetColor;
+//     //     color: white;
+//     //     border: none;
+//     //     border-radius: 30px;
+//     //     font-size: 16px;
+//     //     cursor: pointer;
+//     //     width: 60%;
+//     //     color: #8c52ff;
+//     // }
+
+//     // button:hover {
+//     //     background: #8c52ff;
+//     //     color: white;
+//     // }
+
+//     .submitClear {
+//         display: flex;
+//         gap: 10px;
+
+//         .submit,
+//         .clear {
+//             @extend .lightVioletWhite;
+//             border: none;
+//             border-radius: 30px;
+//             padding: 5px 25px;
+//             transition: all 0.3s ease;
+
+//             &:hover {
+//                 @extend .violetWhite;
+//             }
+//         }
+//     }
+
+//     .textAreaDiv {
+//         textarea {
+//             width: 100%;
+//             border-radius: 5px;
+//             border: 1px solid lightgray;
+//         }
+//     }
+
+//     .textAreaDiv {
+//         grid-column: 1/-1;
+
+//         textarea {
+//             height: 70px;
+//             border-radius: 10px;
+//             padding: 5px 10px;
+//         }
+//     }
+// }
+
+// .GSTtoggle {
+//     display: flex;
+//     align-items: end;
+//     position: relative;
+//     bottom: 10px;
+// }
+
+// .gstInputFields {
+//     @extend .gridTemplate;
+//     gap: 10px;
+//     padding: 0 !important;
+// }
+
+// .attachment-list a{
+//   display: block;
+//   margin-bottom: 5px;
+//   color: blue;
+//   text-decoration: underline;
+//   font-size: 14px;
+// }
+
+
+
+.register-container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px;
+    background: #fffdf2;
+    font-family: Arial, sans-serif;
+}
+
+/* HEADER */
+.header {
+
+    border-bottom: 2px solid #ddd;
+
+    text-align: center;
+    padding-bottom: 2px;
+}
+
+.logo {
+    height: 55px;
+    margin-bottom: 10px;
+}
+
+.title-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.pen-icon {
+    height: 46px;
+}
+
+h2 {
+    margin: 0;
+    color: #c62828;
+}
+
+.header p {
+    color: #555;
+}
+
+// /* PROCESS */
+// .process-box {
+// }
+
+.process-title {
+    background: #ffe0b2;
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.process-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.step {
+    width: 30%;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.step-icon {
+    height: 38px;
+    display: block;
+}
+
+
+.step {
+    width: 30%;
+}
+
+.step .icon {
+    font-size: 30px;
+}
+
+/* TITLES */
+.section-title {
+    text-align: center;
+    color: #c62828;
+    text-decoration: underline;
+    margin: 25px 0;
+    padding: 30px;
+    border-top: 1px solid lightgray;
+}
+
+.sub-title {
+    color: #c62828;
+    margin: 25px 0 10px;
+    font-size: 20px;
+}
+
+/* FORM */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-row input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.form-row .full {
+    flex: 2;
+}
+
+textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+/* UPLOAD */
+.upload-box {
+    flex: 1;
+    border: 1px dashed #ccc;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.upload-box label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.upload-box input {
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0e369d;
+    margin-bottom: 6px;
+}
+
+/* ACTIONS */
+.action-row {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+}
+
+.btn-submit {
+    background: #66bb6a;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.btn-clear {
+    background: #ef5350;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.upload-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.select-input {
+    height: 50px;
+    padding: 6px 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 335px;
+}
+
+.upload-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0e369d;
+    margin-bottom: 6px;
+}
+
+.upload-input {
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid #cfcfcf;
+    background: #fff;
+    color: #999;
+}
+
+.upload-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+
+
+.add-btn {
+    background: #f5a800;
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.icon {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.icon.delete {
+    color: red;
+}
+
+.fa-regular {
+    font-weight: 400;
+    color: gray;
+}
+
+.fa-solid {
+    color: gray;
+}
+
+.password-wrapper {
+  position: relative; /* 🔥 anchor for absolute box */
+}
+
+.password-hint {
+  position: absolute;
+  top: calc(100% + 6px); /* directly below input */
+  left: 0;
+  width: 100%;
+  z-index: 10;
+
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  font-size: 13px;
+}
+
+.password-hint p {
+  margin: 4px 0;
+  color: #c62828; 
+}
+
+.password-hint p.valid {
+  color: #2e7d32; 
+  font-weight: 500;
+}

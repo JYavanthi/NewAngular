@@ -1,0 +1,24 @@
+<div class="top-bar">
+    <div class="top-left">
+        <img src="assets\SancharImg.png" alt="Logo" class="logo" (click)="gotoHome()">
+    </div>
+
+    <div>
+        <span class="top-line top-date">
+            {{ currentDate | date:'EEE, dd MMM yyyy, HH:mm:ss' }}
+        </span>
+        <span class="top-line top-name">Sanchar6T, Nagesh K N</span>
+        <span class="top-line top-amount">
+            Collections: Rs. 0.00 (Acc Balance: Rs. 0.00)
+        </span>
+    </div>
+
+    <div class="top-right">
+        <button class="btn-recharge" (click)="recharge()">Recharge</button>
+
+        <button class="btn-link">
+            <!-- <i class="fa-solid fa-right-from-bracket fa-flip-horizontal" style="font-size: 23px;"></i> -->
+            My Account
+        </button>
+    </div>
+</div>

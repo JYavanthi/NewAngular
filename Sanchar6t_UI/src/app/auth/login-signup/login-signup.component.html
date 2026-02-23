@@ -1,0 +1,86 @@
+<div class="loginSignupContainer">
+    <div class="banner" [ngStyle]="{'height':isLogin?'500px':'700px'}">
+        <img src="assets/login banner.jpg" alt="Login Banner">
+        <div class="banner-text">
+            <span>Your Journey,<br>Our Priority.</span>
+            <span>Emphasizes reliability and customer focus.</span>
+        </div>
+    </div>
+    <div class="formClass">
+        <span>
+            {{isLogin? 'Welcome Back':'Create an Account'}}
+            <span *ngIf="!isLogin">
+                Already have an Account?
+                <a (click)="toggleSignUpLogin('Log in')">Log in</a>
+            </span>
+        </span>
+        <ng-container *ngIf="isLogin">
+            <button [ngClass]="{'activeEmail':isEmail}" (click)="emailFunc()"><i
+                    class="fa-regular fa-envelope"></i>&nbsp;Sign in with Email</button>
+            <button [ngClass]="{'activePhone':isPhone}" (click)="phoneFunc()"><i
+                    class="fa-solid fa-phone"></i>&nbsp;Sign in with Phone Number</button>
+        </ng-container>
+        <div>
+            <section>
+                <form [formGroup]="loginSignupForm">
+                    <ng-container *ngIf="!isLogin">
+                        <label for="Fname" class="asterisk">First Name</label>
+                        <input type="text" formControlName="Fname">
+                        <label for="Mname">Middle Name</label>
+                        <input type="text" formControlName="Mname">
+                        <label for="Lname" class="asterisk">Last Name</label>
+                        <input type="text" formControlName="Lname">
+                        <label for="gender" class="asterisk">Gender</label>
+                        <select formControlName="gender" style="height: 35px;">
+                            <option value="" selected hidden disabled>Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </ng-container>
+                    <ng-container *ngIf="!isPhone && isEmail || !isLogin">
+                        <label [ngClass]="{'asterisk':isLogin}">Email</label>
+                        <input type="email" formControlName="email">
+                    </ng-container>
+                    <ng-container>
+                        <ng-container *ngIf="isPhone || !isLogin">
+                            <label [ngClass]="{'asterisk':isLogin}">Phone Number</label>
+                            <input type="tel" formControlName="phoneNumber" maxlength="10"
+                                (keypress)="apiConverterService.allowOnlyNumbers($event)">
+                        </ng-container>
+                        <label for="password" class="asterisk">Password</label>
+                        <div class="containerWithIcon"
+                            [ngClass]="{'valid-input': passwordControl.valid && passwordControl.touched}">
+                            <input [type]="isPasswordVisible ? 'text' : 'password'" formControlName="password"
+                                (focus)="showError = true" (blur)="showError = false" />
+                            <i class="fa-solid" [ngClass]="isPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"
+                                (click)="isPasswordVisible = !isPasswordVisible;">
+                            </i>
+                            <div class="error-msg" *ngIf="showError && passwordControl.invalid">
+                                <p>At least 8 characters</p>
+                                <p>At least 1 uppercase letter (A-Z)</p>
+                                <p>At least 1 lowercase letter (a-z)</p>
+                                <p>At least 1 number (0-9)</p>
+                                <p>At least 1 special character (!&#64;#$%^&*)</p>
+                            </div>
+                        </div>
+                    </ng-container>
+                </form>
+            </section>
+            <!-- <div class="rememberMeForgotPassword">
+                <label><input type="checkbox">&nbsp;Remember Me</label>
+                <a href="#">Forgot Password?</a>
+            </div> -->
+            <span>
+                <button (click)="Submit(!isLogin? 'Sign Up':'Sign in')">{{isLogin?'Sign in':'Sign Up'}}</button>
+            </span>
+            <span *ngIf="isLogin">
+                Don't have an account yet? <a (click)="toggleSignUpLogin('Sign Up')">Sign Up</a>
+            </span>
+            <span *ngIf="!isLogin">
+                By signing up to create an account I accept<br>Company's <a href="#" class="fw-bold">Terms of User and
+                    Privacy Policy</a>
+            </span>
+        </div>
+    </div>
+
+</div>

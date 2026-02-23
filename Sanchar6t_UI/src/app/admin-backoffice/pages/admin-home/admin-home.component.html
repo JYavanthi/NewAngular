@@ -1,0 +1,353 @@
+<div class="admin-home">
+
+    <div class="home-row">
+
+        <div class="home-left">
+
+            <div class="page-header">
+                <h2>Dashboard</h2>
+
+                <div class="header-actions">
+                    <input type="text" placeholder="Search anything" />
+                    <div class="profile">
+                        <img src="\assets\ravi kumar.png" />
+                        <div style="    display: flex;
+    flex-direction: column;">
+                            <strong>Nagesh K N</strong>
+                            <span>Admin</span>
+                        </div>
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-row">
+
+                <div class="stat-card yellow">
+                    <div class="stat-icon">
+                        <i class="fa-regular fa-calendar-check"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <p>Total Booking</p>
+                        <!-- <h3>1,200</h3> -->
+
+                        <h3>{{ totalBookings }}</h3>
+
+                    </div>
+
+                    <span class="stat-growth">+2.98%</span>
+                </div>
+
+                <div class="stat-card yellow">
+                    <div class="stat-icon">
+                        <i class="fa-regular fa-user " style="width: 44px;
+    text-align: center;"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <p>Total New Customers</p>
+                        <h3>{{ totalCustomers }}</h3>
+                    </div>
+
+                    <span class="stat-growth">+2.98%</span>
+                </div>
+
+                <div class="stat-card green">
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-indian-rupee-sign"></i>
+                    </div>
+
+                    <div class="stat-info">
+                        <p>Total Earnings</p>
+
+                        <h3>
+                            ₹ {{ totalEarnings | number }}
+                        </h3>
+                    </div>
+
+                    <span class="stat-growth">+2.98%</span>
+                </div>
+
+            </div>
+
+
+            <div class="charts-row">
+                <div class="chart-card revenue-card">
+
+                    <div class="chart-header">
+                        <h4>Revenue Overview</h4>
+                        <!-- <button class="dropdown-btn">Weekly ⌄</button> -->
+                        <select (change)="onFilterChange($event)" class="slectdays">
+                            <option value="weekly" class="dropdown-btn" selected>Weekly</option>
+                            <option value="monthly" class="dropdown-btn">Monthly</option>
+                            <option value="yearly" class="dropdown-btn">Yearly</option>
+                        </select>
+                    </div>
+
+
+
+                    <!-- Chart Canvas -->
+                    <div class="chart-body">
+                        <canvas #revenueChart></canvas>
+                    </div>
+
+                </div>
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h4>Top Destinations</h4>
+                        <button>This Month ⌄</button>
+                    </div>
+
+                    <div class="pie-wrapper">
+                        <div class="chart-canvas" *ngIf="showChart">
+                            <canvas #destinationChart></canvas>
+
+
+                        </div>
+                        <ul class="chart-legend">
+                            <li><span class="c1"></span> Tokyo, Japan (35%)</li>
+                            <li><span class="c2"></span> Sydney, Australia (28%)</li>
+                            <li><span class="c3"></span> Paris, France (22%)</li>
+                            <li><span class="c4"></span> Venice, Italy (15%)</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="trips-card">
+                <div class="trips-left">
+
+                    <div class="trip-icon">
+                        <img src="\assets\3airplan.jpg" alt="Total Trips" />
+                    </div>
+
+
+                    <div class="trip-info">
+                        <span class="title">Total Trips</span>
+                        <h2>1,200</h2>
+                    </div>
+                </div>
+
+                <div class="trips-right">
+                    <div class="progress-bar">
+                        <div class="done"></div>
+                        <div class="booked"></div>
+                        <div class="cancelled"></div>
+                    </div>
+
+                    <div class="legend">
+                        <div class="item done">
+                            <span></span> Done <b>620</b>
+                        </div>
+                        <div class="item booked">
+                            <span></span> Booked <b>465</b>
+                        </div>
+                        <div class="item cancelled">
+                            <span></span> Cancelled <b>115</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="packages-section">
+
+                <div class="packages-header">
+                    <h2>Travel Packages</h2>
+
+                    <div class="actions">
+                        <label>Sort By:</label>
+                        <select>
+                            <option>Latest</option>
+                            <option>Price</option>
+                        </select>
+
+                        <button class="view-all">View All</button>
+                    </div>
+                </div>
+
+                <div class="packages-grid">
+
+                    <div class="package-card">
+                        <img src="\assets\4tr.jpg" />
+                        <div class="card-body">
+                            <p class="title">
+                                Discover Tirupati by Bus & Temple Trails – 2 Days 1 Night
+                            </p>
+                            <div class="footer">
+                                <span class="price">₹3000<small>Per person</small></span>
+                                <button>See Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="package-card">
+                        <img src="\assets\5tr.jpg" />
+                        <div class="card-body">
+                            <p class="title">
+                                Divine Blessings & Sacred Serenity – Tirupati & Srikalahasti
+                            </p>
+                            <div class="footer">
+                                <span class="price">₹3000<br /><small>Per person</small></span>
+                                <button>See Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="package-card">
+                        <img src="\assets\6sa.jpg" />
+                        <div class="card-body">
+                            <p class="title">
+                                Sacred Trails of Shirdi – 3 Days 1 Night Divine Experience
+                            </p>
+                            <div class="footer">
+                                <span class="price">₹3000<br /><small>Per person</small></span>
+                                <button>See Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="package-card">
+                        <img src="\assets\7ds.jpg" />
+                        <div class="card-body">
+                            <p class="title">
+                                Discover Kashi by Spiritual & Heritage Trails – 7 Days
+                            </p>
+                            <div class="footer">
+                                <span class="price">₹3000<br /><small>Per person</small></span>
+                                <button>See Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="package-card">
+                        <img src="\assets\8ew.jpg" />
+                        <div class="card-body">
+                            <p class="title">
+                                Sacred Shores & Divine Marvels – Rameshwaram & Madurai
+                            </p>
+                            <div class="footer">
+                                <span class="price">₹3000<br /><small>Per person</small></span>
+                                <button>See Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="package-card">
+                        <img src="\assets\9qw.jpg" />
+                        <div class="card-body">
+                            <p class="title">
+                                Discover Mysore by Palace & Heritage Trails – 2 Days 1 Night
+                            </p>
+                            <div class="footer">
+                                <span class="price">₹3000<br /><small>Per person</small></span>
+                                <button>See Details</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="section">
+                <h3>Recent Bookings</h3>
+
+                <table class="booking-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Package</th>
+                            <th>Date</th>
+                            <th>Price</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Rushikesh R</td>
+                            <td>Tirupati</td>
+                            <td>Feb 03</td>
+                            <td>₹3000</td>
+                            <td class="success">Completed</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <div class="home-right">
+            <div class="dashboard-container">
+
+                <div class="calendar-box">
+
+                    <div class="calendar-header">
+                        <h5>{{ monthNames[currentMonth] }} {{ currentYear }}</h5>
+
+                        <div class="nav-icons">
+                            <button (click)="prevMonth()">&#10094;</button>
+                            <button (click)="nextMonth()">&#10095;</button>
+                        </div>
+                    </div>
+
+
+                    <div class="weekdays">
+                        <span *ngFor="let day of weekDays">{{ day }}</span>
+                    </div>
+
+                    <div class="dates">
+                        <span *ngFor="let date of calendarDays" [class.muted]="!date.currentMonth"
+                            [class.selected]="date.day === selectedDay"
+                            [class.range]="date.day >= rangeStart && date.day <= rangeEnd" (click)="selectDate(date)">
+                            {{ date.day }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="trip-section">
+
+                    <div class="trip-header">
+                        <h3>Upcoming Trips</h3>
+                        <button class="add-btn">+</button>
+                    </div>
+
+                    <div class="trip-card">
+                        <img
+                            src="\assets\1920x1080 Resolution Eiffel Tower in Autumn France Paris Fall 1080P Laptop Full HD Wallpaper - Wallpapers Den.jpg" />
+                        <div class="trip-info">
+                            <span class="tag romantic">Romantic Getaway</span>
+                            <h2>Paris, France</h2>
+                            <div class="trip-meta">
+                                <span>👥 +9</span>
+                                <span>📅 5 - 10 July</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trip-card blue">
+                        <img
+                            src="\assets\Beautiful Landscape Of Mt Fuji With Chureito Pagoda Japan Photo _ JPG Free Download - Pikbest.jpg" />
+                        <div class="trip-info">
+                            <span class="tag cultural">Cultural Exploration</span>
+                            <h2>Tokyo, Japan</h2>
+                            <div class="trip-meta">
+                                <span>👥 +17</span>
+                                <span>📅 12 - 19 July</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

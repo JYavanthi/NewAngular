@@ -1,0 +1,77 @@
+<form [formGroup]="detailedItineraryForm">
+    <div class="detailedItinerary">
+        <span>
+            <button (click)="isDetailedItinerary = !isDetailedItinerary"><i
+                    [ngClass]="isDetailedItinerary ? 'fa-solid fa-minus' : 'fa-solid fa-plus'"></i>{{isDetailedItinerary?'
+                Hide Field' : ' Add New Field'}}</button>
+        </span>
+        <ng-container *ngIf="isDetailedItinerary">
+            <div [@expandCollapse] class="mt-2">
+                <div style="width: 350px;">
+                    <label class="file-upload mb-2">
+                        <i class="fa-solid fa-upload"></i>
+                        <span>{{ selectedFiles?.name || 'Upload Itinerary Image' }}</span>
+                        <input type="file" class="file-input" (change)="onFileChange($event)"
+                            formControlName="uploadItineraryImage">
+                    </label>
+                </div>
+                <div class="inputFields">
+                    <div>
+                        <label class="asterisk" for="day">Day</label>
+                        <input type="number" min="0" formControlName="day">
+                    </div>
+                    <div>
+                        <label class="asterisk" for="title">Title</label>
+                        <input type="text" formControlName="title">
+                    </div>
+                    <div>
+                        <label class="asterisk" for="from">From</label>
+                        <input type="time" formControlName="from">
+                    </div>
+                    <div>
+                        <label class="asterisk" for="to">To</label>
+                        <input type="time" formControlName="to">
+                    </div>
+                    <div class="textAreaDiv">
+                        <label class="asterisk" for="itineraryDescription">Description</label>
+                        <textarea formControlName="itineraryDescription"></textarea>
+                    </div>
+                </div>
+                <div class="submitClear">
+                    <button class="submit" (click)="submit('submit')">{{selectedRow? 'Update':'Submit'}}</button>
+                    <button class="clear"
+                        (click)="detailedItineraryForm.reset();selectedFiles = undefined;selectedRow = null">Clear</button>
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="tableDivcontainer">
+            <table class="tableContainer">
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngIf="itineraryList.length == 0">
+                        <p style="margin: 10px;">No Data to Display</p>
+                    </tr>
+                    <tr *ngFor="let item of itineraryList;">
+                        <td>{{ item.day }}</td>
+                        <td>{{ item.title }}</td>
+                        <td>{{ item.description }}</td>
+                        <td>
+                            <i class="fa-solid fa-pen-to-square" (click)="edit(item)"></i>&nbsp;
+                            <i class="fa-solid fa-trash" (click)="confirmDelete(item)"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</form>

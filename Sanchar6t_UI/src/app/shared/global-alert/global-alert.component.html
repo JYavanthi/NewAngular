@@ -1,0 +1,8 @@
+<div *ngIf="isAlertVisible" class="overlay"></div>
+
+<div *ngIf="isAlertVisible" class="alert" [ngClass]="'alert-' + alertType" role="alert">
+  <span>{{ alertMessage }}</span>
+  <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>

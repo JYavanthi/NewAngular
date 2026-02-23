@@ -1,0 +1,221 @@
+<div class="approval-page">
+
+  <!-- HEADER -->
+  <div class="page-header">
+
+    <!-- Title -->
+    <h4 class="page-title">
+      Agent Approval Page
+    </h4>
+
+    <!-- Dropdown Filter -->
+
+  </div>
+
+  <!-- SUMMARY BAR -->
+  <div class="summary-bar">
+
+    <div class="summary-box orange">
+      <p>Total Registration:</p>
+      <h5>{{ totalCount }}</h5>
+    </div>
+
+    <div class="summary-box green">
+      <p>Agent Approved:</p>
+      <h5>{{ approvedCount }}</h5>
+    </div>
+
+    <div class="summary-box red">
+      <p>Agent Rejected:</p>
+      <h5>{{ rejectedCount }}</h5>
+    </div>
+
+    <div class="summary-box purple">
+      <p>Agent Pending:</p>
+      <h5>{{ pendingCount }}</h5>
+    </div>
+
+    <div class="summary-box gray">
+      <p>Agent Blocked:</p>
+      <h5>{{ blockedCount }}</h5>
+    </div>
+  </div>
+
+  <!-- CHART SECTION -->
+  <div class="chart-section">
+    <!-- <div class="chart-box">📈 Line Chart Here</div> -->
+    <!-- <div class="chart-box">🥧 Pie Chart Here</div> -->
+    <div class="chart-box">
+      <canvas id="lineChart"></canvas>
+    </div>
+    <div class="chart-box">
+      <canvas id="pieChart"></canvas>
+    </div>
+
+  </div>
+<div class="header-row">
+
+  <!-- Search Left -->
+  <div class="search-container">
+    <div>
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+
+    <input type="text"
+           placeholder="Search Agent Name..."
+           [(ngModel)]="searchText"
+           (input)="searchAgents()"
+           class="search-input" />
+
+    </div>
+      <div class="filter-dropdown">
+
+      <!-- View All Button -->
+       <button class="drop-item" (click)="filterStatus('All')">
+        View All 
+      </button>
+
+      <!-- Dropdown Menu -->
+      <div class="dropdown-menu">
+
+        <button class="drop-item pending" (click)="filterStatus('Pending')">
+          Pending
+        </button>
+
+        <button class="drop-item approved" (click)="filterStatus('Approved')">
+          Approved
+        </button>
+
+        <button class="drop-item rejected" (click)="filterStatus('Rejected')">
+          Rejected
+        </button>
+
+        <button class="drop-item blocked">
+          Blocked
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Dropdown Right -->
+  
+
+</div>
+
+  <!-- AGENT CARDS -->
+  <div class="card-grid">
+
+
+    <!-- CARD -->
+    <!-- ✅ Updated Binding -->
+    <!-- <div class="agent-card" *ngFor="let agent of filteredAgents"> -->
+      <div class="agent-card" *ngFor="let agent of pagedAgents">
+
+      <div class="dots-wrapper">
+
+        <!-- 3 Dots Button -->
+        <div class="dots" (click)="toggleMenu(agent.agentDtlId)">
+          <b>...</b>
+        </div>
+
+
+        <div class="dot-menu" *ngIf="openMenuId === agent.agentDtlId">
+
+          <button (click)="editAgent(agent.agentDtlId)" ><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+
+          <button (click)="deleteAgent(agent.agentDtlId)"><i class="fa-regular fa-trash-can"></i> Delete</button>
+
+          <button (click)="updateAgentStatus(agent,'Blocked')">
+            <i class="fa-solid fa-ban"></i> Block
+          </button>
+        </div>
+      </div>
+
+
+      <!-- TOP -->
+      <div class="card-top">
+        <img src="assets/sanjiv.jpg" alt="profile">
+      </div>
+
+      <!-- NAME -->
+      <h3 style="text-align: center; font-size: 15px; margin-top: 5px;">
+        {{ agent?.firstName }} {{ agent?.lastName }}
+      </h3>
+
+      <!-- STATUS -->
+      <p class="status">
+        {{ agent?.status ?? 'Pending' }}
+      </p>
+
+      <!-- DETAILS -->
+      <div class="details" style="padding: 10px;     border-top: 1px solid #e3ac53;
+    background-color: #fdf5e8;">
+
+        <div class="dateNAme">
+          <p>
+            <b>Date:</b>
+            <br>
+            {{ agent?.createdDt | date:'dd/MM/yyyy' }}
+          </p>
+          <p>
+            <b>Company:</b>
+            <br>
+            {{ agent?.companyName }}
+          </p>
+
+        </div>
+        <p>
+          <b>Email:</b>
+          {{ agent?.email }}
+        </p>
+
+        <p>
+          <b>Phone:</b>
+          {{ agent?.contactNo }}
+        </p>
+
+        <p>
+          <b>Place:</b>
+          {{ agent?.city }}, {{ agent?.state }}
+        </p>
+
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="actions">
+
+        <button class="btn approve" (click)="updateAgentStatus(agent,'Approved')">
+          Approve
+        </button>
+
+        <button class="btn reject" (click)="updateAgentStatus(agent,'Rejected')">
+          Reject
+        </button>
+
+        <!-- <div class="icons">
+          🗑️ 📌
+        </div> -->
+
+      </div>
+
+    </div>
+   
+
+  </div>
+ <div class="pagination">
+
+  <button (click)="changePage(currentPage - 1)"
+          [disabled]="currentPage === 1">
+    Prev
+  </button>
+
+  <span>Page {{ currentPage }} of {{ totalPages }}</span>
+
+  <button (click)="changePage(currentPage + 1)"
+          [disabled]="currentPage === totalPages">
+    Next
+  </button>
+
+</div>
+</div>

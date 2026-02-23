@@ -1,0 +1,100 @@
+.bank-deposit-wrapper {
+  display: flex;
+  gap: 20px;
+  padding: 16px;
+}
+
+/* LEFT FORM */
+.bank-form {
+  width: 55%;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.form-row label {
+  width: 170px;
+  font-size: 14px;
+  color: #0066cc;
+}
+
+.req {
+  color: red;
+}
+
+input,
+select {
+  width: 260px;
+  padding: 6px 8px;
+  border: 1px solid #cfcfcf;
+  font-size: 13px;
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon .icon {
+  position: absolute;
+  right: 8px;
+  top: 6px;
+  font-size: 14px;
+  color: #555;
+}
+
+.send-btn {
+  margin-left: 170px;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: #0aa89e;
+  border: none;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* HELP BOX */
+.help-box {
+  width: 45%;
+  background: #fffec4;
+  padding: 16px;
+  border-radius: 4px;
+}
+
+.help-title {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.help-list {
+  padding-left: 18px;
+  font-size: 13px;
+}
+
+.help-list li {
+  margin-bottom: 8px;
+}
+
+.help-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.help-btn {
+  background: #5cb85c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.help-contact {
+  margin-top: 12px;
+  font-size: 13px;
+}

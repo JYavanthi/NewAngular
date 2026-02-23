@@ -1,0 +1,122 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="payment-card card shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <img src="../assets/shoping-removebg-preview.png" alt="VRUAT Logo" class="me-2 logo" />
+                <span class="fw-bold">VRUAT</span>
+            </div>
+            <span class="fw-bold amount">₹ {{amount | number:'1.2-2'}}</span>
+        </div>
+
+        <div class="card-body text-center">
+            <div class="qr-section">
+                <button class="btn btn-outline-secondary mb-3" (click)="toggleQrCode()">
+                    <i class="fas fa-qrcode me-2"></i>
+                    {{ showQrCode ? 'Hide QR Code' : 'Show QR Code' }}
+                </button>
+                <div *ngIf="showQrCode" class="qr-code mb-3">
+                    <img src="../assets/placeoldar.jpg" alt="QR Code" class="img-fluid" />
+                    <p class="mt-2 scan-text">Scan with any UPI app</p>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <span class="me-2">Checking payment status...</span>
+                        <span class="spinner-border spinner-border-sm text-success" role="status"></span>
+                    </div>
+                    <p class="mt-2 timer">19:49</p>
+                    <div class="d-flex justify-content-center mt-2">
+                        <span class="dot dot-purple me-1"></span>
+                        <span class="dot dot-purple"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mainDiv">
+                <div class="payment-options">
+                    <div class="qr-section">
+                        <div>
+                            <input class="form-check-input" type="radio" name="paymentOption" id="upi" value="upi"
+                                [(ngModel)]="selectedOption" (change)="onOptionChange()">
+                        </div>
+                        <div>
+                            <i class="fas fa-at me-2"></i>
+                        </div>
+                        <div>
+                            <span>UPI ID</span>
+                            <small class="d-block text-muted">PhonePe, GPay, Paytm, BHIM & more</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-options">
+                    <div class="qr-section">
+                        <div>
+                            <input class="form-check-input" type="radio" name="paymentOption" id="card" value="card"
+                                [(ngModel)]="selectedOption" (change)="onOptionChange()">
+                        </div>
+                        <div>
+                            <i class="fas fa-credit-card me-2"></i>
+                        </div>
+                        <div>
+                            <span>Card</span>
+                            <small class="d-block text-muted">Visa, Mastercard, Rupay & more</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-options">
+                    <div class="qr-section">
+                        <div>
+                            <input class="form-check-input" type="radio" name="paymentOption" id="netbanking"
+                                value="netbanking" [(ngModel)]="selectedOption" (change)="onOptionChange()">
+                        </div>
+                        <div>
+                            <i class="fas fa-university me-2"></i>
+                        </div>
+                        <div>
+                            <span>Net Banking</span>
+                            <small class="d-block text-muted">Choose your bank to complete payment</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-options">
+                <div class="qr-section">
+                    <div>
+                        <input class="form-check-input" type="radio" name="paymentOption" id="wallet" value="wallet"
+                            [(ngModel)]="selectedOption" (change)="onOptionChange()">
+                    </div>
+                    <div>
+                        <i class="fas fa-wallet me-2"></i>
+                    </div>
+                    <div>
+                        <span>Wallet</span>
+                        <small class="d-block text-muted" *ngIf="isAgent">Use your Postpaid Wallet Balance
+                            (₹{{postpaidBalance | number}})</small>
+                        <small class="d-block text-muted" *ngIf="isUser">Use your Prepaid Wallet Balance
+                            (₹{{prepaidBalance | number}})</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-3 powered-by">
+                <small>
+                    Powered by
+                    <img src="../assets/PhonePe_idwlva8idc_1.png" alt="PhonePe" class="align-middle phonepe-logo" />
+                </small>
+            </div>
+            <div class="payment-logos mt-3">
+                <img src="../assets/PhonePe_idwlva8idc_1.png" alt="PhonePe" class="payment-logo" />
+                <img src="../assets/paytm.png" alt="Paytm" class="payment-logo" />
+                <img src="../assets/google.jpeg" alt="Google Pay" class="payment-logo" />
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <button class="btn btn-secondary w-100 pay-btn" (click)="pay()" [disabled]="loading">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status"
+                    aria-hidden="true"></span>
+                PAY ₹ {{ amount | number:'1.2-2' }}
+            </button>
+        </div>
+
+    </div>
+</div>

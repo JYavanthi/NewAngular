@@ -1,0 +1,618 @@
+<!-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-100" src="https://via.placeholder.com/800x400?text=First+Slide" alt="First slide">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="https://via.placeholder.com/800x400?text=Second+Slide" alt="Second slide">
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="https://via.placeholder.com/800x400?text=Third+Slide" alt="Third slide">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div> -->
+
+<form [formGroup]="homeForm">
+    <div class="banner">
+        <img src="assets/purple banner.png" class="bannerImg" alt="Banner">
+        <div class="boxContainer">
+            <div class="way">
+                <label class="fw-bold">
+                    <input type="radio" checked> One Way
+                </label>
+            </div>
+            <div class="addingDetails">
+                <div class="inputFields">
+                    <span class="inputContainer">
+                        <input type="text" formControlName="departure" (input)="filterItem('departure')"
+                            placeholder="Departure" />
+                        <ul class="typeAheadDropdownBox"
+                            *ngIf="filteredDepartureCities.length > 0 && homeForm.controls['departure'].value">
+                            <li class="typeAheadDropdownList" *ngFor="let city of filteredDepartureCities"
+                                (click)="selectItem(city, 'departure')">
+                                {{ city.name }}
+                            </li>
+                        </ul>
+                    </span>
+
+                    <span class="inputContainer">
+                        <input type="text" formControlName="destination" (input)="filterItem('destination')"
+                            placeholder="Destination" />
+                        <ul class="typeAheadDropdownBox"
+                            *ngIf="filteredDestinationCities.length > 0 && homeForm.controls['destination'].value">
+                            <li class="typeAheadDropdownList" *ngFor="let city of filteredDestinationCities"
+                                (click)="selectItem(city, 'destination')">
+                                {{ city.name }}
+                            </li>
+                        </ul>
+                    </span>
+
+                    <span class="inputContainer">
+                        <input formControlName="dateOfDeparture" type="date" id="dateOfDeparture" />
+                    </span>
+                </div>
+
+                <div class="searchBtn">
+                    <button (click)="bookNow()">SEARCH</button>
+                </div>
+
+                <div class="serviceBox">
+                    <a *ngFor="let service of services" [ngClass]="{'active': activeService === service.name}"
+                        (click)="setServiceActive(service.name)">
+                        <svg class="svgIcon"
+                            [ngClass]="{'flip': service.icon === 'cab-icon','inactive':service.status=='Coming Soon'}">
+                            <use [attr.xlink:href]="'#' + service.icon"></use>
+                        </svg>
+                        <span [ngClass]="{'inactive':service.status=='Coming Soon'}">{{ service.label }}</span>
+                        <span class="status">{{service.status}}</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="heading">
+        <span>Popular Destinations</span>
+        <div class="searchDiv">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search" formControlName="search">
+        </div>
+        <div class="scroll">
+            <button class="scroll-button left" [ngStyle]="{ 'opacity': isLeftDisabled['upperContent'] ? '0.5' : '1' }"
+                (click)="scrollLeft('upperContent')">
+                <i class="fa-solid fa-angle-left"></i>
+            </button>
+            <button class="scroll-button right" [ngStyle]="{ 'opacity': isRightDisabled['upperContent'] ? '0.5' : '1' }"
+                (click)="scrollRight('upperContent')">
+                <i class="fa-solid fa-angle-right"></i>
+            </button>
+        </div>
+    </div>
+    <div class="scroll-container">
+        <div class="gridDivCard" #upperContainer>
+            <div *ngIf="filteredPackages.length === 0" class="no-results">
+                <p>No results found</p>
+            </div>
+
+            <div class="divCard" *ngFor="let item of filteredPackages">
+                <section>
+                    <img [src]="'assets/default-image.jpg' + item.image" alt="Destination Image"
+                        (click)="navigateToBusPackage(item)">
+                    <!-- <i class="fa-solid fa-heart" [style.color]="item.wishlist ? 'red' : 'lightgray'"></i> -->
+                    <span class="price">From Rs {{ item.packagePrice }}</span>
+                </section>
+
+                <div class="contents">
+                    <i class="fa-solid fa-location-dot"></i>&nbsp;
+                    <span>{{ item.stateName }}, {{ item.countryName }}</span>
+                    <div class="icon">
+                        <div class="destination"> <span (click)="navigateToBusPackage(item)">{{ item.packageName
+                                }}</span><br>
+                        </div>
+                        <div class="dayRating">
+                            <span><i class="fa-solid fa-calendar"></i> {{ item.noofdays }} Days</span>
+                            <!-- <span><i class="fa-solid fa-star"></i> {{ item.rating }} ({{ item.reviews }} Reviews)</span> -->
+                        </div>
+                    </div>
+                    <p>{{ item.shortdescription }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="heading">
+        <span>Find Your Best Value Trip</span>
+
+        <!-- Add Packages Button
+    <button class="add-package-button">
+     Add Packages
+    </button> -->
+
+        <div class="addBtn">
+            <button (click)="addNow()">Add Packages</button>
+        </div>
+
+        <div class="scroll">
+            <button class="scroll-button left" [ngStyle]="{ 'opacity': isLeftDisabled['middleContent'] ? '0.5' : '1' }"
+                (click)="scrollLeft('middleContent')">
+                <i class="fa-solid fa-angle-left"></i>
+            </button>
+            <button class="scroll-button right"
+                [ngStyle]="{ 'opacity': isRightDisabled['middleContent'] ? '0.5' : '1' }"
+                (click)="scrollRight('middleContent')">
+                <i class="fa-solid fa-angle-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="scroll-container">
+        <div class="scroll-container">
+            <div class="gridDivCard" #middleContainer>
+                <div class="divCard" *ngFor="let item of packageList">
+                    <section>
+                        <img *ngIf="item.imageSrc" [src]="item.imageSrc" alt="Package Image"
+                            (click)="navigateToBusPackage(item.packageId)" class="w-full h-auto" />
+
+
+                        <i class="fa-solid fa-heart" [style.color]="item.wishlist ? 'red' : 'lightgray'"
+                            (click)="toggleWishlist(item)" style="cursor: pointer;">
+                        </i> <span class="price">From Rs {{ item.packagePrice }}</span>
+                    </section>
+
+                    <!-- <section>
+                        <img 
+                          *ngIf="destinationImageSrc" 
+                          [src]="destinationImageSrc" 
+                          alt="Destination Image" 
+                          class="w-full h-auto rounded"
+                        />
+                        <i class="fa-solid fa-heart" [style.color]="item?.wishlist ? 'red' : 'lightgray'"></i>
+                        <span class="price">From Rs {{ item?.packagePrice }}</span>
+                      </section> -->
+
+                    <div class="contents">
+                        <i class="fa-solid fa-location-dot"></i>&nbsp;
+                        <span>{{ item.stateName }}, {{ item.countryName }}</span>
+                        <div class="icon">
+                            <div class="destination"> <span [routerLink]="item.routerLink">{{ item.packageName
+                                    }}</span><br>
+                            </div>
+                            <div class="dayRating">
+                                <span><i class="fa-solid fa-calendar"></i> {{ item.noofdays }} Days</span>
+                                <span><i class="fa-solid fa-star"></i> {{ item.rating }} ({{ item.reviews }}
+                                    Reviews)</span>
+                            </div>
+                        </div>
+                        <p>{{ item.shortdescription }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="secondBanner">
+        <img src="assets/secondBanner.png" alt="Island">
+        <div>
+            <h1>Your Next Journey Awaits</h1>
+            <button routerLink="/bus-booking">Book Now</button>
+        </div>
+    </div>
+    <div class="heading">
+        <span>Hear from Our Happy Travelers</span>
+        <div class="scroll">
+            <button class="scroll-button left" [ngStyle]="{ 'opacity': isLeftDisabled['lowerContent'] ? '0.5' : '1' }"
+                (click)="scrollLeft('lowerContent')">
+                <i class="fa-solid fa-angle-left"></i>
+            </button>
+            <button class="scroll-button right" [ngStyle]="{ 'opacity': isRightDisabled['lowerContent'] ? '0.5' : '1' }"
+                (click)="scrollRight('lowerContent')">
+                <i class="fa-solid fa-angle-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="scroll-container">
+        <div class="feedback" #lowerContainer>
+            <div *ngFor="let traveler of Travelers" class="feedbackCard">
+                <img [src]="'/assets/' + traveler.image" alt="{{ traveler.name }}" />
+                <section>
+                    <h3>{{ traveler.name }}</h3>
+                    <h5>Destination: {{ traveler.Destination }}</h5>
+                    <div class="underline">
+                        <i class="fa fa-quote-left"></i>
+                        <hr />
+                    </div>
+                    <p>{{ traveler.shortDesc }}</p>
+                    <div class="timeDate">
+                        <span>{{ traveler.timeDate }}</span>
+                        <div>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- Ganavi Code -->
+    <div class="FaqDiv">
+        <p>FAQs Related to Bus Tickets Booking</p>
+        <mat-tab-group>
+            <mat-tab label="General">
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('TrackLocation')">
+                        <span class="fw-bold">Can I track the location of my booked bus online?</span>
+                        <i [ngClass]="showTrackLocation ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showTrackLocation">Yes, you can track your bus online by using our bus tracking app
+                        feature called “Track My Bus”.
+                        This feature allows passengers and their families to track the live bus location. You may follow
+                        your bus on a map and use the information to plan your trip to the boarding point and to get off
+                        at the correct stop. Family and friends may also check the bus position to schedule pick-ups and
+                        ensure safety.</p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('AdvBusTkt')">
+                        <span class="fw-bold">What are the advantages of purchasing a bus ticket with Sanchar6t?</span>
+                        <i [ngClass]="showAdvBusTkt ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showAdvBusTkt">There are many advantages to purchasing online bus tickets with Sanchar6t.
+                        Sanchar6t is India’s most
+                        trusted bus ticket company, where you can book any type of private or government-owned bus.
+                        Sanchar6t allows you to find the different types of buses, choose the preferred bus seats, and
+                        find
+                        your nearest boarding and dropping points. You can also filter the buses based on timings, like
+                        morning, evening, etc.</p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('AdvBusTktOnline')">
+                        <span class="fw-bold">Why book bus tickets online on Sanchar6t?</span>
+                        <i [ngClass]="showAdvBusTktOnline ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showAdvBusTktOnline">Booking bus tickets online on Sanchar6t is increasingly becoming the
+                        preferred choice for travellers
+                        due to its numerous advantages over traditional methods. With Sanchar6t, customers can book
+                        their
+                        bus tickets effortlessly from the comfort of their homes, avoiding the inconvenience of standing
+                        in long lines at bus stations or travel agencies. Online bus booking offers the luxury of
+                        comparing different bus schedules and operators and presents various discount offers and
+                        exclusive deals, resulting in significant savings. Payment security is another notable feature
+                        of online booking, which ensures that your financial information is well-protected against
+                        fraud. Additionally, customers can pick their seats, providing a customized travel experience.
+                        Online bus booking platforms give real-time updates about any changes in the bus timetable,
+                        including delays or cancellations, enabling better planning. The convenience doesn't stop here;
+                        travellers can even compare onboard amenities like charging points or snacks, further enhancing
+                        the travel experience. </p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('BusSiteTkt')">
+                        <span class="fw-bold">Do I need to create an account on the Sanchar6t site to book my bus
+                            ticket?</span>
+                        <i [ngClass]="showBusSiteTkt ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showBusSiteTkt">No, you don’t have to create an account on the Sanchar6t site to book your
+                        bus
+                        ticket. But it is
+                        advisable to make one to accelerate the process next time you want to book bus tickets. Also,
+                        Sanchar6t has many discounts and offers that you can easily access if you have an account with
+                        us.
+                    </p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('BusCost')">
+                        <span class="fw-bold">Does bus booking online cost me more?</span>
+                        <i [ngClass]="showBusCost ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showBusCost">Not at all! The bus ticket price is the same as you would get from the bus
+                        operator/ counter of
+                        any bus ticket agency. Sanchar6t reduces the travel budget by comparing the bus ticket prices
+                        among
+                        various operators, making it a more cost-effective choice. Therefore, online bus booking is
+                        increasingly recognized as a more convenient, efficient, and economical mode of securing travel
+                        arrangements.</p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('BusDiscount')">
+                        <span class="fw-bold">How can I get the discounts on the bus booking?</span>
+                        <i [ngClass]="showBusDiscount ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showBusDiscount">To get a discount on bus booking, please visit
+                        https://www.sanchar6t.in/info/ OfferTerms and check
+                        the available offers. Copy the coupon code and paste it during checkout to avail of the
+                        discount.</p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('NewBus')">
+                        <span class="fw-bold">What's New in Bus Booking on Sanchar6t?</span>
+                        <i [ngClass]="showNewBus ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showNewBus">Primo Bus Ticket: Sanchar6t has launched Primo bus services, where passengers
+                        can enjoy travelling
+                        in high-rated buses with best-in-class services. While looking for bus tickets on the desired
+                        route, customers can check the Primo tag to choose this excellent service. From hygiene
+                        standards to on-time service and comfort, passengers can benefit from the online bus booking
+                        experience from Primo buses.</p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('GovtTkt')">
+                        <span class="fw-bold">Can I book a Government bus ticket on Sanchar6t?</span>
+                        <i [ngClass]="showGovtTkt ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showGovtTkt">Yes, you can book government bus tickets on Sanchar6t. Sanchar6t has extended
+                        its
+                        bus booking services
+                        to many RTCs in India. Some of these RTCs are Andhra Pradesh State Road Transport Corporation
+                        (APSRTC), Assam State Transport Corporation (ASTC), Bihar State Tourism Development Corporation
+                        (BSTDC), Himachal Road Transport Corporation (HRTC), Jammu and Kashmir State Road Transport
+                        Corporation (JKSRTC), Kerala RTC, Kadamba Transport Corporation (KTCL), Patiala and the East
+                        Punjab States Union (PEPSU), Puducherry Road Transport Corporation (PRTC), Rajasthan State Road
+                        Transport Corporation (RSRTC), South Bengal State Transport Corporation (SBSTC), Uttarakhand
+                        Transport Corporation (UTC), West Bengal Transport Corporation WBTC (CTC), North Bengal State
+                        Transport Corporation (NBSTC) Chandigarh Transport Undertaking (CTU)</p>
+                </div>
+            </mat-tab>
+            <mat-tab label="Ticket-Related">
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('BookTik')">
+                        <span class="fw-bold">How can I book bus tickets on Sanchar6t?</span>
+                        <i [ngClass]="showBookTik ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showBookTik">Bus ticket Booking is effortless on Sanchar6t. To book the bus tickets, go
+                        to the main page and enter your source city and destination city in the “From” and “To” fields,
+                        respectively. Enter the travel date and hit the search button. Now, you will see the bus list
+                        available on the given bus route. You can use the filter option, such as duration, fare, bus
+                        type, etc., to rearrange the list accordingly. This makes it easier for customers to book their
+                        bus tickets online with Sanchar6t.
+                    </p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('ChangeDate')">
+                        <span class="fw-bold">Can I change the date of my journey after I have booked my bus
+                            ticket?</span>
+                        <i [ngClass]="showChangeDate ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showChangeDate">Yes. You can change the journey date after booking a bus ticket on
+                        Sanchar6t by clicking the “Reschedule” icon if your travel plan might get interrupted while
+                        booking. Bus operators with the “Reschedule icon” next to it offer rescheduling of the bus
+                        ticket in case your initially selected date is not viable to travel on.</p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('Printout')">
+                        <span class="fw-bold">Is it mandatory to take a printout of the ticket?</span>
+                        <i [ngClass]="showPrintout ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showPrintout">It depends on the bus operator you have booked your online bus tickets
+                        with. Even mTickets are available on Sanchar6t. For operators that support mTickets, the SMS
+                        that
+                        is sent to your mobile can be produced at the time of boarding and you will be allowed to
+                        travel.For operators that do not support mTickets it is a must to take a printout of the
+                        e-ticket and produce it at the time of boarding. The e-ticket is sent to the e-mail ID provided
+                        at the time of boarding.To know which operators are mTicket enabled, look for the mTicket icon
+                        under the mTicket column while searching for buses.</p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('LostTik')">
+                        <span class="fw-bold">I've lost my ticket. What should I do now?</span>
+                        <i [ngClass]="showLostTik ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showLostTik">A copy of the bus ticket would have been sent to you by email when you
+                        booked bus ticket online. Please take a printout of that mail and produce it at the time of
+                        boarding. If you have not received the ticket e-mail, please call any of our call centers and
+                        our executive will resend you a copy by mail.</p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('mTicket')">
+                        <span class="fw-bold">What is an mTicket?</span>
+                        <i [ngClass]="showmTicket ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showmTicket">An mTicket is an SMS that is sent to your mobile on booking bus tickets
+                        with select private bus operators. This SMS has the TIN number and the PNR number along with
+                        other ticket related information. It can be used to board the bus. Please note that not all
+                        operators accept mTickets. To know which operators are mTicket enabled, look for the mTicket
+                        icon under the mTicket column while searching for buses.</p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('Resend')">
+                        <span class="fw-bold">I didn’t receive my mTicket. Can you resend it?</span>
+                        <i [ngClass]="showResend ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showResend">You can generate your mTicket online. To generate m-Ticket online click
+                        on the Print/SMS ticket link on the Sanchar6t home page on www.Sanchar6t.in. Enter your TIN
+                        number
+                        mentioned on the e-ticket we emailed you. Choose the SMS option and click on Submit. In case you
+                        don’t have a copy of the e-ticket either, contact our call center and our executive will assist
+                        you.</p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('WrngNum')">
+                        <span class="fw-bold">I entered the wrong mobile number while booking. Can I get my mTicket on a
+                            different number?</span>
+                        <i [ngClass]="showWrngNum ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showWrngNum">Yes, you can get the m-Ticket on the different numbers.To get the
+                        M-Ticket on the different number please contact Sanchar6t call center and our customer executive
+                        will send you the mTicket on your desired number.</p>
+                </div>
+            </mat-tab>
+            <mat-tab label="Payment">
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('CrDr')">
+                        <span class="fw-bold">Is it safe to use my credit or debit card to buy bus tickets on
+                            Sanchar6t?</span>
+                        <i [ngClass]="showCrDr ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showCrDr">Transactions on Sanchar6t are very safe. We employ the best-in-class security
+                        and
+                        the transactions done are secure. Apart from being certified by Verisign, Sanchar6t uses Secure
+                        Socket Layers (SSL) data encryption. Using SSL ensures that the information exchanged with us is
+                        never transmitted unencrypted, thus protecting the information from being viewed by unauthorized
+                        individuals.</p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('purchas')">
+                        <span class="fw-bold">Does the owner of the credit card/debit card with which the bus ticket is
+                            purchased need to be one of the passengers?</span>
+                        <i [ngClass]="showpurchas ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showpurchas">Not at all! A passenger can use any debit or credit card to pay for the bus
+                        ticket, not necessarily their own. However, please note that the passenger in whose name the
+                        ticket is booked should carry a proof of his identity (along with the ticket) at the time of
+                        boarding the bus.</p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('payment')">
+                        <span class="fw-bold">What are the different payment options available on Bus Ticket
+                            booking?</span>
+                        <i [ngClass]="showpayment ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <ul *ngIf="showpayment">
+                        <li>There are many payment modes available to book buses on the Sanchar6t website and app. Some
+                            of
+                            these payment modes that are available for the bus ticket booking process are:Debit
+                            Card/Credit Card/ATM Cards (Visa, MasterCard, Maestro & Rupay)</li>
+                        <li>Net Banking (HDFC Bank, ICICI Bank, Indian Bank, Axis Bank, SBI and all major banks)</li>
+                        <li>UPI (Google Pay, Amazon Pay, PhonePe) </li>
+                        <li>Book Now, Pay Later (Simpl)</li>
+                        <li>Wallets (Paytm)Make sure to check the coupon code to get the discounts on bus booking
+                            online, Sanchar6t offers a lot of redDeals to book the bus ticket on budget.</li>
+                    </ul>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('account')">
+                        <span class="fw-bold">How does the transaction appear on my card / account statement?</span>
+                        <i [ngClass]="showaccount ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showaccount">Transactions on Sanchar6t will appear as Sanchar6t.IN, www.Sanchar6t.in in
+                        your bank
+                        statement.</p>
+                </div>
+            </mat-tab>
+            <mat-tab label="Cancellation & Refund">
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('BusCancel')">
+                        <span class="fw-bold">Can I cancel my bus ticket online?</span>
+                        <i [ngClass]="showBusCancel ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showBusCancel">Yes you can cancel bus tickets online, Most of the tickets can be
+                        canceled online. However, there are some bus tickets that can only be canceled through our call
+                        center.However please note that the cancellation fee and cancellation period may differ for
+                        specific bus services. Please contact any of our executives for cancellation details on any
+                        specific service.</p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('HowBusCancel')">
+                        <span class="fw-bold">How can I cancel my bus ticket online?</span>
+                        <i [ngClass]="showHowBusCancel ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showHowBusCancel">To cancel the bus ticket online, you need to click on the cancellation
+                        link provided on our home page. Enter your ticket number and the e-mail ID that was provided at
+                        the time of bus booking and click on cancel ticket.</p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('BusMiss')">
+                        <span class="fw-bold">I missed the bus. Do I get a refund?</span>
+                        <i [ngClass]="showBusMiss ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showBusMiss">Sanchar6t provides a 100% refund if the bus is missed due to either Sanchar6t
+                        or its partner company's fault. However, if the bus is missed due to any other reason not
+                        directly related to Sanchar6t no refund is provided.</p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('RefundCase')">
+                        <span class="fw-bold">How can I get a refund in case I cancel my ticket?</span>
+                        <i [ngClass]="showRefundCase ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showRefundCase">The refund is provided as per cancellation policy of the operator. The
+                        refund can be credited to the source of payment (Example: debit card, credit card, net banking)
+                        or credited to Sanchar6t wallet. Wallet credit can be used for bus booking in future (within 6
+                        months of cancellation).</p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('BusLeave')">
+                        <span class="fw-bold">What happens if the bus does not leave on time or is canceled?</span>
+                        <i [ngClass]="showBusLeave ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showBusLeave">If your bus does not leave on time or is canceled, in such situations,
+                        you will need to consult the counter of the respective bus operators. You can also call the
+                        Sanchar6t customer care to discuss the appropriate actions.</p>
+                </div>
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('Reschedule')">
+                        <span class="fw-bold">How can I reschedule my bus tickets?</span>
+                        <i [ngClass]="showReschedule ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <ul *ngIf="showReschedule">
+                        <li>To reschedule your bus ticket on Sanchar6t, follow these steps: Visit
+                            https://www.Sanchar6t.in/ reschedule</li>
+                        <li>Search for your bus ticket by entering your ticket number and registered email ID. </li>
+                        <li>Verify your online bus ticket details and select the date to reschedule your journey. </li>
+                        <li>Select a bus operator, verify every detail, and make your payment if any difference in bus
+                            ticket prices needs to be cleared.</li>
+                    </ul>
+                </div>
+            </mat-tab>
+            <mat-tab label="Insurance">
+                <div class="generalContent">
+                    <span class="heading" (click)="toggleContent('Insurance')">
+                        <span class="fw-bold">Details on Insurance</span>
+                        <i [ngClass]="showInsurance ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                    </span>
+                    <p *ngIf="showInsurance">For details on Insurance of your journey after bus ticket booking, please
+                        refer to the Insurance Terms</p>
+                </div>
+
+
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+    <div class="BusRoutes">
+        <span class="headingAngleRight" (click)="toggleContent('PopularBus')">
+            <span><b>Popular Bus Routes</b></span>
+            <i [ngClass]="showPopularBus ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+        </span>
+        <p *ngIf="showPopularBus">
+            <ng-container *ngFor="let route of popularBusRoutes; let i = index">
+                <a (click)="popularBusRoutesFunc(route)">{{ route }}</a>
+                <ng-container *ngIf="i < popularBusRoutes.length - 1"> | </ng-container>
+            </ng-container>
+        </p>
+        <hr>
+    </div>
+    <div class="BusRoutes">
+        <span (click)="toggleContent('PopularCities')">
+            <span><b>Popular Cities</b></span>
+            <i [ngClass]="showPopularCities ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+        </span>
+        <p *ngIf="showPopularCities">
+            <ng-container *ngFor="let route of popularCities; let i = index">
+                <a (click)="popularCityFunc(route)">{{ route }} Bus</a>
+                <ng-container *ngIf="i < popularCities.length - 1"> | </ng-container>
+            </ng-container>
+        </p>
+        <hr>
+    </div>
+    <div class="BusRoutes">
+        <span (click)="toggleContent('PopularOperators')">
+            <span><b>Popular Bus Operators</b></span>
+            <i [ngClass]="showPopularOperators ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+        </span>
+        <p *ngIf="showPopularOperators">
+            <ng-container *ngFor="let operator of popularBusOperators; let i = index">
+                <a (click)="popularBusOperatorsFunc(operator)">{{ operator }}</a>
+                <ng-container *ngIf="i < popularBusOperators.length - 1"> | </ng-container>
+            </ng-container>
+        </p>
+    </div>
+
+
+</form>

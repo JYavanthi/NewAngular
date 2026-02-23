@@ -1,0 +1,123 @@
+.payment-card {
+  max-width: 500px;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  padding: 15px;
+}
+
+.logo {
+  height: 30px;
+  width: auto;
+}
+
+.amount {
+  font-size: 1.2rem;
+  color: #6610f2;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.qr-code {
+  max-width: 250px;
+  margin: 0 auto;
+}
+
+.scan-text {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.timer {
+  font-weight: bold;
+  color: #28a745;
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-purple {
+  background-color: #6610f2;
+}
+
+.payment-options {
+  text-align: left;
+  margin-bottom: 15px;
+  border: 1px solid #dee2e6;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.qr-section {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.powered-by {
+  color: #6c757d;
+  font-size: 0.8rem;
+  margin-top: 20px;
+}
+
+.phonepe-logo {
+  height: 20px;
+  width: auto;
+}
+
+.payment-logo {
+  height: 25px;
+  width: auto;
+  margin: 0 5px;
+}
+
+.pay-btn {
+  background-color: #6610f2;
+  color: white;
+  border: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 12px;
+}
+
+.pay-btn:hover {
+  background-color: #520dc2;
+}
+
+.mainDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+.payment-options {
+  input[type="radio"]:checked + div + div {
+    font-weight: bold;
+  }
+  
+  
+  #wallet:checked ~ div {
+    color: #28a745;
+  }
+}
+
+
+.balance-display {
+  font-size: 0.9rem;
+  color: #28a745;
+  font-weight: bold;
+}
+
+.insufficient-balance {
+  color: #dc3545;
+}

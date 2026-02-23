@@ -1,0 +1,97 @@
+<form [formGroup]="busPackageForm">
+    <div class="addBusPackage">
+        <label class="file-upload mb-2" for="uploadPackageImage" customLabelAlert="Upload Package Image">
+            <i class="fa-solid fa-upload"></i>
+            <span>{{ selectedFiles?.name || 'Upload Package Image' }}</span>
+            <input type="file" id="uploadPackageImage" class="file-input" (change)="onFileChange($event)"
+                formControlName="uploadPackageImage">
+        </label>
+
+        <div class="row mb-4">
+            <div class="inputFields">
+                <div>
+                    <label class="asterisk" for="packageName">Package Name</label>
+                    <input type="text" formControlName="packageName">
+                </div>
+                <div>
+                    <label class="asterisk" for="packagePrice">Package Price</label>
+                    <input type="number" min="0" formControlName="packagePrice">
+                </div>
+                <div class="inputContainer">
+                    <label class="asterisk" for="country">Country</label>
+                    <input type="text" formControlName="country" (input)="filterItem('country','countryParam')">
+                    <ul class="typeAheadDropdownBox"
+                        *ngIf="filteredCountries.length > 0 && busPackageForm.controls['country'].value">
+                        <li class="typeAheadDropdownList" *ngFor="let country of filteredCountries"
+                            (click)="selectItem(country, 'country')">
+                            {{ country.name }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="inputContainer">
+                    <label class="asterisk" for="state">State</label><br>
+                    <input type="text" formControlName="state" (input)="filterItem('state','stateParam')">
+                    <ul class="typeAheadDropdownBox"
+                        *ngIf="filteredStates.length > 0 && busPackageForm.controls['state'].value">
+                        <li class="typeAheadDropdownList" *ngFor="let state of filteredStates"
+                            (click)="selectItem(state, 'state')">
+                            {{ state.name }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="inputContainer">
+                    <label class="asterisk" for="departure">Departure</label>
+                    <input type="text" required formControlName="departure"
+                        (input)="filterItem('departure','cityParam')" />
+                    <ul class="typeAheadDropdownBox"
+                        *ngIf="filteredDepartureCities.length > 0 && busPackageForm.controls['departure'].value">
+                        <li class="typeAheadDropdownList" *ngFor="let city of filteredDepartureCities"
+                            (click)="selectItem(city, 'departure')">
+                            {{ city.name }}
+                        </li>
+                    </ul>
+                </div>
+                <div class="inputContainer">
+                    <label class="asterisk" for="destination">Destination</label>
+                    <input required type="text" formControlName="destination"
+                        (input)="filterItem('destination','cityParam')" />
+                    <ul class="typeAheadDropdownBox"
+                        *ngIf="filteredDestinationCities.length > 0 && busPackageForm.controls['destination'].value">
+                        <li class="typeAheadDropdownList" *ngFor="let city of filteredDestinationCities"
+                            (click)="selectItem(city, 'destination')">
+                            {{ city.name }}
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <label class="asterisk" for="boardingPoint">Boarding Point</label>
+                    <input type="text" formControlName="boardingPoint">
+                </div>
+                <div>
+                    <label class="asterisk" for="droppingPoint">Dropping Point</label>
+                    <input type="text" formControlName="droppingPoint">
+                </div>
+                <div>
+                    <label class="asterisk" for="noOfDays">Number of Days</label>
+                    <input type="number" min="0" formControlName="noOfDays">
+                </div>
+                <div class="textAreaDiv">
+                    <label class="asterisk" for="shortDescription">Short Description</label>
+                    <textarea formControlName="shortDescription"></textarea>
+                </div>
+                <div class="textAreaDiv">
+                    <label class="asterisk" for="description">Description</label>
+                    <textarea formControlName="description"></textarea>
+                </div>
+                <div class="textAreaDiv">
+                    <label class="asterisk" for="additionalNotes">Additional Notes</label>
+                    <textarea formControlName="additionalNotes"></textarea>
+                </div>
+            </div>
+            <div class="submitClear">
+                <button class="submit" (click)="Submit()">Submit</button>
+                <button class="clear" (click)="busPackageForm.reset();selectedFiles = undefined">Clear</button>
+            </div>
+        </div>
+    </div>
+</form>

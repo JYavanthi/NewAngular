@@ -1,0 +1,430 @@
+<div class="mainDiv">
+    <div class="leftSide">
+        <div class="Container">
+            <i class="fa-solid fa-user"></i>
+            <div class="user">
+                <span>{{userType | titlecase}}: User Name</span><br>
+                <span>Wallet Not Verified</span>
+            </div>
+        </div>
+        <div class="buttons">
+            <button (click)="showSection('wallet')"> 
+                <i class="fa-solid fa-wallet"></i> Wallets / Cards
+            </button>
+            <button (click)="showSection('profile')"> 
+                <i class="fa-solid fa-gear"></i> My Profile
+            </button>
+            <button (click)="showSection('walletMain')"> 
+                <i class="fa-solid fa-wallet"></i> Wallet
+            </button>
+            <button *ngIf="isAgent" (click)="showSection('postpaid')"> 
+                <i class="fa-solid fa-credit-card"></i> Postpaid
+            </button>
+            <button *ngIf="isUser" (click)="showSection('prepaid')"> 
+                <i class="fa-solid fa-money-bill-wave"></i> Prepaid
+            </button>
+        </div>
+    </div>
+
+    <div class="rightSide">
+        <div class="wallet" *ngIf="selectedSection === 'wallet'">
+            <span>Wallet</span>
+            <div class="firstDiv">
+                <i class="fa-solid fa-wallet"></i>
+                <div class="walletBalance">
+                    <div *ngIf="isAgent">
+                        <span>Your Postpaid Balance</span>
+                        <span>INR {{postpaidBalance | number}}</span>
+                    </div>
+                    <div *ngIf="isUser">
+                        <span>Your Prepaid Balance </span>
+                        <span>INR {{prepaidBalance | number}}</span>
+                    </div>
+                    <div>
+                        <span>Your Cash</span>
+                        <span>INR 0</span>
+                    </div>
+                    <div>
+                        <span>Offer Cash</span>
+                        <span>INR 0</span>
+                    </div>
+                </div>
+            </div>
+            <div class="cards">
+                <span>SAVED CARDS</span>
+                <span>NO SAVED CARDS</span>
+            </div>    
+        </div>  
+
+
+        <div *ngIf="selectedSection === 'profile'">
+            <span>My Profile</span>
+            <div class="inputFields mt-3" [@expandCollapse]>
+                <div>
+                    <label for="fName">First Name</label>
+                    <input type="text" formControlName="fName" name="fName">
+                </div>
+                <div>
+                    <label for="mName">Middle Name</label>
+                    <input type="text" formControlName="mName" name="mName">
+                </div>
+                <div>
+                    <label for="lName">Last Name</label>
+                    <input type="text" formControlName="lName" name="lName">
+                </div>
+                <div>
+                    <label for="passengerEmail">Email</label>
+                    <input type="email" formControlName="passengerEmail" name="passengerEmail">
+                </div>
+                <div>
+                    <label for="passengerPhoneNo">Phone No</label>
+                    <input type="number" min="0" formControlName="passengerPhoneNo"
+                        name="passengerPhoneNo">
+                </div>
+                <div>
+                    <label for="aadharNo">Aadhar No</label>
+                    <input type="tel" min="0" maxlength="12" formControlName="aadharNo" name="aadharNo">
+                </div>
+                <div>
+                    <label for="PANNo">PAN No</label>
+                    <input type="text" min="0" max="10" formControlName="PANNo" name="PANNo">
+                </div>
+                <div>
+                    <label for="emergencyNo">Emergency No</label>
+                    <input type="text" formControlName="emergencyNo" name="emergencyNo">
+                </div>
+                <div>
+                    <label>Blood Group</label>
+                    <select formControlName="bloodGroup" name="bloodGroup">
+                        <option value="" selected hidden disabled>Select Blood Group</option>
+                        <option *ngFor="let group of bloodGroups">{{group}}</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="passengerDOB">Date of Birth</label>
+                    <input type="date" formControlName="passengerDOB" name="passengerDOB">
+                </div>
+            </div>
+            <div class="passengerBtn">
+                <button>Save My Details</button>
+                <button>Clear</button>
+            </div>
+        </div>
+
+
+
+        <div class="alert" *ngIf="selectedSection === 'walletMain'">
+            <h3>Wallet</h3>
+            
+            <!-- Agent-specific postpaid balance warning -->
+            <div class="OopsMessage" *ngIf="(isAgent) && showRechargeRequiredError">
+                <div class="went-wrong error">
+                    <span>
+                        <i class="fa-solid fa-exclamation-circle"></i>
+                        Your postpaid balance has reached the minimum limit of ₹{{minimumBalanceThreshold | number}}. Please recharge to continue booking.
+                    </span>
+                    <button class="recharge-now-btn" (click)="showSection('postpaid')">Recharge Now</button>
+                </div>
+            </div>
+            
+            <div class="OopsMessage" *ngIf="(isAgent) && showLowBalanceError && !showRechargeRequiredError">
+                <div class="went-wrong">
+                    <span>
+                        <i class="fa-solid fa-exclamation-triangle"></i>
+                        Low balance alert! Your available postpaid limit is approaching the minimum threshold.
+                    </span>
+                </div>
+            </div>
+            
+            <div class="wallet-summary">
+                <div class="wallet-cards">
+                    <!-- Postpaid wallet card (only for agents) -->
+                    <div class="wallet-card postpaid-card" *ngIf="isAgent">
+                        <h4>POSTPAID WALLET (AGENT ONLY)</h4>
+                        <div class="postpaid-details">
+                            <div class="detail-row">
+                                <span>Total Postpaid Limit</span>
+                                <span>₹{{postpaidLimit | number}}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Used Amount</span>
+                                <span>₹{{postpaidUsed | number}}</span>
+                            </div>
+                            <div class="detail-row highlight">
+                                <span>Available Balance</span>
+                                <span>₹{{postpaidBalance | number}}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Minimum Balance Required</span>
+                                <span>₹0</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="manage-btn" (click)="showSection('postpaid')">Manage Postpaid</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Prepaid wallet card (for all users) -->
+                    <div class="wallet-card prepaid-card" *ngIf="isUser">
+                        <h4>PREPAID WALLET</h4>
+                        <div class="prepaid-details">
+                            <div class="detail-row highlight">
+                                <span>Available Balance</span>
+                                <span>₹{{prepaidBalance | number}}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span>Minimum Balance Required</span>
+                                <span>₹0</span>
+                            </div>
+                            <div class="card-actions">
+                                <button class="manage-btn" (click)="showSection('prepaid')">Manage Prepaid</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Updated Transaction Section with Pagination and Scrollbar -->
+                <div>
+                    <h4>RECENT ACTIVITY</h4>
+                    <div class="transaction-container">
+                        <div *ngIf="isLoading" class="loading-spinner">
+                            <i class="fa-solid fa-spinner fa-spin"></i> Loading...
+                        </div>
+                        
+                        <div *ngIf="!isLoading && recentTransactions.length === 0" class="no-transactions">
+                            No recent transactions.
+                        </div>
+                        
+                        <div *ngIf="!isLoading && recentTransactions.length > 0" class="transaction-table-container">
+                            <div class="table-scroll-container">
+                                <table class="transaction-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Transaction</th>
+                                            <th>Wallet Type</th>
+                                            <th>Amount</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let transaction of paginatedTransactions">
+                                            <td>{{ formatDate(transaction.createdDate || transaction.createdDt) }}</td>
+                                            <td>
+                                                <i class="fa-solid" [ngClass]="getTransactionIcon(transaction.transactionType)"></i>
+                                                {{ transaction.description }}
+                                                <small *ngIf="transaction.message && transaction.message !== transaction.description">
+                                                    ({{ transaction.message | titlecase }})
+                                                </small>
+                                            </td>
+                                            <td>{{ transaction.walletType | titlecase }}</td>
+                                            <td [ngClass]="getTransactionColor(transaction.transactionType)">
+                                                {{ getTransactionSign(transaction.transactionType) }} ₹{{ transaction.amount | number }}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- Pagination Controls -->
+                            <div class="pagination-controls">
+                                <button 
+                                    [disabled]="currentPage === 1" 
+                                    (click)="changePage(currentPage - 1)" 
+                                    class="pagination-button">
+                                    <i class="fa-solid fa-chevron-left"></i>
+                                </button>
+                                
+                                <div class="page-numbers">
+                                    <button 
+                                        *ngFor="let page of pageNumbers" 
+                                        [class.active]="page === currentPage" 
+                                        (click)="changePage(page)" 
+                                        class="page-number">
+                                        {{ page }}
+                                    </button>
+                                </div>
+                                
+                                <button 
+                                    [disabled]="currentPage === totalPages" 
+                                    (click)="changePage(currentPage + 1)" 
+                                    class="pagination-button">
+                                    <i class="fa-solid fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+ 
+        <!-- Postpaid Section (Agents Only) -->
+        <div class="postpaid-section" *ngIf="selectedSection === 'postpaid' && (isAgent)">
+            <h3>Postpaid Wallet Management</h3>
+            
+            <div class="postpaid-info">
+                <div class="balance-card">
+                    <div class="balance-header">Available Postpaid Balance</div>
+                    <div class="balance-amount" [class.balance-low]="postpaidBalance <= minimumBalanceThreshold">
+                        ₹{{postpaidBalance | number}}
+                    </div>
+                    <div class="balance-details">
+                        <div class="balance-row">
+                            <span>Total Limit</span>
+                            <span>₹{{postpaidLimit | number}}</span>
+                        </div>
+                        <div class="balance-row">
+                            <span>Used</span>
+                            <span>₹{{postpaidUsed | number}}</span>
+                        </div>
+                        <div class="balance-row">
+                            <span>Minimum Required</span>
+                            <span>₹{{minimumBalanceThreshold | number}}</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="status-card" *ngIf="showLowBalanceError">
+                    <div class="status-header warning">
+                        <i class="fa-solid fa-exclamation-triangle"></i>
+                        Balance Warning
+                    </div>
+                    <div class="status-message">
+                        <p *ngIf="showRechargeRequiredError">
+                            Your postpaid balance has reached the minimum limit of ₹{{minimumBalanceThreshold}}. Please recharge to continue booking bus tickets.
+                        </p>
+                        <p *ngIf="!showRechargeRequiredError">
+                            Your available postpaid balance is running low. Consider recharging to ensure uninterrupted service.
+                        </p>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-header">
+                        <i class="fa-solid fa-info-circle"></i>
+                        Postpaid Wallet Benefits
+                    </div>
+                    <div class="info-content">
+                        <ul>
+                            <li>No upfront payment required</li>
+                            <li>Instant access to services with "Buy Now, Pay Later"</li>
+                            <li>Pay your dues at the end of the billing cycle</li>
+                            <li>Seamless checkouts without wallet top-up</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recharge-form">
+                <h4>Recharge Your Postpaid Account</h4>
+                
+                <form [formGroup]="rechargeForm" (ngSubmit)="rechargePostpaid()">
+                    <div class="form-group">
+                        <label for="amount">Enter Amount (Min ₹5,000)</label>
+                        <input 
+                            type="number" 
+                            id="amount" 
+                            formControlName="amount" 
+                            placeholder="Enter amount to recharge"
+                            min="5000"
+                        >
+                        <div class="error-message" *ngIf="rechargeForm.get('amount')?.touched && rechargeForm.get('amount')?.errors?.['required']">
+                            Amount is required
+                        </div>
+                        <div class="error-message" *ngIf="rechargeForm.get('amount')?.touched && rechargeForm.get('amount')?.errors?.['min']">
+                            Minimum recharge amount is ₹5000
+                        </div>
+                    </div>
+                    
+                    <div class="recharge-options">
+                        <div class="quick-amount" (click)="rechargeForm.get('amount')?.setValue(5000)">₹5,000</div>
+                        <div class="quick-amount" (click)="rechargeForm.get('amount')?.setValue(10000)">₹10,000</div>
+                        <div class="quick-amount" (click)="rechargeForm.get('amount')?.setValue(20000)">₹20,000</div>
+                        <div class="quick-amount" (click)="rechargeForm.get('amount')?.setValue(50000)">₹50,000</div>
+                    </div>
+                    
+                    <button type="submit" class="recharge-button" [disabled]="rechargeForm.invalid">
+                        Proceed to Payment
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="prepaid-section" *ngIf="selectedSection === 'prepaid'">
+            <h3>Prepaid Wallet Management</h3>
+            
+            <div class="prepaid-info">
+                <div class="balance-card">
+                    <div class="balance-header">Available Prepaid Balance</div>
+                    <div class="balance-amount">
+                        ₹{{prepaidBalance | number}}
+                    </div>
+                    <div class="balance-details">
+                        <div class="balance-row">
+                            <span>Total Balance</span>
+                            <span>₹{{prepaidBalance | number}}</span>
+                        </div>
+                        <div class="balance-row">
+                            <span>Minimum Required</span>
+                            <span>₹0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-header">
+                        <i class="fa-solid fa-info-circle"></i>
+                        Prepaid Wallet Benefits
+                    </div>
+                    <div class="info-content">
+                        <ul>
+                            <li>No minimum balance requirement</li>
+                            <li>Add any amount starting from ₹5000</li>
+                            <li>Use for instant bookings</li>
+                            <li>Safe and secure transactions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recharge-form">
+                <h4>Add Money to Your Prepaid Wallet</h4>
+                
+                <form [formGroup]="prepaidRechargeForm" (ngSubmit)="rechargePrepaid()">
+                    <div class="form-group">
+                        <label for="prepaid-amount">Enter Amount (Min ₹5000)</label>
+                        <input 
+                            type="number" 
+                            id="prepaid-amount" 
+                            formControlName="amount" 
+                            placeholder="Enter amount"
+                            min="5000"
+                        >
+                        <div class="error-message" *ngIf="prepaidRechargeForm.get('amount')?.touched && prepaidRechargeForm.get('amount')?.errors?.['required']">
+                            Amount is required
+                        </div>
+                        <div class="error-message" *ngIf="prepaidRechargeForm.get('amount')?.touched && prepaidRechargeForm.get('amount')?.errors?.['min']">
+                            Minimum amount is ₹5000
+                        </div>
+                    </div>
+                    
+                    <div class="recharge-options">
+                        <div class="quick-amount" (click)="prepaidRechargeForm.get('amount')?.setValue(5000)">₹5,000</div>
+                        <div class="quick-amount" (click)="prepaidRechargeForm.get('amount')?.setValue(10000)">₹10,000</div>
+                        <div class="quick-amount" (click)="prepaidRechargeForm.get('amount')?.setValue(20000)">₹20,000</div>
+                        <div class="quick-amount" (click)="prepaidRechargeForm.get('amount')?.setValue(50000)">₹50,000</div>
+                    </div>
+                    
+                    <button
+                    (click)="proceedToPayment()"
+                    type="submit"
+                    class="recharge-button"
+                    [disabled]="getFormValidity() || isSubmitting()">
+                    <span *ngIf="!isSubmitting()">Proceed to Payment</span>
+                    <span *ngIf="isSubmitting()">
+                      <i class="fa fa-spinner fa-spin"></i> Processing...
+                    </span>
+                  </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

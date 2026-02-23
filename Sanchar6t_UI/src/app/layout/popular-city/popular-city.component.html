@@ -1,0 +1,100 @@
+<form [formGroup]="popularCityForm">
+    <div class="busContent">
+        <div class="banner">
+            <img src="\assets\popular-city-bg.jpg" alt="Background">
+            <div class="bannerContent">
+                <div class="headingTitleContent">
+                    <p>{{cityName? cityName + ' Bus Ticket Booking':operatorName + ' Bus Booking'}}</p>
+                    <p>Search {{cityName? cityName :operatorName}} Bus Tickets</p>
+                </div>
+                <div class="boxContainer">
+                    <div class="way">
+                        <label class="fw-bold">
+                            <input type="radio" checked> One Way
+                        </label>
+                    </div>
+                    <div class="addingDetails">
+                        <div class="inputFields">
+                            <span class="inputContainer">
+                                <input type="text" required formControlName="departure"
+                                    (input)="filterItem('departure')" />
+                                <label for="departure">Departure</label>
+                                <ul class="typeAheadDropdownBox"
+                                    *ngIf="filteredDepartureCities.length > 0 && popularCityForm.controls['departure'].value">
+                                    <li class="typeAheadDropdownList" *ngFor="let city of filteredDepartureCities"
+                                        (click)="selectItem(city, 'departure')">
+                                        {{ city.name }}
+                                    </li>
+                                </ul>
+                            </span>
+                            <span class="inputContainer">
+                                <input required type="text" formControlName="destination"
+                                    (input)="filterItem('destination')" />
+                                <label for="destination">Destination</label>
+                                <ul class="typeAheadDropdownBox"
+                                    *ngIf="filteredDestinationCities.length > 0 && popularCityForm.controls['destination'].value">
+                                    <li class="typeAheadDropdownList" *ngFor="let city of filteredDestinationCities"
+                                        (click)="selectItem(city, 'destination')">
+                                        {{ city.name }}
+                                    </li>
+                                </ul>
+                            </span>
+                            <span class="inputContainer">
+                                <input formControlName="departureDate" required type="date" />
+                                <label for="departureDate">Departure Date</label>
+                            </span>
+                        </div>
+                        <div class="searchBtn">
+                            <button (click)="search()">SEARCH</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <ng-container *ngIf="cityName">
+            <p id="busRoutes3">Top Bus Routes To {{cityName}}</p>
+            <div class="busRoutes3" *ngFor="let item of [].constructor(3)">
+                <div class="busRoutes4">
+                    <p>Bengaluru To {{cityName}}</p>
+                    <p>From <b>INR 499</b></p>
+                </div>
+                <div class="busRoutes5">
+                    <p>304 bus options</p>
+                    <p>First Bus : <b> 00:30</b></p>
+                    <p>Last Bus : <b>23:59</b></p>
+                    <a class="fw-bold">Book Now</a>
+                </div>
+            </div>
+            <p id="busRoutes3">Top Bus Routes From {{cityName}}</p>
+            <div class="busRoutes3" *ngFor="let item of [].constructor(3)">
+                <div class="busRoutes4">
+                    <p>Bengaluru To {{cityName}}</p>
+                    <p>From <b>INR 499</b></p>
+                </div>
+                <div class="busRoutes5">
+                    <p>304 bus options</p>
+                    <p>First Bus : <b> 00:30</b></p>
+                    <p>Last Bus : <b>23:59</b></p>
+                    <a class="fw-bold">Book Now</a>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="operatorName">
+            <p id="busRoutes3">{{operatorName}} Bus Routes & Timings</p>
+            <div class="busRoutes3" *ngFor="let item of [].constructor(3)">
+                <div class="busRoutes4">
+                    <p>Bengaluru To Hyderabad</p>
+                    <p>From <b>INR 499</b></p>
+                </div>
+                <div class="busRoutes5">
+                    <p>304 bus options</p>
+                    <p>First Bus : <b> 00:30</b></p>
+                    <p>Last Bus : <b>23:59</b></p>
+                    <a class="fw-bold">Book Now</a>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</form>

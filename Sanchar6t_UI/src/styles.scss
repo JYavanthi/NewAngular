@@ -1,0 +1,326 @@
+$violetColor: #8c52ff; //#160866
+$whiteColor: white;
+$lightVioletColor: #f1edfc;
+$lightGray: #f0f0f0;
+$darkGreyColor: #6f6975;
+$clampFontSizeMini: clamp(10px, 2.5vw, 12px);
+$clampFontSizeSmall: clamp(12px, 2.5vw, 14px);
+$clampFontSizeMedium: clamp(14px, 2.5vw, 16px);
+$clampFontSizeLarge: clamp(14px, 2.5vw, 18px);
+$clampFontSizeHeading: clamp(25px, 2.5vw, 50px);
+
+body {
+    // font-family: 'Reina Neue Capitals Bold', Arial, sans-serif;
+    font-family: 'Alilato Arabic', sans-serif !important;
+    font-size: $clampFontSizeLarge;
+    background-color: $lightVioletColor;
+     margin: 0;
+  padding: 0;
+}
+
+// .content-wrapper {
+//     // margin: 100px 20px 20px 20px;
+// }
+
+button {
+    cursor: pointer;
+}
+
+.invalid-outline {
+    outline: 2px solid #ffc2d0 !important;
+    background-color: transparent !important;
+}
+
+input,
+select,
+textarea {
+    border-radius: 5px;
+    border: 1px solid $darkGreyColor;
+    background-color: $whiteColor;
+    outline-color: $violetColor;
+}
+
+.absolutePositioning {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.flexJustifyCenter {
+    display: flex;
+    justify-content: center;
+}
+
+.flexJustifyCenterAlignCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flexJustifySpaceBetween {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flexJustifySpaceBetweenAlignCenter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flexJustifyStart {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.flexJustifyEnd {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.flexDirectionColumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.gridTemplate {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.paddingBorder {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.violetWhite {
+    background-color: $violetColor;
+    color: $whiteColor;
+}
+
+.lightVioletWhite {
+    background-color: $lightVioletColor;
+    color: $violetColor;
+}
+
+.alignItemsCenter {
+    display: flex;
+    align-items: center;
+}
+
+.adminCard {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 30px;
+    background-color: $whiteColor;
+}
+
+i {
+    font-size: $clampFontSizeLarge;
+}
+
+a {
+    text-decoration: none;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.input-container {
+    @extend .flexDirectionColumn;
+    align-items: flex-start;
+    position: relative;
+}
+
+.typeAheadDropdownBox {
+    position: absolute;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    top: 65px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    overflow-x: hidden;
+    text-shadow: none;
+    color: black;
+}
+
+.typeAheadDropdownList {
+    cursor: pointer;
+    border-bottom: 0.5px solid;
+    border-color: #b3b3bf;
+    padding: 5px;
+    width: 100%;
+
+    &:hover {
+        background-color: $lightVioletColor;
+    }
+}
+
+.tableDivcontainer {
+    max-width: 100%;
+    margin: auto;
+    padding: 10px;
+    overflow-x: auto;
+
+    i {
+        cursor: pointer;
+    }
+}
+
+.tableContainer {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tableContainer th,
+.tableContainer td {
+    padding: 10px;
+    text-align: center;
+    font-size: $clampFontSizeMedium;
+    border-bottom: 1px solid #ddd;
+}
+
+.tableContainer th {
+    @extend .violetWhite;
+    font-weight: bold;
+}
+
+tbody tr:nth-child(even):hover {
+    background-color: $lightVioletColor;
+}
+
+.asterisk::after {
+    content: ' *';
+    color: red;
+}
+
+input:disabled,
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+// Material Tabs CSS
+.gstToggle {
+    ::ng-deep .mat-mdc-slide-toggle.mat-mdc-slide-toggle-checked:not(.mat-disabled) .mdc-switch__shadow {
+        background-color: $violetColor !important;
+    }
+
+    ::ng-deep .mat-mdc-slide-toggle.mat-mdc-slide-toggle-checked:not(.mat-disabled) .mdc-switch__track::after {
+        background-color: #ba97ff !important;
+    }
+}
+
+.mat-mdc-tab-body-content {
+    overflow: hidden !important;
+}
+
+.mat-mdc-tab-labels {
+    gap: 10px !important;
+}
+
+.mat-mdc-tab-header {
+    margin-top: 10px !important;
+}
+
+.mdc-tab {
+    background-color: $whiteColor !important;
+    color: $violetColor !important;
+    border-radius: 5px !important;
+}
+
+.mdc-tab--active {
+    background-color: $violetColor !important;
+    color: $whiteColor !important;
+    border-radius: 5px !important;
+}
+
+.mat-mdc-tab-label-container {
+    border: none !important;
+}
+
+.mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+    color: white !important;
+}
+
+.mat-mdc-tab .mdc-tab-indicator__content--underline {
+    border-color: white !important;
+}
+
+.myBooking {
+    .mat-mdc-tab-labels {
+        width: 10% !important;
+    }
+}
+
+.boardingDroppingBox {
+    .mat-mdc-tab-header {
+        margin-top: -10px !important;
+    }
+
+    .mat-mdc-tab-body-wrapper {
+        margin-top: 5px !important;
+    }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+// Custom Scrollbar
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: $violetColor;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #d9c9f5;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+@media (max-width: 768px) {
+    .tableContainer {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 574px) {
+    .tableContainer {
+        font-size: 12px;
+    }
+
+    .tableContainer th,
+    .tableContainer td {
+        padding: 8px;
+    }
+
+    .tableContainer th,
+    .tableContainer td {
+        text-align: center;
+    }
+}

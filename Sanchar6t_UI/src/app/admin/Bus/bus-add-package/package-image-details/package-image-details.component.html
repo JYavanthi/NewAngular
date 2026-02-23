@@ -1,0 +1,35 @@
+<form [formGroup]="packageImageDtlsForm">
+    <div class="packageImageDtls">
+        <div style="width: 350px;">
+            <label class="file-upload mb-2">
+                <i class="fa-solid fa-upload"></i>
+                <span>{{ selectedFiles?.name || 'Upload Package Banner Image' }}</span>
+                <input type="file" class="file-input" (change)="onFileChange($event)"
+                    formControlName="uploadPackageBannerImage">
+            </label>
+        </div>
+        <div class="inputFields">
+            <div>
+                <label>Heading</label>
+                <input type="text" formControlName="heading">
+            </div>
+            <div>
+                <label>Call to Action Title</label>
+                <input type="text" formControlName="calltoActionTitle">
+            </div>
+            <div>
+                <label>Call to Action URL</label>
+                <input type="text" formControlName="calltoActionUrl">
+            </div>
+            <div class="textAreaDiv">
+                <label>Subheading</label>
+                <textarea formControlName="subHeading"></textarea>
+            </div>
+        </div>
+        
+        <div class="submitClear">
+            <button class="submit" (click)="Submit()">Submit</button>
+            <button class="clear" (click)="packageImageDtlsForm.reset();selectedFiles = undefined;">Clear</button>
+        </div>
+    </div>
+</form>

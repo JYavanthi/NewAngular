@@ -1,0 +1,271 @@
+@import '../../../styles.scss';
+
+.loginSignupContainer {
+    background-color: white;
+    @extend .flexJustifyCenterAlignCenter;
+    @extend .paddingBorder;
+    max-width: 60%;
+    margin: 0 auto;
+    border: 1px solid lightgray;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    width: 100%;
+
+    .banner {
+        position: relative;
+        width: 100%;
+    }
+
+    select{
+        font-size: 14px;
+    }
+
+    .banner-text {
+        @extend .absolutePositioning;
+        @extend .flexDirectionColumn;
+        color: white;
+        text-align: center;
+        padding: 0 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5), 0px 0px 10px rgba(0, 0, 0, 0.6);
+
+        span:first-of-type {
+            font-size: 30px;
+            font-weight: 600;
+        }
+
+        span:nth-of-type(2) {
+            font-size: 14px;
+        }
+    }
+
+    .banner img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 5px 0 0 5px;
+    }
+}
+
+.formClass {
+    width: 100%;
+    text-align: center;
+
+    span:not(:first-of-type),
+    button,
+    section label,
+    .password-container i,
+    input {
+        font-size: $clampFontSizeSmall;
+    }
+
+    .fa-phone {
+        font-size: 14px;
+    }
+
+    .activeEmail,
+    .activePhone {
+        background-color: black;
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    div {
+        .rememberMeForgotPassword {
+            padding: 0 20px;
+            @extend .flexJustifySpaceBetween;
+            // @extend .flexDirectionColumn;
+            font-size: $clampFontSizeSmall;
+
+            label {
+                display: inline-flex;
+                font-weight: normal;
+            }
+
+            a {
+                color: black;
+            }
+        }
+
+        & button {
+            @extend .violetWhite;
+        }
+
+        span:nth-child(4) {
+            display: block;
+            color: $darkGreyColor;
+            font-size: $clampFontSizeSmall;
+
+            a {
+                color: $violetColor;
+            }
+        }
+    }
+
+    label {
+        font-weight: 550;
+    }
+
+    input {
+        padding: 5px 10px;
+    }
+
+    span:first-child {
+        display: block;
+        color: $violetColor;
+        font-weight: 600;
+        font-size: clamp(20px, 2vw, 30px);
+
+        span {
+            font-weight: normal;
+            font-size: $clampFontSizeSmall;
+            color: $darkGreyColor;
+
+            a {
+                color: $violetColor;
+            }
+        }
+    }
+
+    span:last-child {
+        display: block;
+        color: $darkGreyColor;
+
+        a {
+            color: $violetColor;
+        }
+    }
+
+    section:first-of-type form:first-of-type {
+        display: grid;
+        text-align: left;
+        margin: 10px auto;
+        padding: 0 15px;
+    }
+
+    button {
+        display: block;
+        font-weight: 550;
+        width: 100%;
+        max-width: 90%;
+        margin: 5px auto;
+        border: none;
+        border-radius: 30px;
+        padding: 5px 20px;
+
+        img {
+            height: 18px;
+            position: relative;
+            bottom: 2px;
+        }
+
+        // &:nth-child(3) {
+        //     background-color: black;
+        //     color: white;
+        // }
+    }
+}
+
+.containerWithIcon {
+    @extend .alignItemsCenter;
+    position: relative;
+    width: 100%;
+
+    input {
+        padding-right: 30px;
+        width: 100%;
+    }
+
+    .fa-eye,
+    .fa-eye-slash {
+        position: absolute;
+        right: 10px;
+        cursor: pointer;
+        font-size: $clampFontSizeMedium;
+        color: #333;
+    }
+}
+
+.error-msg {
+    position: absolute;
+    top: 105%;
+    background: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    font-size: 14px;
+
+    p {
+        margin-bottom: 0rem;
+    }
+}
+
+.containerWithIcon {
+    position: relative;
+}
+
+.btns {
+    display: flex;
+    gap: 10px;
+}
+
+.twoBtns {
+    margin: 0 15px;
+}
+
+.fa-envelope {
+    position: relative;
+    top: 2px;
+}
+
+@media(max-width: 768px) {
+    .loginSignupContainer {
+        max-width: 100%;
+        padding: 20px 10px;
+    }
+
+    .banner-text {
+        span:first-child {
+            font-size: 25px !important;
+        }
+    }
+
+    .formClass button img {
+        height: 16px;
+    }
+
+    .containerWithIcon i {
+        font-size: 14px !important;
+    }
+
+    .error-msg {
+        top: 200% !important;
+        width: 42% !important;
+    }
+
+
+
+}
+
+@media(max-width: 574px) {
+    .banner {
+        display: none;
+    }
+
+    .error-msg {
+        top: 174% !important;
+        width: 72% !important;
+    }
+
+    .loginSignupContainer {
+        padding: 20px 10px;
+    }
+
+    .formClass button img {
+        height: 14px;
+    }
+
+    .containerWithIcon i {
+        font-size: 12px !important;
+    }
+}

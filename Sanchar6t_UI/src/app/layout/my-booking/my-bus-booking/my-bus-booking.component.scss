@@ -1,0 +1,218 @@
+@import '../../../../styles.scss';
+
+.mainDiv {
+    @extend .paddingBorder;
+    background-color: $whiteColor;
+
+    .fa-bus,
+    .fa-location-dot {
+        @extend .lightVioletWhite;
+        border-radius: 30px;
+    }
+
+    .fa-bus {
+        padding: 10px;
+    }
+
+    .fa-location-dot {
+        padding: 10px 12px;
+    }
+
+    .bothDiv {
+        @extend .flexJustifySpaceBetween;
+        gap: 40px;
+        max-height: 600px;
+        overflow-y: auto;
+
+        h5 {
+            font-weight: bold;
+        }
+
+        .bookingBox {
+            @extend .flexDirectionColumn;
+            width: 100%;
+            gap: 10px;
+            margin: 10px;
+
+            .bookingBoxDiv {
+                @extend .flexDirectionColumn;
+                padding: 10px 20px;
+                border-radius: 5px;
+                background-color: $whiteColor;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
+                .line {
+                    position: relative;
+                    top: -10px;
+                    bottom: 0;
+                    left: 20px;
+                    width: 2px;
+                    min-height: 50px;
+                    border-left: 2px dotted gray;
+                }
+
+                .bookingBoxDivFirstRow {
+                    @extend .flexJustifySpaceBetween;
+                    align-items: baseline;
+                    gap: 10px;
+
+                    .boardingPointContent {
+                        align-items: flex-start;
+                        flex: 3;
+                    }
+
+                    .boardingPointRightContent {
+                        align-items: end;
+                        flex: 1 !important;
+                    }
+
+                    .boardingPointContent,
+                    .boardingPointRightContent {
+                        @extend .flexDirectionColumn;
+                        flex: 2;
+
+                        span {
+                            font-size: 16px;
+                            color: $darkGreyColor;
+                        }
+
+                        .rightText {
+                            font-size: 20px;
+                            font-weight: 500;
+                            color: $darkGreyColor;
+                        }
+
+                        button {
+                            color: #285434;
+                            background-color: #eaf4f0;
+                            font-size: 16px;
+                            text-align: center;
+                            border-radius: 16px;
+                            font-weight: bold;
+                            border: none;
+                            min-width: 45%;
+                        }
+
+                        .fa-indian-rupee-sign {
+                            font-size: 14px;
+                        }
+                    }
+                }
+
+                .addReviewInputs {
+                    background-color: $whiteColor;
+                    border-radius: 5px;
+
+                    .inputFields {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                        gap: 15px;
+                    }
+
+                    .star-rating {
+                        font-size: 30px;
+                        color: #ddd;
+                        cursor: pointer;
+
+                        label {
+                            font-size: 18px;
+                            color: black;
+                        }
+                    }
+
+                    .star-rating .filled {
+                        color: gold;
+                    }
+
+                    .reviewBtn {
+                        display: flex;
+                        gap: 10px;
+
+                        button {
+                            @extend .lightVioletWhite;
+                            border: none;
+                            border-radius: 30px;
+                            padding: 5px 25px;
+                            transition: all 0.3s ease;
+
+
+                            &:hover {
+                                @extend .violetWhite;
+                            }
+                        }
+                    }
+
+                    .file-input {
+                        display: none;
+                    }
+
+                    .file-upload {
+                        @extend .violetWhite;
+                        display: inline-flex;
+                        align-items: center;
+                        padding: 5px 10px;
+                        border-radius: 30px;
+                        cursor: pointer;
+                        font-size: 16px;
+                        transition: background-color 0.3s ease;
+
+                        @media (max-width:574px) {
+                            font-size: 14px;
+                        }
+                    }
+
+                    .file-upload:hover {
+                        background-color: $violetColor;
+                    }
+
+                    .file-upload i {
+                        margin-right: 8px;
+                        font-size: $clampFontSizeMini;
+                    }
+                }
+            }
+        }
+    }
+
+    label {
+        font-weight: 550;
+        display: grid;
+    }
+
+    input {
+        padding: 5px 10px;
+        width: 100%;
+    }
+
+    .bookingHistory {
+        @extend .paddingBorder;
+        background-color: $whiteColor;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+
+        span:first-of-type {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        span:nth-child(3) {
+            font-size: 16px;
+            color: gray;
+        }
+    }
+}
+
+.addReviewBtn {
+    text-align: center;
+
+    button {
+        @extend .lightVioletWhite;
+        border: none;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+    }
+
+    button,
+    i {
+        font-size: 14px;
+    }
+}

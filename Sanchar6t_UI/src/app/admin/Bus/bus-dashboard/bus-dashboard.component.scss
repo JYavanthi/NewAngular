@@ -1,0 +1,233 @@
+@import '../../../../styles.scss';
+
+.packages {
+    @extend .flexJustifySpaceBetween;
+    gap: 20px;
+}
+
+.similar {
+    @extend .gridTemplate;
+    gap: 10px;
+
+    .divCard {
+        background-color: $whiteColor;
+        border-radius: 30px;
+        width: 100%;
+        border: 1px solid lightgray;
+
+        .contents,
+        i {
+            font-size: 12px;
+        }
+
+        .contents {
+            margin: 10px;
+            color: $darkGreyColor;
+
+            .icon {
+                @extend .flexJustifySpaceBetweenAlignCenter;
+
+                span:first-of-type {
+                    color: black;
+                    font-size: 20px;
+                    font-weight: 600;
+                }
+
+                .fa-star {
+                    color: #fed11c;
+                }
+            }
+        }
+
+        section:first-of-type {
+            position: relative;
+            display: flex;
+
+            img {
+                width: 100%;
+                height: 200px;
+                border-radius: 30px 30px 0px 0px;
+            }
+
+            .fa-pen-to-square,
+            .fa-trash {
+                position: absolute;
+                top: 20px;
+                background-color: $whiteColor;
+                padding: 5px;
+                border-radius: 50%;
+                color: black;
+                cursor: pointer;
+            }
+
+            .fa-pen-to-square {
+                right: 35px;
+            }
+
+            .fa-trash {
+                right: 10px;
+            }
+
+            .price {
+                @extend .violetWhite;
+                position: absolute;
+                right: 5px;
+                bottom: -15px;
+                padding: 5px 15px;
+                border-radius: 30px;
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.packagesDiv {
+    width: 80%;
+    @extend .adminCard;
+
+    .gridDivCard {
+        @extend .similar;
+    }
+}
+
+.infoDiv {
+    width: 20%;
+    @extend .flexDirectionColumn;
+    gap: 20px;
+
+    button:first-of-type {
+        @extend .violetWhite;
+        border: none;
+        border-radius: 30px;
+        padding: 5px 30px;
+    }
+
+    .totalPackages,
+    .newPackages,
+    .topRoute {
+        @extend .adminCard;
+        text-align: center;
+        background-color: $whiteColor;
+        color: black;
+
+        h4:nth-child(2) {
+            @extend .violetWhite;
+            max-width: 35%;
+            margin: 0 auto;
+            border-radius: 30px;
+            padding: 5px;
+        }
+    }
+
+    .topRoute {
+        .routes {
+            @extend .flexDirectionColumn;
+            text-align: left;
+            color: $darkGreyColor;
+            font-size: 14px;
+
+            span {
+                @extend .flexJustifySpaceBetweenAlignCenter;
+            }
+        }
+    }
+}
+
+.newPackages {
+    @extend .adminCard;
+
+    .gridDivCard {
+        @extend .similar;
+
+        .divCard {
+
+            .contents,
+            i {
+                font-size: 14px;
+            }
+
+            section:first-of-type {
+                img {
+                    height: 280px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:768px) {
+    .packages {
+        flex-wrap: wrap;
+    }
+
+    .infoDiv {
+        width: 100%;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+
+    .packagesDiv {
+        width: 100%;
+    }
+
+    .totalPackages,
+    .newPackages,
+    .topRoute {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        h4:nth-child(2) {
+            padding: 5px 20px !important;
+        }
+    }
+
+    .routes {
+        i {
+            margin: 0 5px;
+        }
+    }
+
+    .gridDivCard .divCard section:first-of-type img {
+        height: 280px !important;
+    }
+}
+
+@media (max-width:574px) {
+    .packagesDiv {
+        padding: 15px;
+
+        .gridDivCard .divCard section:first-of-type img {
+            height: 200px !important;
+        }
+    }
+
+    .infoDiv {
+        flex-direction: column;
+    }
+
+    .divCard {
+
+        .contents,
+        i {
+            font-size: 10px !important;
+        }
+    }
+
+    .newPackages {
+        .gridDivCard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+            .divCard {
+                width: 100%;
+
+                section:first-of-type img {
+                    height: 200px !important;
+                }
+            }
+        }
+    }
+}

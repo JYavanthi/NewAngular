@@ -1,0 +1,384 @@
+<!-- <form [formGroup]="userForm">
+    <div class="mainDiv">
+        <div class="register-Agenct">
+            <h2> <b>REGISTER FOR AN AGENCY</b>
+            </h2>
+            <span>
+                Kindly complete the form below and submit it. We will reach out to you shortly. </span>
+        </div>
+        <div class="Registration">
+            <span><b>REGISTRATION PROCESS</b></span>
+            <div>
+                <span><i class="fa-solid fa-mobile-screen-button"></i> Send us your contact details.</span>
+                <span><i class="fa-solid fa-phone"></i> We will contact you whithin 24 hours.</span>
+                <span> <b><i class="fa-solid fa-check"></i></b> On completion,you will get login ID and password.</span>
+            </div>
+        </div>
+        <div class="form-container">
+            <h2><b>AGENT REGISTRATION</b></h2>
+            <div class="agent-registration">
+                <div>
+                    <label for="name" class="asterisk">First Name</label>
+                    <input type="text" id="name" formControlName="name" required />
+                </div>
+                <div>
+                    <label for="name" class="asterisk">Last Name</label>
+                    <input type="text" id="name" formControlName="LastName" />
+                </div>
+                <div>
+                    <label for="phone" class="asterisk">Phone</label>
+                    <input type="tel" id="phone" formControlName="phone" maxlength="10" />
+                </div>
+                <div>
+                    <label for="email" class="asterisk">Email</label>
+                    <input type="email" id="email" formControlName="email" />
+                </div>
+                <div>
+                    <label for="password" class="asterisk">password</label>
+                    <input type="password" id="password" formControlName="password" />
+                </div>
+                <div>
+                    <label for="gender" class="asterisk">Gender</label>
+                    <select formControlName="gender" style="height: 35px;">
+                        <option value="" selected hidden disabled>Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="status" class="asterisk">Status</label>
+                    <select formControlName="status" style="height: 35px;">
+                        <option value="active">
+                            Active
+                        </option>
+                        <option value="unactive">
+                            Unactive
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <label for="organization" class="asterisk">Organization</label>
+                    <input type="text" id="organization" formControlName="organization" />
+                </div>
+                <div>
+                    <label for="state">State</label>
+                    <input type="text" id="state" formControlName="state" />
+                </div>
+                <div>
+                    <label for="city" class="asterisk">City</label>
+                    <input type="text" id="city" formControlName="city" />
+                </div>
+                <div>
+                    <label for="city" class="asterisk">Company Name</label>
+                    <input type="text" id="city" formControlName="CompanyName" />
+                </div>
+                <div>
+                    <label for="city" class="asterisk">Company Address</label>
+                    <input type="text" id="city" formControlName="CompanyAddress" />
+                </div>
+                <div>
+                    <label class="asterisk">In</label>
+
+                    <div *ngIf="inAttachments?.length">
+                        <ng-container *ngFor="let a of inAttachments">
+                            <a [href]="getFileUrl(a.attachmentId)" target="_blank">
+                                {{ a.attachmentFile }}
+                            </a>
+                        </ng-container>
+                    </div>
+                    <input type="file" (change)="onFileChange($event, 'In')">
+                </div>
+
+
+                <div>
+                    <label class="asterisk">Out</label>
+
+                    <div *ngIf="outAttachments?.length">
+                        <ng-container *ngFor="let a of outAttachments">
+                            <a [href]="getFileUrl(a.attachmentId)" target="_blank">
+                                {{ a.attachmentFile }}
+                            </a>
+                        </ng-container>
+                    </div>
+
+
+                    <input type="file" (change)="onFileChange($event, 'Out')">
+                </div>
+
+
+                <div>
+                    <label class="asterisk">Office</label>
+
+                    <div *ngIf="officeAttachments?.length">
+                        <ng-container *ngFor="let a of officeAttachments">
+                            <a [href]="getFileUrl(a.attachmentId)" target="_blank">
+                                {{ a.attachmentFile }}
+                            </a>
+                        </ng-container>
+                    </div>
+
+
+                    <input type="file" (change)="onFileChange($event, 'Office')">
+                </div>
+
+                <div>
+                    <label for="gstNo" class="asterisk">GST No</label>
+                    <input type="text" maxlength="15" formControlName="gstNo" name="gstNo">
+                </div>
+                <div>
+                    <label class="asterisk">Shop Address</label>
+                    <input type="text" formControlName="ShopAddress">
+                </div>
+                <div class="GSTtoggle">
+                    <mat-slide-toggle formControlName="toggleGST" name="toggleGST">Enter GST Details
+                        (optional)</mat-slide-toggle>
+                </div>
+                <ng-container *ngIf="userForm.controls['toggleGST'].value">
+                    <div class="gstInputFields" [@expandCollapse]>
+                        <div>
+                            <label for="gstNo">GST No</label>
+                            <input type="text" maxlength="15" formControlName="gstNo" name="gstNo">
+                        </div>
+                        <div>
+                            <label for="registeredCompanyName">Registered Company Name</label>
+                            <input type="text" formControlName="registeredCompanyName" name="registeredCompanyName">
+                        </div>
+                    </div>
+                </ng-container>
+            </div> 
+                <div class="textAreaDiv">
+                    <label for="Comments">Comments</label>
+                    <textarea formControlName="Comments"></textarea>
+                </div>
+                <div class="submitClear">
+                    <button class="submit" (click)="Submit()">Submit</button>
+                    <button class="clear" (click)="onClear()">Clear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form> -->
+
+
+
+
+<form [formGroup]="userForm" class="register-container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <img src="assets/s6t-removebg-preview.png" class="logo" />
+
+    <div class="title-row">
+      <img src="assets/pen-removebg-preview.png" class="pen-icon" />
+      <h2>Register For An Agency</h2>
+    </div>
+
+    <p>
+      Kindly fill the form below and submit it.
+      We will reach out to you <br> shortly.
+    </p>
+  </div>
+
+  <!-- REG PROCESS -->
+  <div class="process-box">
+    <div style="text-align: center; margin-top: 15px;">
+      <span class="process-title">Registration Process</span>
+    </div>
+
+    <div class="process-steps">
+      <div class="step">
+        <img src="assets/share_details-removebg-preview.png" class="step-icon" />
+        <span>Send us your <br> contact details</span>
+      </div>
+
+      <div class="step">
+        <img src="assets/contact-removebg-preview.png" class="step-icon" />
+        <span>We will contact <br> you within 24 Hrs</span>
+      </div>
+
+      <div class="step">
+        <img src="assets/login_password-removebg-preview.png" class="step-icon" />
+        <span>Login ID & Password will be provided</span>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Agent Registration</h2>
+
+  <!-- PERSONAL INFO -->
+  <h3 class="sub-title">Personal Information</h3>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="asterisk">First Name</label>
+      <input type="text" placeholder="Enter first name" formControlName="name" />
+    </div>
+
+    <div class="form-group">
+      <label class="asterisk">Last Name</label>
+      <input type="text" placeholder="Enter last name" formControlName="LastName" />
+    </div>
+
+    <div class="form-group">
+      <label class="asterisk">Gender</label>
+      <select formControlName="gender" class="select-input">
+        <option value="" disabled selected>Select gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- CONTACT DETAILS -->
+  <h3 class="sub-title">Contact Details</h3>
+  <div class="form-row">
+    <div class="form-group">
+      <label class="asterisk">Phone Number</label>
+      <input type="text" placeholder="Enter phone number" formControlName="phone" maxlength="10"/>
+    </div>
+
+    <div class="form-group">
+      <label class="asterisk">Email</label>
+      <input type="email" placeholder="Enter email address" formControlName="email" />
+    </div>
+
+    <div class="form-group">
+      <label class="asterisk">Password</label>
+      <input type="password" placeholder="Enter password" formControlName="password" />
+    </div>
+  </div>
+
+  <h3 class="sub-title">Location Details</h3>
+  <div class="form-row">
+
+    <div class="form-group">
+  <label class="asterisk">State</label>
+  <select formControlName="state" class="select-input">
+    <option value="">Select State</option>
+    <option *ngFor="let s of stateList" [value]="s.id">
+      {{ s.name }}
+    </option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label class="asterisk">City</label>
+  <select formControlName="city" class="select-input" [disabled]="!cityList.length">
+    <option value="">Select City</option>
+    <option *ngFor="let c of cityList" [value]="c.id">
+      {{ c.name }}
+    </option>
+  </select>
+</div>
+
+    <div class="form-group">
+      <label class="asterisk">Company Group</label>
+      <input type="text" placeholder="Enter company group name" formControlName="organization" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group">
+      <label class="asterisk">Company Name</label>
+      <input type="text" placeholder="Enter company name" formControlName="CompanyName" />
+    </div>
+
+    <div class="form-group full">
+      <label class="asterisk">Company Address</label>
+      <input type="text" placeholder="Enter company address" formControlName="CompanyAddress" />
+    </div>
+  </div>
+
+  <!-- VERIFICATION -->
+  <h3 class="sub-title">Location Verification</h3>
+  <div class="form-row">
+
+    <div class="upload-card">
+      <label class="upload-label asterisk">Company Interior</label>
+      <input
+        type="text"
+        class="upload-input"
+        placeholder="Upload company interior image"
+        [value]="inFile?.name || ''"
+        readonly
+      />
+      <div class="upload-actions">
+        <label class="add-btn">
+          Add File
+          <input type="file" hidden (change)="onFileChange($event,'In')" />
+        </label>
+        <i class="fa-regular fa-eye"></i>
+        <i class="fa-solid fa-download"></i>
+        <i class="fa-solid fa-trash-can"></i>
+      </div>
+    </div>
+
+    <div class="upload-card">
+      <label class="upload-label asterisk">Company Exterior</label>
+      <input
+        type="text"
+        class="upload-input"
+        placeholder="Upload company exterior image"
+        [value]="outFile?.name || ''"
+        readonly
+      />
+      <div class="upload-actions">
+        <label class="add-btn">
+          Add File
+          <input type="file" hidden (change)="onFileChange($event,'Out')" />
+        </label>
+        <i class="fa-regular fa-eye"></i>
+        <i class="fa-solid fa-download"></i>
+        <i class="fa-solid fa-trash-can"></i>
+      </div>
+    </div>
+
+    <div class="upload-card">
+      <label class="upload-label asterisk">Office Image</label>
+      <input
+        type="text"
+        class="upload-input"
+        placeholder="Upload office image"
+        [value]="officeFile?.name || ''"
+        readonly
+      />
+      <div class="upload-actions">
+        <label class="add-btn">
+          Add File
+          <input type="file" hidden (change)="onFileChange($event,'Office')" />
+        </label>
+        <i class="fa-regular fa-eye"></i>
+        <i class="fa-solid fa-download"></i>
+        <i class="fa-solid fa-trash-can"></i>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TAX -->
+  <h3 class="sub-title">Tax Details</h3>
+  <div class="form-row">
+    <div class="form-group">
+      <label>GST Number</label>
+      <input type="text" placeholder="Enter GST number" formControlName="gstNo" />
+    </div>
+
+    <div class="form-group">
+      <label>Shop Address</label>
+      <input type="text" placeholder="Enter shop address" formControlName="ShopAddress" />
+    </div>
+  </div>
+
+  <!-- COMMENTS -->
+  <h3 class="sub-title">Comments</h3>
+  <div class="form-group">
+    <label class="asterisk">Comments</label>
+    <textarea placeholder="Enter comments" formControlName="Comments"></textarea>
+  </div>
+
+  <!-- ACTION -->
+  <div class="action-row">
+    <button type="button" class="btn-submit" (click)="Submit()">Submit</button>
+    <button type="button" class="btn-clear" (click)="onClear()">Clear</button>
+  </div>
+
+</form>

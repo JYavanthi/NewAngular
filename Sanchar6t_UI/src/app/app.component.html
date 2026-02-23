@@ -1,0 +1,41 @@
+<div class="loader-container" *ngIf="isLoading$ | async">
+  <div class="loader"></div>
+</div>
+
+<button *ngIf="showGoUpButton" class="go-up-btn" (click)="scrollToTop()">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<app-header *ngIf="showGlobalLayout && !showAdminNavbar"></app-header>
+
+<app-navbar *ngIf="showAdminNavbar"></app-navbar>
+
+<app-global-alert></app-global-alert>
+
+<div class="content-wrapper " style="margin-top: 0%;">
+  <router-outlet></router-outlet>
+</div>
+
+<!-- Footer -->
+<app-footer ></app-footer>
+
+  <!-- <div class="loader-container" *ngIf="isLoading$ | async">
+  <div class="loader"></div>
+</div>
+
+<button *ngIf="showGoUpButton" class="go-up-btn" (click)="scrollToTop()">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<ng-container *ngIf="showGlobalLayout">
+  <app-header></app-header>
+  <app-global-alert></app-global-alert>
+</ng-container>
+
+<div class="content-wrapper">
+  <router-outlet></router-outlet>
+</div>
+
+<ng-container *ngIf="showGlobalLayout">
+  <app-footer></app-footer>
+</ng-container> -->

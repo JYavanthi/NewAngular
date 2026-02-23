@@ -1,0 +1,69 @@
+<div class="instant-recharge-wrapper">
+
+  <!-- LEFT FORM -->
+  <div class="instant-form">
+
+    <div class="form-row">
+      <label>Amount <span class="req">*</span></label>
+      <input
+        type="number"
+        placeholder="Enter amount"
+        (input)="onAmountChange($event)"
+      />
+    </div>
+
+    <div class="form-row">
+      <label>Transaction Charge</label>
+      <input
+        type="text"
+        [value]="transactionCharge"
+        readonly
+      />
+    </div>
+
+    <div class="form-row">
+      <label>Net Amount</label>
+      <input
+        type="text"
+        [value]="netAmount"
+        readonly
+      />
+    </div>
+
+<button
+  class="continue-btn"
+  [disabled]="!isContinueEnabled"
+  (click)="continueRecharge()"
+>
+  Continue
+</button>
+
+
+  </div>
+
+  <!-- RIGHT HELP BOX -->
+  <div class="help-box">
+
+    <div class="help-title">Help</div>
+
+    <ul class="help-list">
+      <li>Select the Payment mode by which you want to pay the amount.</li>
+      <li>Transaction charges vary based on payment mode.</li>
+      <li>After successful payment, status will be Pending.</li>
+      <li>Balance updates automatically after success confirmation.</li>
+      <li>This process may take 10–15 minutes.</li>
+    </ul>
+
+    <div class="help-buttons">
+      <button class="help-btn">Help Line Number</button>
+      <button class="help-btn">Help Line for Accounts</button>
+    </div>
+
+    <div class="help-contact">
+      <div>📞 080 4144091334&nbsp;&nbsp;080 22260800</div>
+      <div>✉️ mailsseabirdtourists.com</div>
+    </div>
+
+  </div>
+
+</div>

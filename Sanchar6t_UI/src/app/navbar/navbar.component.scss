@@ -1,0 +1,100 @@
+.top-bar {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 4px;
+  border-bottom: 4px solid #c31928;
+  padding: 8px 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  justify-content: center;
+  gap: 225px;
+}
+
+.top-left {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  padding: 12px;
+  border-right: 2px solid #c31928;
+}
+
+.logo {
+  height: 78px;
+}
+
+.top-center {
+  flex: 1;
+  text-align: left;
+  padding: 0 6px;
+}
+
+.top-line {
+  display: block;
+  font-size: 12px;
+}
+
+.top-date {
+  color: #0044aa;
+  font-weight: 600;
+  font-size: 25px;
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+
+.top-name {
+  color: #b30000;
+  font-weight: 600;
+  margin-top: 2px;
+  font-size: 25px;
+  text-align: center;
+}
+
+.top-amount {
+  color: #444;
+  margin-top: 2px;
+  font-size: 20px;
+  color: #b30000;
+}
+
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-direction: column;
+}
+
+.btn-link {
+  border: none;
+  background: transparent;
+  color: #b30000;
+  font-size: 23px;
+  cursor: pointer;
+  align-items: center;
+  font-weight: bold;
+  gap: 13px;
+  display: flex;
+   text-decoration: none !important;
+
+
+  i {
+    color: gray;
+  }
+}
+
+.btn-recharge {
+  border: none;
+  border-radius: 12px;
+  padding: 8px 28px;
+  font-size: 15px;
+  cursor: pointer;
+  background: #c31928;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* HERO */
+
+.hero-area {
+  margin-top: 6px;
+  position: relative;
+}

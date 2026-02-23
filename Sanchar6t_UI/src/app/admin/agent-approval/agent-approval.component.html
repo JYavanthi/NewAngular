@@ -1,0 +1,73 @@
+<div class="agent-table-container">
+    <div class="travel-Details">
+        <h2>Travel Agent Details</h2>
+        <div class="btns">
+            <button class="approved">
+                Approved ({{ approvedCount }})
+            </button>
+            <button class="rejected">
+                Rejected ({{ rejectedCount }})
+            </button>
+            <button class="pending">
+                Pending ({{ pendingCount }})
+            </button>
+        </div>
+    </div>
+
+    <table class="agent-table">
+        <thead>
+            <tr>
+                <th>Agent ID</th>
+                <th>Name</th>
+                <th>Contact No</th>
+                <th>Company ID</th>
+                <th>Company Name</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let agent of agentList">
+                <td>{{ agent.agentDtlId }}</td>
+                <td>{{ agent.firstName }} {{ agent.middleName }} {{ agent.lastName }}</td>
+                <td>{{ agent.contactNo }}</td>
+                <td>{{ agent.companyId }}</td>
+                <td>{{ agent.companyName }}</td>
+                <td>{{ agent.email }}</td>
+                <td>{{ agent.city }}</td>
+                <td>{{ agent.state }}</td>
+                <td>{{ agent.status | uppercase }}</td>
+                <td class="Approve-reject">
+                    <div class="hover-container">
+                        <button class="approve" (click)="approveAgent(agent.agentDtlId)">
+                            <i class="fa-solid fa-check"></i>
+                        </button>
+                        <div class="hover-content">Approve</div>
+                    </div>
+                    <div class="hover-container">
+                        <button class="reject" (click)="rejectAgent(agent.agentDtlId)">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                        <div class="hover-content">Reject</div>
+                    </div>
+                    <div class="hover-container">
+                        <button class="delete">
+                            <i class="fa-solid fa-trash-can" (click)="deleteAgent(agent.agentDtlId)"></i>
+                        </button>
+                        <div class="hover-content">Delete</div>
+                    </div>
+                    <div class="hover-container">
+                        <button class="edit" (click)="editAgent(agent.agentDtlId)">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <div class="hover-content">Edit</div>
+                    </div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

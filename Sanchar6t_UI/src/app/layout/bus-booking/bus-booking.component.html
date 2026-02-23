@@ -1,0 +1,888 @@
+<form [formGroup]="busBookingForm">
+
+    <ng-template #filtersTemplate>
+        <div style="flex-direction: row">
+            <span><i class="fa-solid fa-filter"></i> Filters</span>
+            <span (click)="resetFilters()">
+                <i class="fa-solid fa-rotate-right"></i> Reset
+            </span>
+        </div>
+        <hr>
+        <div>
+            <label><input type="checkbox" formControlName="liveTracking"><i class="fa-solid fa-route"></i> Live
+                Tracking</label>
+        </div>
+        <hr>
+        <div>
+            <span>Departure Time</span>
+            <label *ngFor="let key of ['before6am','6amTo12pm','12pmTo6pm','after6pm']">
+                <input type="checkbox" [formControlName]="'departureTime' + key"
+                    (change)="onDepartureArrivalChange('departureTime' + key)">
+                {{ key | titlecase }} ({{ filteredSchedules.departure[key]?.length || 0 }})
+            </label>
+        </div>
+
+        <div>
+            <span>Bus Types</span>
+            <label *ngFor="let key of ['Seater','Sleeper','AC','NonAC']">
+                <input type="checkbox" [formControlName]="'busType' + key" (change)="onBusTypeChange('busType' + key)">
+                {{ key }} ({{ filteredBusTypes[key.toLowerCase()]?.length || 0 }})
+            </label>
+        </div>
+
+        <div>
+            <span>Arrival Time</span>
+            <label *ngFor="let key of ['before6am','6amTo12pm','12pmTo6pm','after6pm']">
+                <input type="checkbox" [formControlName]="'arrivalTime' + key"
+                    (change)="onDepartureArrivalChange('arrivalTime' + key)">
+                {{ key | titlecase }} ({{ filteredSchedules.arrival[key]?.length || 0 }})
+            </label>
+        </div>
+
+
+        <div class="filterInput">
+            <span>Boarding Point</span>
+            <span class="multi-select-autocomplete">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" readonly formControlName="boardingPoints" (click)="toggleDropdown('boarding')"
+                    placeholder="Select or type boarding points" />
+                <div class="dropdown-list" *ngIf="dropdownOpen['boarding']">
+                    <label *ngFor="let option of boardingOptions">
+                        <input type="checkbox" [checked]="selectedBoarding.has(option)"
+                            (change)="onOptionToggle('boarding', option, $event)" />
+                        {{ option }}
+                    </label>
+                </div>
+            </span>
+        </div>
+
+        <div class="filterInput">
+            <span>Dropping Point</span>
+            <span class="multi-select-autocomplete">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" readonly formControlName="droppingPoints" (click)="toggleDropdown('dropping')"
+                    placeholder="Select or type dropping points" />
+                <div class="dropdown-list" *ngIf="dropdownOpen['dropping']">
+                    <label *ngFor="let option of droppingOptions">
+                        <input type="checkbox" [checked]="selectedDropping.has(option)"
+                            (change)="onOptionToggle('dropping', option, $event)" />
+                        {{ option }}
+                    </label>
+                </div>
+            </span>
+        </div>
+
+        <div class="filterInput">
+            <span>Operator</span>
+            <span class="multi-select-autocomplete">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" readonly formControlName="operators" (click)="toggleDropdown('operator')"
+                    placeholder="Select or type operators" />
+                <div class="dropdown-list" *ngIf="dropdownOpen['operator']">
+                    <label *ngFor="let option of operatorOptions">
+                        <input type="checkbox" [checked]="selectedOperator.has(option)"
+                            (change)="onOptionToggle('operator', option, $event)" />
+                        {{ option }}
+                    </label>
+                </div>
+            </span>
+        </div>
+
+    </ng-template>
+
+    <div class="mainDiv">
+        <div class="firstDiv">
+            <ng-container *ngTemplateOutlet="filtersTemplate"></ng-container>
+        </div>
+        <div class="secondDiv">
+            <button class="mobileFilter" (click)="togglePopup()"><i class="bx bx-filter"></i> Filters</button>
+            <div class="headingCard">
+                <span>
+                    <i class="fa-solid fa-bus"></i>
+
+                    <!-- <div class="input-container">
+                        <label for="departure">Departure</label>
+                        <input type="text" formControlName="departure" (input)="filterItem('departure')" />
+                        <ul class="typeAheadDropdownBox"
+                            *ngIf="filteredDepartureCities.length > 0 && busBookingForm.controls['departure'].value">
+                            <li class="typeAheadDropdownList" *ngFor="let city of filteredDepartureCities"
+                                (click)="selectItem(city, 'departure')">
+                                {{ city.name }}
+                            </li>
+                        </ul>
+                    </div> -->
+
+                    <div class="input-container">
+                        <label for="departure">Departure</label>
+                        <input type="text" formControlName="departure" (input)="filterItem('departure')"
+                            (keydown)="handleKeyDown($event, 'departure')" />
+
+                        <ul id="departureDropdown" class="typeAheadDropdownBox"
+                            *ngIf="filteredDepartureCities.length > 0 && busBookingForm.controls['departure'].value">
+                            <li *ngFor="let city of filteredDepartureCities; let i = index"
+                                [class.active-item]="i === activeIndex.departure"
+                                (click)="selectItem(city, 'departure')">
+                                {{ city.name }}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <i class="fa-solid fa-angle-right"></i>
+                    <!-- <div class="input-container">
+                        <label for="destination">Destination</label>
+                        <input type="text" formControlName="destination" (input)="filterItem('destination')" />
+                        <ul class="typeAheadDropdownBox"
+                            *ngIf="filteredDestinationCities.length > 0 && busBookingForm.controls['destination'].value">
+                            <li class="typeAheadDropdownList" *ngFor="let city of filteredDestinationCities"
+                                (click)="selectItem(city, 'destination')">
+                                {{ city.name }}
+                            </li>
+                        </ul>
+                    </div> -->
+
+                    <div class="input-container">
+                        <label for="destination">Destination</label>
+                        <input type="text" formControlName="destination" (input)="filterItem('destination')"
+                            (keydown)="handleKeyDown($event, 'destination')" />
+
+                        <ul id="destinationDropdown" class="typeAheadDropdownBox"
+                            *ngIf="filteredDestinationCities.length > 0 && busBookingForm.controls['destination'].value">
+                            <li *ngFor="let city of filteredDestinationCities; let i = index"
+                                [class.active-item]="i === activeIndex.destination"
+                                (click)="selectItem(city, 'destination')">
+                                {{ city.name }}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <i class="fa-solid fa-calendar-days"></i>
+                    <div class="input-container">
+                        <label for="dateOfDeparture">Departure Date</label>
+                        <input type="date" formControlName="dateOfDeparture" [min]="minDate"
+                            (change)="updateDate($event)">
+                    </div>
+                </span>
+                <div>
+                    <button class="modifyBtn" (click)="modify()">Search</button>
+                </div>
+
+                <span class="date-wrapper">
+                    <button class="date-button" (click)="openDatePicker()">
+                        {{ busBookingForm.controls['dateOfDeparture'].value | date: 'dd MMM yyyy' }}
+                    </button>
+
+                    <input type="date" formControlName="dateOfDeparture" [min]="minDate"
+                        (change)="updateDate($event)" />
+                </span>
+
+
+            </div>
+
+            <ng-container *ngFor="let item of filteredScheduleList">
+                <div class="busDetails">
+                    <div class="busDetailsFirstRow">
+                        <span class="busName">{{item.operator_service_name}}</span>
+                        <div>
+                            <span class="fw-bold">{{item.dep_time}}</span>
+                            <span>
+                                <span class="fa-minus"></span>
+                                <span style="font-weight: normal;">
+                                    {{ item.duration ? item.duration.split(':')[0] + 'h ' + item.duration.split(':')[1]
+                                    + 'm' : '' }}
+                                </span>
+                                <span class="fa-minus"></span>
+                            </span>
+                            <span class="fw-bold">{{item.arr_time}}</span>
+                        </div>
+                        <div>
+                            <button class="fw-bold busPrice"><i class="fa-solid fa-indian-rupee-sign"></i>
+                                {{item.show_fare_screen}}</button>
+                        </div>
+                    </div>
+
+                    <section>
+                        <span>{{item.bus_type}}</span>
+                        <section class="travelFromTo">
+                            <span>{{item.origin_name}}</span>
+                            <div class="line"></div>
+                            <span>{{item.destination_name}}</span>
+                        </section>
+
+                        <div class="viewSeatDetailsBtn">
+                            <button class="viewSeat" (click)="viewSeat(item.id)">
+                                {{ operatorViewSeat[item.id] ? 'Hide Seats' : 'View Seats' }}
+                            </button>
+                            <button class="detailsBtn" (click)="toggleDetails()">Details</button>
+                        </div>
+                    </section>
+
+                    <section>
+                        <div class="viewSeatDetailsBtn">
+                            <span>Total Seats : {{item.total_seats}}</span>
+                            &nbsp;&nbsp;
+                            <span>Available Seats : {{item.available_seats}}</span>
+                        </div>
+                    </section>
+
+                    <ng-container *ngIf="isDetailsVisible">
+                        <hr style="border: 1px solid #6f6975;margin: 5px;">
+                        <section class="features" [@expandCollapse]>
+                            <button (click)="toggleSection(item.id, 'Amenities')">
+                                Amenities
+                                <i
+                                    [ngClass]="operatorOpenSections[item.id]?.amenities ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                            </button>
+
+                            <button (click)="toggleSection(item.id, 'BoardingDroppingPoints')">
+                                Boarding & Dropping Points
+                                <i
+                                    [ngClass]="operatorOpenSections[item.id]?.boardingDroppingPoints ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                            </button>
+
+                            <button (click)="toggleSection(item.id, 'BookingPolicies')">
+                                Booking Policies
+                                <i
+                                    [ngClass]="operatorOpenSections[item.id]?.bookingPolicies ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                            </button>
+                        </section>
+
+                        <ng-container *ngIf="operatorOpenSections[item.id]?.amenities && item.amenitiesList?.length">
+                            <section class="amenities-list" [@expandCollapse] *ngFor="let row of item.amenitiesList">
+                                <li>{{ row }}</li>
+                            </section>
+                        </ng-container>
+
+                        <ng-container *ngIf="operatorOpenSections[item.id]?.boardingDroppingPoints">
+                            <section class="boardingDropping pt-1 mb-2" [@expandCollapse]>
+                                <!-- Boarding Points -->
+                                <div class="boardingPoint">
+                                    <div class="boardingPointContents">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>BOARDING POINT</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let row of item.boarding_stage_address">
+                                                    <td>{{ row | titlecase }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div class="droppingPoint">
+                                    <div class="droppingPointContents">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>DROPPING POINT</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let row of item.drop_off_address">
+                                                    <td>{{ row | titlecase }}</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </section>
+                        </ng-container>
+
+                        <ng-container *ngIf="operatorOpenSections[item.id]?.bookingPolicies">
+
+
+                            <section class="bookingPolicy" [@expandCollapse]>
+                                <div class="btns pt-2">
+                                    <button (click)="togglePolicy(true)"
+                                        [ngClass]="isCancellationPolicy ? 'active-button' : ''">Cancellation and Date
+                                        Change
+                                        Policy</button>
+                                    <button (click)="togglePolicy(false)"
+                                        [ngClass]="!isCancellationPolicy ? 'active-button' : ''">Travel Related
+                                        Policies</button>
+                                </div>
+
+                                <div class="cancellationPolicy" *ngIf="isCancellationPolicy">
+                                    <div class="mt-2">
+                                        <span class="policyTable">
+                                            <div>
+                                                <span>
+                                                    <span class="fw-bold">Cancellation Policy</span>
+                                                </span>
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Cancellation Time</th>
+                                                            <th>Cancellation Charges</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <ng-container *ngFor="let policy of operatorPolicyList">
+                                                            <tr
+                                                                *ngFor="let cancellableDetails of policy.cancellationDetails">
+                                                                <td>{{ cancellableDetails.cancellation_time }} hrs</td>
+                                                                <td>{{ cancellableDetails.cancellation_charges }} %</td>
+                                                            </tr>
+                                                        </ng-container>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </span>
+
+                                        <span class="policyTable">
+                                            <div>
+                                                <span>
+                                                    <span class="fw-bold">Reschedule Policy</span>
+                                                </span>
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Reschedule Time</th>
+                                                            <th>Reschedule Charges</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <ng-container *ngFor="let policy of operatorPolicyList">
+                                                            <tr *ngFor="let item of policy.rescheduleDetails">
+                                                                <td>{{ item.reschedule_time }} hrs</td>
+                                                                <td>{{ item.reschedule_charges }}
+                                                                    {{item.reschedule_charges
+                                                                    ==
+                                                                    'NO_RESCHEDULE'?'':'%'}}</td>
+                                                            </tr>
+                                                        </ng-container>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </span>
+                                    </div>
+
+                                    <div>
+                                        <ul>
+                                            <li>Cancellation charges are computed on a per seat basis.</li>
+                                            <li>Cancellation charges are calculated based on service start date time.
+                                            </li>
+                                            <li>Ticket cannot be cancelled after scheduled bus departure time from the
+                                                first
+                                                boarding point</li>
+                                            <li>Note: Cancellation charges mentioned above are excluding GST</li>
+                                            <li>For group bookings individual seats can be cancelled.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="travelPolicy mt-2" *ngIf="!isCancellationPolicy">
+                                    <div class="travelPolicies">
+                                        <img src="assets/children.png">
+                                        <span>
+                                            <span class="fw-bold text-dark">Child Passenger Policy</span>
+                                            <span>Children above the age of 5 will need a ticket.</span>
+                                        </span>
+                                    </div>
+                                    <div class="travelPolicies">
+                                        <img src="assets/luggage.png">
+                                        <span>
+                                            <span class="fw-bold text-dark">Luggage Policy</span>
+                                            <span>2 pieces of luggage will be accepted free of charge per passenger.
+                                                Excess
+                                                items
+                                                will be chargeable excess baggage over 20 kgs per passenger will be
+                                                chargeable.</span>
+                                        </span>
+                                    </div>
+                                    <div class="travelPolicies">
+                                        <img src="assets/banpet.png">
+                                        <span>
+                                            <span class="fw-bold text-dark">Pets Policy</span>
+                                            <span>Pets are not allowed.</span>
+                                        </span>
+                                    </div>
+                                    <div class="travelPolicies">
+                                        <img src="assets/liquor.png">
+                                        <span>
+                                            <span class="fw-bold text-dark">Liquor Policy</span>
+                                            <span>Carrying or consuming liquor inside the bus is prohibited. Bus
+                                                operator
+                                                reserves
+                                                the right to deboard drunk passengers.</span>
+                                        </span>
+                                    </div>
+                                    <div class="travelPolicies">
+                                        <img src="assets/pickup.png">
+                                        <span>
+                                            <span class="fw-bold text-dark">Pick Up Time Policy</span>
+                                            <span>Operator is not obligated to wait beyond the scheduled departure time
+                                                of
+                                                the
+                                                bus.
+                                                No refund request will be entertained for late arriving
+                                                passengers.</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </section>
+                        </ng-container>
+                    </ng-container>
+
+
+                    <ng-container *ngIf="operatorViewSeat[item.id]">
+                        <section class="viewSeats pt-2 pb-2" [@expandCollapse]>
+                            <div class="bothDivs d-flex gap-4">
+                                <div class="seat-display-container flex-fill">
+                                    <h6 class="note">Click on an Available seat to proceed with your transaction.</h6>
+                                    <div *ngIf="layoutMode === 'sleeper'">
+                                        <div class="bus-layout sleeper-combined"
+                                            *ngIf="sleeperLowerDeck.length || sleeperUpperDeck.length">
+                                            <h3 class="text-center mb-3">Sleeper Layout</h3>
+                                            <div class="deck-wrapper">
+
+                                                <!-- ================= LOWER DECK ================= -->
+                                                <div class="deck-section">
+                                                    <div class="deck">
+                                                        <h4 class="deck-title">Lower Deck</h4>
+
+                                                        <div class="steering-icon text-center mb-2">
+                                                            <span class="material-symbols-outlined"
+                                                                style="font-size: 25px; color: lightgray;">
+                                                                search_hands_free
+                                                            </span>
+                                                        </div>
+
+                                                        <div class="seatsAndChairs">
+                                                            <ng-container *ngFor="let row of sleeperLowerDeck">
+                                                                <div class="seat-row">
+                                                                    <ng-container *ngFor="let seat of row">
+
+                                                                        <div class="seat-container"
+                                                                            [class.selected]="isSelected(seat)"
+                                                                            [attr.data-seat-info]="seat.seatNumber + ' - ₹' + seat.price"
+                                                                            [matTooltip]="getTooltipText(seat)"
+                                                                            matTooltipClass="multiline-tooltip"
+                                                                            matTooltipPosition="above"
+                                                                            (click)="toggleSeat(seat)">
+
+                                                                            <img src="assets/seat-img.jpeg"
+                                                                                class="seat-img" />
+
+                                                                            <img *ngIf="seat.gents_seats?.includes(seat.seatNumber || '')"
+                                                                                class="genderLogo"
+                                                                                src="assets/male-icon.png" alt="Male" />
+
+                                                                            <img *ngIf="seat.ladies_seats?.includes(seat.seatNumber || '')"
+                                                                                class="genderLogo"
+                                                                                src="assets/female-icon.png"
+                                                                                alt="Female" />
+
+                                                                            <span class="seatNoPrice">
+                                                                                {{ seat.seatNumber }} ₹{{ seat.price }}
+                                                                            </span>
+
+                                                                        </div>
+
+                                                                    </ng-container>
+                                                                </div>
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <!-- ================= UPPER DECK ================= -->
+                                                <div class="deck-section">
+                                                    <div class="deck">
+                                                        <h4 class="deck-title">Upper Deck</h4>
+
+                                                        <div class="seatsAndChairs">
+                                                            <ng-container *ngFor="let row of sleeperUpperDeck">
+                                                                <div class="seat-row">
+                                                                    <ng-container *ngFor="let seat of row">
+
+                                                                        <div class="seat-container"
+                                                                            [class.selected]="isSelected(seat)"
+                                                                            
+                                                                            [attr.data-seat-info]="seat.seatNumber + ' - ₹' + seat.price"
+                                                                            [matTooltip]="getTooltipText(seat)"
+                                                                            matTooltipClass="multiline-tooltip"
+                                                                            matTooltipPosition="above"
+                                                                            (click)="toggleSeat(seat)">
+
+                                                                            <img src="assets/seat-img.jpeg"
+                                                                                class="seat-img" />
+
+                                                                            <img *ngIf="seat.gents_seats?.includes(seat.seatNumber || '')"
+                                                                                class="genderLogo"
+                                                                                src="assets/male-icon.png" alt="Male" />
+
+                                                                            <img *ngIf="seat.ladies_seats?.includes(seat.seatNumber || '')"
+                                                                                class="genderLogo"
+                                                                                src="assets/female-icon.png"
+                                                                                alt="Female" />
+
+                                                                            <span class="seatNoPrice">
+                                                                                {{ seat.seatNumber }} ₹{{ seat.price }}
+                                                                            </span>
+
+                                                                        </div>
+
+                                                                    </ng-container>
+                                                                </div>
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div *ngIf="layoutMode === 'seater'">
+                                        <div class="bus-layout">
+                                            <h3>Seater</h3>
+
+                                            <div class="deck seaterDeck">
+                                                <div class="steering-icon text-center mb-2">
+                                                    <span class="material-symbols-outlined"
+                                                        style="font-size: 25px; color: lightgray;">
+                                                        search_hands_free
+                                                    </span>
+                                                </div>
+
+                                                <div class="seatsAndChairs">
+                                                    <ng-container *ngFor="let row of seaterSeats">
+                                                        <div class="seat-row">
+                                                            <div class="seat-side left-side">
+                                                                <div *ngIf="row[0]" class="seat-container"
+                                                                    [attr.data-seat-info]="row[0].seatNumber + ' - ₹' + row[0].price"
+                                                                    [matTooltip]="getTooltipText(row[0])"
+                                                                    matTooltipClass="multiline-tooltip"
+                                                                    matTooltipPosition="above"
+                                                                    (click)="toggleSeat(row[0])">
+                                                                    <i class="fa-solid fa-couch seat-icon" [ngClass]="{
+                
+                }"></i>
+                                                                    <span class="seatNoPrice">{{ row[0].seatNumber }}
+                                                                        ₹{{ row[0].price }}</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="aisle"></div>
+
+                                                            <div class="seat-side right-side">
+                                                                <div *ngIf="row[1]" class="seat-container"
+                                                                    [attr.data-seat-info]="row[0].seatNumber + ' - ₹' + row[0].price"
+                                                                    [matTooltip]="getTooltipText(row[1])"
+                                                                    matTooltipClass="multiline-tooltip"
+                                                                    matTooltipPosition="above"
+                                                                    (click)="toggleSeat(row[1])">
+                                                                    <i class="fa-solid fa-couch seat-icon" [ngClass]="{
+                 
+                }"></i>
+                                                                    <span class="seatNoPrice">{{ row[1].seatNumber }}
+                                                                        ₹{{ row[1].price }}</span>
+                                                                </div>
+
+                                                                <div *ngIf="row[2]" class="seat-container"
+                                                                    [attr.data-seat-info]="row[0].seatNumber + ' - ₹' + row[0].price"
+                                                                    [matTooltip]="getTooltipText(row[2])"
+                                                                    matTooltipClass="multiline-tooltip"
+                                                                    matTooltipPosition="above"
+                                                                    (click)="toggleSeat(row[2])">
+                                                                    <i class="fa-solid fa-couch seat-icon" [ngClass]="{
+                  
+                }"></i>
+                                                                    <span class="seatNoPrice">{{ row[2].seatNumber }}
+                                                                        ₹{{ row[2].price }}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="seatLegend">
+                                    <div class="seatLegend besideLayout flex-fill">
+                                        <div class="boardingDroppingBox p-3 shadow rounded bg-white">
+                                            <h5 class="fw-bold text-center mb-2">Select Pickup & Drop Points</h5>
+                                            <hr />
+                                            <div
+                                                class="boardingDroppingContainer d-flex flex-wrap justify-content-between gap-3">
+                                                <div class="boardingPointsBox flex-fill">
+                                                    <h6 class="fw-bold text-center mb-2">BOARDING POINTS</h6>
+                                                    <div class="scrollBox border rounded p-2"
+                                                        *ngIf="item.boarding_stage_address?.length; else noBoarding">
+                                                        <div class="boardingItem border-bottom py-2"
+                                                            *ngFor="let point of item.boarding_stage_address">
+                                                            <label
+                                                                class="d-flex align-items-start w-100 cursor-pointer">
+                                                                <input type="radio" class="form-check-input me-2 mt-1"
+                                                                    name="boardingPointRadio" [value]="point"
+                                                                    formControlName="boardingPointRadio"
+                                                                    (change)="onRadioChange(point, 'boardingPoint')" />
+                                                                <div class="pointDetails">
+                                                                    <div class="fw-bold text-primary">{{
+                                                                        point.split('|')[0]
+                                                                        }}</div>
+                                                                    <div class="time small text-muted">Time:
+                                                                        {{point.split('|')[1] }}</div>
+                                                                    <div class="extra small text-secondary">
+                                                                    </div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <ng-template #noBoarding>
+                                                        <p class="text-muted text-center small mb-0">No Boarding Points
+                                                            Available</p>
+                                                    </ng-template>
+                                                </div>
+
+                                                <div class="droppingPointsBox flex-fill">
+                                                    <h6 class="fw-bold text-center mb-2">DROP POINTS</h6>
+                                                    <div class="scrollBox border rounded p-2"
+                                                        *ngIf="item.drop_off_address?.length; else noDrop">
+                                                        <div class="droppingItem border-bottom py-2"
+                                                            *ngFor="let point of item.drop_off_address">
+                                                            <label
+                                                                class="d-flex align-items-start w-100 cursor-pointer">
+                                                                <input type="radio" class="form-check-input me-2 mt-1"
+                                                                    name="droppingPointRadio" [value]="point"
+                                                                    formControlName="droppingPointRadio"
+                                                                    (change)="onRadioChange(point, 'droppingPoint')" />
+                                                                <div class="pointDetails">
+                                                                    <div class="fw-bold text-success">{{
+                                                                        point.split('|')[0]}}</div>
+                                                                    <div class="time small text-muted">Time: {{
+                                                                        point.split('|')[1] }}</div>
+                                                                    <div class="extra small text-secondary">
+                                                                    </div>
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <ng-template #noDrop>
+                                                        <p class="text-muted text-center small mb-0">No Drop Points
+                                                            Available</p>
+                                                    </ng-template>
+                                                </div>
+                                            </div>
+
+                                            <div class="selectedSeats mt-3">
+                                                <span class="fw-bold">Selected Seats:</span>
+                                                <span *ngIf="!selectedSeats.length" class="text-muted"> No seats
+                                                    selected
+                                                    yet </span>
+                                                <span *ngFor="let row of selectedSeats; let last = last">{{row}}<span
+                                                        *ngIf="!last">, </span></span>
+                                            </div>
+
+                                            <div
+                                                class="amountDiv d-flex justify-content-between align-items-center mt-2">
+                                                <span>Amount (Excl. taxes)</span>
+                                                <span class="fw-bold">₹{{ getTotalAmount() | number:'1.2-2' }}</span>
+                                            </div>
+
+
+                                            <div class="proceedToBook mt-3 text-center">
+                                                <button class="btn btn-primary"
+                                                    [disabled]="!selectedSeats.length || !busBookingForm.get('boardingPointRadio')?.value || !busBookingForm.get('droppingPointRadio')?.value"
+                                                    (click)="proceedToBook()">
+                                                    Continue
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </section>
+                    </ng-container>
+
+                    <ng-container *ngIf="isPassengerDtlsOpen">
+                        <div class="overlay" (click)="isPassengerDtlsOpen = false"></div>
+                        <section class="passengerDtls">
+                            <i class="fa-solid fa-xmark close-btn" (click)="isPassengerDtlsOpen = false"></i>
+                            <div class="info">
+                                <i class="fa-regular fa-user"></i> Passenger Information
+                            </div>
+
+                            <div class="passengerContent">
+                                <div class="tableDivcontainer">
+                                    <table class="tableContainer">
+                                        <thead>
+                                            <tr>
+                                                <th>Seat No</th>
+                                                <th>Gender</th>
+                                                <th>
+                                                    <span class="nameWithCheckbox">
+                                                        Name
+                                                        <input type="checkbox" formControlName="passengerNameCheckbox"
+                                                            (change)="copyFirstPassengerDtls($event)"
+                                                            *ngIf="selectedSeats.length > 1">
+
+                                                    </span>
+                                                </th>
+                                                <th>Age</th>
+                                                <th>Phone No</th>
+                                                <th><i class="fa-brands fa-whatsapp text-white"></i></th>
+                                                <th>Address</th>
+                                                <th>ID Card</th>
+                                                <th>ID No</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let passenger of passengerDetails.controls; let i = index"
+                                                [formGroup]="passenger">
+                                                <td>{{ selectedSeats[i] }}</td>
+                                                <td>
+                                                    <select formControlName="passengerGender"
+                                                        aria-label="Gender selection">
+                                                        <option value="" hidden disabled>Select Gender</option>
+                                                        <option>Male</option>
+                                                        <option>Female</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="text" formControlName="passengerName"
+                                                        aria-label="Enter passenger name">
+                                                </td>
+                                                <td>
+                                                    <input type="tel" maxlength="2" formControlName="passengerAge"
+                                                        aria-label="Enter passenger age"
+                                                        (keypress)="apiConverter.allowOnlyNumbers($event)">
+                                                </td>
+                                                <td>
+                                                    <input type="tel" maxlength="10" formControlName="passengerPhoneNo"
+                                                        aria-label="Enter passenger phone number"
+                                                        (keypress)="apiConverter.allowOnlyNumbers($event)">
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" formControlName="passengerIsWhatsApp"
+                                                        aria-label="Is WhatsApp number">
+                                                </td>
+                                                <td>
+                                                    <textarea formControlName="passengerAddress"
+                                                        aria-label="Enter passenger address"></textarea>
+                                                </td>
+                                                <td>
+                                                    <select formControlName="passengerIDCard"
+                                                        aria-label="Select ID card type">
+                                                        <option value="" hidden disabled>Select ID Card</option>
+                                                        <option *ngFor="let card of idCardList" [value]="card">{{ card
+                                                            }}</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <input type="text" formControlName="passengerIDCardNo"
+                                                        aria-label="Enter ID card number">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="extraFields" [formGroup]="busBookingForm">
+                                    <div>
+                                        <label for="passengerAlternativeNo">Alternative No</label>
+                                        <input type="text" maxlength="10" formControlName="passengerAlternativeNo"
+                                            aria-label="Enter alternative phone number"
+                                            (keypress)="apiConverter.allowOnlyNumbers($event)">
+                                    </div>
+                                    <div>
+                                        <label for="passengerEmail">Email</label>
+                                        <input type="email" formControlName="passengerEmail"
+                                            aria-label="Enter passenger email">
+                                    </div>
+                                    <div>
+                                        <label for="passengerRemarks">Remarks</label>
+                                        <textarea formControlName="passengerRemarks"
+                                            aria-label="Enter remarks"></textarea>
+                                    </div>
+                                    <div class="passengerDtlsSaveBtn">
+                                        <label>
+                                            <input type="checkbox" formControlName="savePassengerDetails">
+                                        </label>
+                                        <span>Save Passenger Details</span>
+
+                                        <button type="button" (click)="clearSavedDtls()">Clear</button>
+                                    </div>
+
+                                </div>
+
+                                <div class="gstContainer">
+                                    <div class="gstToggle" style="margin-left: 110px;">
+                                        <mat-slide-toggle formControlName="toggleGST"
+                                            aria-label="Toggle GST details">Enter GST
+                                            Details
+                                            (optional)</mat-slide-toggle>
+                                    </div>
+
+                                    <ng-container *ngIf="busBookingForm.controls['toggleGST'].value">
+                                        <div class="gstInputFields" [@expandCollapse]>
+                                            <div>
+                                                <label for="gstNo">GST No</label>
+                                                <input type="text" maxlength="15" formControlName="gstNo"
+                                                    aria-label="Enter GST number">
+                                            </div>
+                                            <div>
+                                                <label for="registeredCompanyName">Registered Company Name</label>
+                                                <input type="text" formControlName="registeredCompanyName"
+                                                    aria-label="Enter registered company name">
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                            </div>
+
+                            <div class="tagLine">
+                                <span>
+                                    By clicking on proceed, I agree that I have read and understood the
+                                    <span>TnCs</span> and the <span>Privacy Policy</span>
+                                </span>
+                            </div>
+                            <div class="pay">
+                                <div class="fareDtlsWithTax">
+                                    <span>
+                                        <span>Fare: </span><br>
+                                        <span *ngIf="item.service_tax_percent">GST ({{ item.service_tax_percent
+                                            }}%):</span>
+                                        <span class="fw-bold netTotal">Net Total: </span>
+                                    </span>
+                                    <div>
+                                        <span>{{ getFareDetails().fare | number:'1.2-2' }}</span>
+                                        <span *ngIf="item.service_tax_percent">{{ getFareDetails().gstAmount |
+                                            number:'1.2-2' }}</span>
+                                        <span class="fw-bold text-dark">{{ getFareDetails().netTotal | number:'1.2-2'
+                                            }}</span>
+                                    </div>
+                                </div>
+
+                                <button type="submit" (click)="saveMyDetails()">PROCEED TO PAY</button>
+                            </div>
+
+                        </section>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </div>
+
+        <div class="popupContainer" [ngClass]="{'show': isPopupVisible}">
+            <button class="closeBtn" (click)="togglePopup()">✖</button>
+            <div class="firstDiv mobileFilterContent">
+                <ng-container *ngTemplateOutlet="filtersTemplate"></ng-container>
+            </div>
+        </div>
+
+    </div>
+
+</form>

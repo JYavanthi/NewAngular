@@ -1,0 +1,144 @@
+@import '../../../../styles.scss';
+
+.headingDiv {
+    span:first-of-type {
+        font-weight: bold;
+        font-size: 25px;
+
+        i {
+            @extend .lightVioletWhite;
+            padding: 10px !important;
+            border-radius: 50%;
+        }
+    }
+}
+
+.headingDiv,
+.addBusPackage,
+.packageImageDtls,
+.highlightDtls,
+.detailedItinerary,
+.included,
+.notIncluded,
+.importantNotes,
+.additionalDtls {
+    @extend .paddingBorder;
+    background-color: white;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+
+    span:first-of-type {
+        button {
+            color: $violetColor;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            padding: 3px 10px;
+        }
+
+        i {
+            @extend .violetWhite;
+            border-radius: 50%;
+            padding: 3px 4px;
+        }
+
+        @media (max-width:574px) {
+            i {
+                padding: 3px 4px;
+            }
+        }
+    }
+}
+
+.addBusPackage,
+.packageImageDtls,
+.highlightDtls,
+.detailedItinerary,
+.included,
+.notIncluded,
+.importantNotes,
+.additionalDtls {
+    margin: 10px auto;
+
+    .file-input {
+        display: none;
+    }
+
+    .file-upload {
+        @extend .violetWhite;
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 10px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+
+        @media (max-width:574px) {
+            font-size: 14px;
+        }
+    }
+
+    .file-upload:hover {
+        background-color: $violetColor;
+    }
+
+    .file-upload i {
+        margin-right: 8px;
+        font-size: $clampFontSizeMini;
+    }
+
+    label {
+        font-weight: 550;
+    }
+
+    input,
+    textarea {
+        padding: 5px 10px;
+        width: 100%;
+    }
+
+    .inputFields {
+        @extend .gridTemplate;
+        gap: 20px;
+    }
+
+    .textAreaDiv {
+        grid-column: 1/-1;
+
+        textarea {
+            height: 70px;
+            border-radius: 10px;
+            padding: 5px 10px;
+        }
+    }
+}
+
+.submitClear {
+    display: flex;
+    gap: 10px;
+
+    .submit,
+    .clear {
+        @extend .lightVioletWhite;
+        border: none;
+        border-radius: 30px;
+        padding: 5px 25px;
+        transition: all 0.3s ease;
+
+        &:hover {
+            @extend .violetWhite;
+        }
+    }
+}
+
+@media (max-width:574px) {
+    .headingDiv {
+        span:first-of-type {
+            font-size: 16px;
+
+            i {
+                padding: 5px !important;
+            }
+        }
+    }
+}

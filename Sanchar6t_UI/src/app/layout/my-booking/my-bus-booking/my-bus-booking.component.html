@@ -1,0 +1,111 @@
+<form [formGroup]="mybusBookingForm">
+    <div class="mainDiv">
+        <div class="bookingHistory mb-3">
+            <span>Booking History</span><br>
+            <span>Showing all your bus booking history</span>
+        </div>
+        <div class="bothDiv">
+            <div class="bookingBox">
+                <h5>Active Booking</h5>
+                <ng-container *ngFor="let item of [].constructor(3)">
+                    <div class="bookingBoxDiv">
+                        <div class="bookingBoxDivFirstRow">
+                            <i class="fa-solid fa-bus"></i>
+                            <div class="boardingPointContent">
+                                <h5>456 Elm Street, Spring</h5>
+                                <span>Boarding Point</span>
+                            </div>
+                            <div class="boardingPointRightContent">
+                                <h5 class="rightText">Payment</h5>
+                                <button><i class="fa-solid fa-indian-rupee-sign"></i> 12</button>
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="bookingBoxDivFirstRow">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div class="boardingPointContent">
+                                <h5>739 Main Street Springfield</h5>
+                                <span>Dropping Point</span>
+                            </div>
+                            <div class="boardingPointRightContent">
+                                <h5 class="rightText">Distance</h5>
+                                <button>15 Km</button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+            <div class="bookingBox">
+                <h5>Past Booking</h5>
+                <ng-container *ngFor="let item of [].constructor(3)">
+                    <div class="bookingBoxDiv">
+                        <div class="bookingBoxDivFirstRow">
+                            <i class="fa-solid fa-bus"></i>
+                            <div class="boardingPointContent">
+                                <h5>456 Elm Street, Spring</h5>
+                                <span>Boarding Point</span>
+                            </div>
+                            <div class="boardingPointRightContent">
+                                <h5 class="rightText">Payment</h5>
+                                <button><i class="fa-solid fa-indian-rupee-sign"></i> 12</button>
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="bookingBoxDivFirstRow">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div class="boardingPointContent">
+                                <h5>739 Main Street Springfield</h5>
+                                <span>Dropping Point</span>
+                            </div>
+                            <div class="boardingPointRightContent">
+                                <h5 class="rightText">Distance</h5>
+                                <button>15 Km</button>
+                            </div>
+                        </div>
+                        <div class="toggleAddReviewBtn">
+                            <div class="addReviewBtn">
+                                <button (click)="toggleInput()"><i
+                                        [ngClass]="isReviewInputFields?'fa-solid fa-minus':'fa-solid fa-plus' "></i>
+                                    {{ isReviewInputFields ? 'Hide Review' : 'Add Review' }}
+                                </button>
+                            </div>
+                        </div>
+                        <ng-container *ngIf="isReviewInputFields">
+                        
+                                <div class="addReviewInputs mt-2" [@expandCollapse]>
+                                    <!-- <label class="file-upload mb-2">
+                                        <i class="fa-solid fa-upload"></i>
+                                        <span>{{ fileName || 'Profile picture' }}</span>
+                                        <input type="file" class="file-input" (change)="onFileChange($event)"
+                                            formControlName="profilePicture">
+                                    </label> -->
+                                    <div class="textAreaDiv">
+                                        <label>Comments</label>
+                                        <input type="text" comments="description" formControlName="description">
+                                    </div>
+                                    <div class="inputFields">
+                                       
+                                        <div class="star-rating">
+                                            <label>Rating</label>
+                                            <span *ngFor="let star of stars; let i = index"
+                                                [ngClass]="{'filled': i < mybusBookingForm.controls['rating'].value}"
+                                                (click)="setRating(i + 1)" comments="rating" formControlName="rating">
+                                                &#9733;
+                                            </span>
+                                        </div>
+                                    </div>
+    
+                                    <div class="reviewBtn">
+                                        <button (click)="Submitbutton()">Submit</button>
+                                        <button>Clear</button>
+                                    </div>
+                                </div>    
+                        
+                        </ng-container>
+
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</form>

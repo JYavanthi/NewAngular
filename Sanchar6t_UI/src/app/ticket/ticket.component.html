@@ -1,0 +1,170 @@
+<div class="ticket-container" #ticketContainer>
+  <div class="ticket-header">
+    <div class="logo-section">
+      <h1>{{ ticketDetails.companyName }}</h1>
+      <p>{{ ticketDetails.companyAddress }}</p>
+      <p> Ph:{{ ticketDetails.companyPhone.join(', ') }}</p>
+    </div>
+    <div class="ticket-basic-info">
+      <h2>Ticket Details</h2>
+      <div class="ticket-number">Ticket No: {{ ticketDetails.ticketNo }}</div>
+      <div class="ticket-route">{{ ticketDetails.route }}</div>
+    </div>
+  </div>
+
+  <div class="ticket-actions">
+    <button class="action-button print-btn" (click)="printTicket()">
+      <i class="fas fa-print"></i> Print Ticket
+    </button>
+    <button class="action-button download-btn" (click)="downloadTicket()">
+      <i class="fas fa-download"></i> Download PDF
+    </button>
+    <button class="action-button whatsapp-btn" (click)="shareOnWhatsApp()">
+      <i class="fab fa-whatsapp"></i> Share on WhatsApp
+    </button>
+  </div>
+
+  <div class="tabs">
+    <div class="tab" [class.active]="activeTab === 'details'" (click)="setActiveTab('details')">
+      Ticket Details
+    </div>
+    <div class="tab" [class.active]="activeTab === 'itinerary'" (click)="setActiveTab('itinerary')">
+      Itinerary
+    </div>
+    <div class="tab" [class.active]="activeTab === 'inclusions'" (click)="setActiveTab('inclusions')">
+      Inclusions
+    </div>
+    <div class="tab" [class.active]="activeTab === 'terms'" (click)="setActiveTab('terms')">
+      Terms & Conditions
+    </div>
+  </div>
+
+  <div class="tab-content">
+    <!-- Ticket Details Tab -->
+    <div class="details-container" [style.display]="activeTab === 'details' ? 'block' : 'none'">
+      <div class="detail-grid">
+        <div class="detail-item">
+          <div class="label">Seat Numbers (No of Seats)</div>
+          <div class="value">{{ ticketDetails.seatNumbers }}</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Journey Date</div>
+          <div class="value">{{ ticketDetails.journeyDate }}</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Dep Time</div>
+          <div class="value">{{ ticketDetails.depTime }} - {{ ticketDetails.reportTime }}</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Total Fare</div>
+          <div class="value highlight">{{ ticketDetails.totalFare }}</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Coach Type</div>
+          <div class="value">{{ ticketDetails.coachType }}</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Boarding</div>
+          <div class="value"> {{ ticketDetails.boardingPoint }}</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Booked On</div>
+          <div class="value">{{ ticketDetails.bookedOn }}</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">Booked By</div>
+          <div class="value">{{ ticketDetails.bookedBy }}</div>
+        </div>
+        <div class="detail-item">
+          <div class="label">DropOff</div>
+          <div class="value">{{ ticketDetails.dropOff }}</div>
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-danger" (click)="CancelTicket()"  style="margin-left: 715px;">Cancel Ticket</button>
+      </div>
+
+
+      <div class="customer-service">
+        <h3>Customer Service</h3>
+        <p>Email: {{ ticketDetails.companyEmail }}</p>
+        <p>Phone: {{ ticketDetails.companyPhone.join(', ') }}</p>
+        <p>{{ ticketDetails.companyWebsite }}</p>
+      </div>
+    </div>
+
+    <!-- Itinerary Tab -->
+    <div class="itinerary-container" [style.display]="activeTab === 'itinerary' ? 'block' : 'none'">
+      <h3>Trip Details:</h3>
+      <div class="timeline" *ngFor="let day of itinerary">
+        <div class="day-header">{{ day.day }}</div>
+        <div class="events">
+          <div class="event" *ngFor="let event of day.events">
+            <div class="event-time">{{ event.time }}</div>
+            <div class="event-description">{{ event.description }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inclusions Tab -->
+    <div class="inclusions-container" [style.display]="activeTab === 'inclusions' ? 'block' : 'none'">
+      <div class="inclusion-section">
+        <h3>INCLUDED</h3>
+        <ul class="inclusion-list">
+          <li *ngFor="let item of included">{{ item }}</li>
+        </ul>
+      </div>
+
+      <div class="inclusion-section">
+        <h3>NOT INCLUDED</h3>
+        <ul class="inclusion-list not-included">
+          <li *ngFor="let item of notIncluded">{{ item }}</li>
+        </ul>
+      </div>
+
+      <div class="dress-code">
+        <h3>IMPORTANT NOTE:</h3>
+        <p>Dress code to be followed for the temple visit –</p>
+        <div class="dress-code-item">
+          <span class="gender">Male:</span> {{ dressCode.male }}
+        </div>
+        <div class="dress-code-item">
+          <span class="gender">Female:</span> {{ dressCode.female }}
+        </div>
+        <div class="dress-code-note">
+          {{ dressCode.avoid }}
+        </div>
+      </div>
+
+      <div class="inclusion-section">
+        <h3>IMPORTANT NOTES</h3>
+        <ul class="inclusion-list">
+          <li *ngFor="let note of importantNotes">{{ note }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Terms & Conditions Tab -->
+    <div class="terms-container" [style.display]="activeTab === 'terms' ? 'block' : 'none'">
+      <div class="terms-section">
+        <h3>Term And Condition</h3>
+        <ol class="terms-list">
+          <li *ngFor="let term of termsAndConditions">{{ term }}</li>
+        </ol>
+      </div>
+
+      <div class="cancellation-policy">
+        <h3>Cancellation Policy</h3>
+        <ul class="policy-list">
+          <li *ngFor="let policy of cancellationPolicy">{{ policy }}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="ticket-footer">
+    <p>This is a computer-generated ticket and doesn't require a physical signature.</p>
+    <p>© {{ ticketDetails.companyName }} - All Rights Reserved.</p>
+  </div>
+</div>

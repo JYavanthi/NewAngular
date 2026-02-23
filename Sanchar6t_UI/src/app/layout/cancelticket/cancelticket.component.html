@@ -1,0 +1,20 @@
+<div class="reactiveForm">
+    <form [formGroup]="cancelTktForm">
+        <span>Cancel your Tickets</span>
+        <div class="form-tickets">
+            <div class="input-container">
+                <label for="ticketNumber">Ticket Number</label>
+                <input type="text" name="ticketNumber" formControlName="ticketNumber" />
+                <i class="fa-solid fa-ticket"></i>
+            </div>
+            <div class="input-container">
+                <label for="phoneNumber">Mobile Number</label>
+                <input type="number" min="0" name="mobileNumber" formControlName="phoneNumber" />
+                <i class="fa-solid fa-phone"></i>
+            </div>
+        </div>
+        <div class="selectButton">
+            <button (click)="submit()" class="submit-button">SELECT PASSENGERS</button>
+        </div>
+    </form>
+</div>

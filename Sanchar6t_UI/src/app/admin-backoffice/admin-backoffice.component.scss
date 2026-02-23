@@ -1,0 +1,30 @@
+// .backoffice-wrapper {
+//   min-height: 100vh;
+//   background-color: #fef5e6;
+// }
+
+// .backoffice-content {
+//   padding: 24px;
+// }
+
+.backoffice-wrapper {
+  min-height: 100vh;
+  background-color: #fef5e6;
+}
+
+/* FLEX ROW */
+.backoffice-body {
+  display: flex;
+  align-items: stretch; // IMPORTANT
+  //  gap: 20px;
+  padding: 20px;
+}
+
+/* CONTENT AREA */
+.backoffice-content {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  background-color: white;
+}
+

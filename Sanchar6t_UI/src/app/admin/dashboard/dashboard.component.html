@@ -1,0 +1,41 @@
+<div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <span style="margin-left: 15px;"> Sanchar6T</span>
+        </div>
+        <nav>
+            <a *ngFor="let item of sidebarItems" href="#" class="nav-link">
+                {{ item }}
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main">
+        <!-- Topbar -->
+        <header class="topbar">
+            <div class="search">
+                <input type="text" placeholder="Search Order" />
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="profile">
+                <span class="owner">Bus Owner</span>
+                <div class="avatar"><i class="fa-solid fa-user"></i></div>
+            </div>
+        </header>
+
+        <!-- Dashboard Cards -->
+        <main class="dashboard">
+            <div *ngFor="let stat of stats" class="card">
+                <div class="info">
+                    <p>{{ stat.title }}</p>
+                    <h2>{{ stat.value }}</h2>
+                </div>
+                <div class="icon" [ngClass]="stat.color">
+                    <i [ngClass]="stat.icon"></i>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

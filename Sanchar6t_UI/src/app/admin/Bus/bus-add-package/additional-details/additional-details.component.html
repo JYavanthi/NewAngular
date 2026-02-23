@@ -1,0 +1,93 @@
+<form [formGroup]="scheduleAndPricingForm">
+    <div class="additionalDtls">
+        <div class="inputFields">
+            <div>
+                <label class="asterisk" for="service">Service</label>
+                <input type="text" formControlName="service">
+            </div>
+            <div>
+                <label class="asterisk" for="busType">Bus Type</label>
+                <input type="text" formControlName="busType">
+            </div>
+            <div>
+                <label class="asterisk" for="departure">Departure Time</label>
+                <input type="time" formControlName="departure"
+                    (change)="scheduleAndPricingForm.get('arrival')?.enable();">
+            </div>
+            <div>
+                <label class="asterisk" for="arrival">Arrival Time</label>
+                <input type="time" formControlName="arrival" (change)="getDuration()">
+            </div>
+            <div>
+                <label class="asterisk" for="duration">Duration (min)</label>
+                <input type="text" formControlName="duration" readonly style="pointer-events: none;">
+            </div>
+            <!-- <div>
+                <label class="asterisk" for="fare">Fare</label>
+                <input type="number" min="0" formControlName="fare">
+            </div> -->
+        </div><br>
+
+        <span class="fw-bold">Weekdays:</span>
+        <div class="inputFields">
+            <div class="inputContainer">
+                <label class="asterisk" for="weekdaysFrom">From</label>
+                <input type="text" formControlName="weekdaysFrom" (input)="filterDays('weekdaysFrom')" />
+                <ul class="typeAheadDropdownBox" *ngIf="filteredWeekdaysFrom.length > 0">
+                    <li class="typeAheadDropdownList" *ngFor="let day of filteredWeekdaysFrom"
+                        (click)="selectDay(day, 'weekdaysFrom')">
+                        {{ day }}
+                    </li>
+                </ul>
+            </div>
+            <div class="inputContainer">
+                <label class="asterisk" for="weekdaysTo">To</label>
+                <input type="text" formControlName="weekdaysTo" (input)="filterDays('weekdaysTo')" />
+                <ul class="typeAheadDropdownBox" *ngIf="filteredWeekdaysTo.length > 0">
+                    <li class="typeAheadDropdownList" *ngFor="let day of filteredWeekdaysTo"
+                        (click)="selectDay(day, 'weekdaysTo')">
+                        {{ day }}
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <label class="asterisk" for="weekdaysPrice">Price</label>
+                <input type="number" min="0" formControlName="weekdaysPrice">
+            </div>
+        </div>
+        <br>
+
+        <span class="fw-bold">Weekend:</span>
+        <div class="inputFields">
+            <div class="inputContainer">
+                <label class="asterisk" for="weekendFrom">From</label>
+                <input type="text" formControlName="weekendFrom" (input)="filterDays('weekendFrom')" />
+                <ul class="typeAheadDropdownBox" *ngIf="filteredWeekendFrom.length > 0">
+                    <li class="typeAheadDropdownList" *ngFor="let day of filteredWeekendFrom"
+                        (click)="selectDay(day, 'weekendFrom')">
+                        {{ day }}
+                    </li>
+                </ul>
+            </div>
+            <div class="inputContainer">
+                <label class="asterisk" for="weekendTo">To</label>
+                <input type="text" formControlName="weekendTo" (input)="filterDays('weekendTo')" />
+                <ul class="typeAheadDropdownBox" *ngIf="filteredWeekendTo.length > 0">
+                    <li class="typeAheadDropdownList" *ngFor="let day of filteredWeekendTo"
+                        (click)="selectDay(day, 'weekendTo')">
+                        {{ day }}
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <label class="asterisk" for="weekendPrice">Price</label>
+                <input type="number" min="0" formControlName="weekendPrice">
+            </div>
+        </div>
+
+        <div class="submitClear mt-2">
+            <button class="submit" (click)="submit()">Submit</button>
+            <button class="clear" (click)="scheduleAndPricingForm.reset()">Clear</button>
+        </div>
+    </div>
+</form>

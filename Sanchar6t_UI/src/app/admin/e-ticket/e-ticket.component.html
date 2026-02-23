@@ -1,0 +1,208 @@
+<!-- BACK BUTTON -->
+<div class="back-btn">
+  <button>
+    ← Back to Bus Booking
+  </button>
+</div>
+
+<!-- MAIN CONTAINER -->
+<div class="eticket-container" *ngIf="booking" #ticketRef>
+
+  <!-- ================= TOP HEADER ================= -->
+  <div class="et-top-container">
+
+    <div class="et-row1">
+      <div class="et-cancel-text">
+        Cancellation and refund are not applicable for Tirupati trips/packages.
+      </div>
+
+      <div class="et-help-text">
+        Need help with your trip? Boarding Point <br />
+        Ph. No.: +91 9964885055, +91 8197882511 <br />
+        <a href="#">https://www.tirupatipackagetours.com/</a>
+      </div>
+    </div>
+
+    <div class="et-row2-center">
+      <img src="assets/SancharImg.png" class="et-logo-right" alt="Logo" />
+
+      <div class="et-center-text">
+        <div class="et-ticket-title">eTICKET</div>
+        <div class="et-dharshana">Sarva (Free) Dharshana</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TRIP HEADER ================= -->
+  <div class="trip-header-container">
+    <div class="trip-header-row">
+      <span class="trip-city">{{ booking?.origin }}</span>
+      <span class="trip-arrow">⇆</span>
+      <span class="trip-title">{{ booking?.destination }}</span>
+    </div>
+    <div class="trip-yellow-line"></div>
+  </div>
+
+  <!-- ================= TICKET INFO ================= -->
+  <div class="ticket-info-header">
+    <div class="ticket-info-row">
+      <span>
+        Ticket No:
+        <b>{{ booking?.pnr_number }}</b>
+      </span>
+      <span>
+        Coach Number:
+        <b>N/A</b>
+      </span>
+    </div>
+
+    <div class="ticket-info-row">
+      <span>
+        Ticket Details for:
+        <b>{{ passengers[0]?.name }}</b>
+      </span>
+      <span>
+        Bus Name:
+        <b>{{ busName }}</b>
+      </span>
+    </div>
+  </div>
+
+  <!-- ================= JOURNEY DETAILS ================= -->
+  <div class="eticket-journey-details">
+    <div>
+      <p class="label">Coach Type</p>
+      <p>{{ busType }}</p>
+    </div>
+    <div>
+      <p class="label">Reporting Time</p>
+      <p>{{ boardingPoint?.time }}</p>
+    </div>
+    <div>
+      <p class="label">Departure Time</p>
+      <p>{{ departureTime }}</p>
+    </div>
+    <div>
+      <p class="label">Passengers</p>
+      <p>{{ passengers.length }}</p>
+    </div>
+  </div>
+
+  <!-- ================= BOARDING / DROPPING / BOOKING ================= -->
+  <div class="trip-table">
+
+    <div class="trip-col">
+      <h3>Boarding point details</h3>
+      <p>{{ boardingPoint?.name }}</p>
+      <p>{{ boardingPoint?.landmark }}</p>
+      <p>{{ boardingPoint?.address }}</p>
+      <p class="bold">{{ boardingPoint?.contact }}</p>
+      <span class="small-label">Contact Info</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="trip-col">
+      <h3>Dropping point details</h3>
+      <p>{{ droppingPoint?.name }}</p>
+      <p>{{ droppingPoint?.landmark }}</p>
+      <p>{{ droppingPoint?.address }}</p>
+      <p class="bold">{{ droppingPoint?.contact }}</p>
+      <span class="small-label">Contact Info</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="trip-col">
+      <h3>Booking details</h3>
+      <p>Booked Date: {{ travelDate | date:'dd MMM yyyy' }}</p>
+      <p>Booked By: {{ passengers[0]?.name }}</p>
+      <p>Contact Number: {{ passengers[0]?.mobile }}</p>
+      <p>Email Address: {{ passengers[0]?.email || 'N/A' }}</p>
+      <span class="small-label">Journey Details</span>
+    </div>
+  </div>
+
+  <!-- ================= PASSENGER DETAILS ================= -->
+  <div class="passenger-section">
+    <h6>Passenger Details</h6>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Seat No</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of passengers">
+          <td>{{ p.name }}</td>
+          <td>{{ p.age }}</td>
+          <td>{{ p.gender }}</td>
+          <td><b>{{ p.seat_no }}</b></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="guidelines">
+    <h5>Passenger Guidelines</h5>
+    <h5>Travel Restrictions - Important Don’ts During Travel</h5>
+
+    <div class="guidelines-grid">
+
+      <div class="guide-box">
+        <img src="..\assets\ticket.jpg" />
+        <p>Don’t board without a <b>valid ticket & ID</b></p>
+      </div>
+
+      <div class="guide-box">
+        <img src="..\assets\danger.jpg" />
+        <p>Don’t carry <b>hazardous or illegal items</b></p>
+      </div>
+
+      <div class="guide-box">
+        <img src="..\assets\alchohol.png" />
+        <p>No <b>alcohol, smoking or drugs</b></p>
+      </div>
+
+      <div class="guide-box">
+        <img src="..\assets\dnd.jpg" />
+        <p>Do not <b>disturb fellow passengers</b></p>
+      </div>
+
+      <div class="guide-box">
+        <img src="..\assets\luggage.jpg" />
+        <p>Do not leave <b>valuables unattended</b></p>
+      </div>
+
+      <div class="guide-box">
+        <img src="..\assets\bus12.jpg" />
+        <p>No <b>damage to bus or property</b></p>
+      </div>
+
+    </div>
+
+    <h6>Terms and Conditions</h6>
+    <ul>
+      <li>Carry valid government photo ID.</li>
+      <li>Report 30 minutes before departure.</li>
+      <li>Ticket is non-transferable.</li>
+      <li>Refunds as per operator policy.</li>
+      <li>Rescheduling subject to availability.</li>
+    </ul>
+  </div>
+
+
+  <!-- ================= TERMS ================= -->
+</div>
+
+<!-- ================= ACTION BUTTONS ================= -->
+<div class="action-buttons" *ngIf="booking">
+  <button class="download" (click)="downloadPDF()">
+    Download Ticket PDF
+  </button>
+  <button class="email">Email Ticket</button>
+</div>

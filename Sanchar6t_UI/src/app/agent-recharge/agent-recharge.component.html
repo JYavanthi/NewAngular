@@ -1,0 +1,58 @@
+<div class="recharge-page">
+
+  <!-- HEADER -->
+  <div class="recharge-header">
+    <div>
+      <h2>Recharges</h2>
+      <span class="sub-text">26 Pending, 909 Completed</span>
+    </div>
+
+    <div class="balance-box">
+      <div class="balance">Balance: ₹ 150.12</div>
+      <div class="last-recharge">
+        Last Recharge Done On: 08/06/2025 03:44 PM
+      </div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <mat-tab-group class="recharge-tabs" animationDuration="0ms">
+
+    <!-- CASH CREDIT -->
+    <mat-tab label="Cash Credit">
+      <ng-template matTabContent>
+        <div class="tab-content">
+          <app-cash-credit></app-cash-credit>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+    <!-- BANK DEPOSIT -->
+    <mat-tab label="Bank Deposit">
+      <ng-template matTabContent>
+        <div class="tab-content">
+          <app-bank-deposit></app-bank-deposit>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+    <!-- FUND TRANSFER -->
+    <mat-tab label="Fund Transfer">
+      <ng-template matTabContent>
+        <div class="tab-content">
+          <app-fund-transfer></app-fund-transfer>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+    <!-- INSTANT RECHARGE -->
+    <mat-tab label="Instant Recharge">
+      <ng-template matTabContent>
+        <div class="tab-content">
+          <app-instant-recharge></app-instant-recharge>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>

@@ -1,0 +1,103 @@
+<aside class="sidebar">
+  <!-- Logo -->
+  <div class="sidebar-logo">
+    <img src="\assets\s6t123 logo.png" alt="Sanchar6T" />
+  </div>
+
+  <!-- Menu -->
+  <ul class="menu">
+    <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <a routerLink="/backoffice/home">
+        <i class="fa-solid fa-grip"></i>
+        <span>Dashboard</span>
+      </a>
+    </li>
+
+    <li routerLinkActive="active">
+      <a routerLink="/backoffice/packages">
+        <i class="fa-solid fa-download"></i>
+        <span>Packages</span>
+      </a>
+    </li>
+
+   <li routerLinkActive="active">
+  <a routerLink="/backoffice/agentapprove">
+
+    <!-- Image Icon -->
+    <img src="\assets\WhatsApp_Image_2026-02-12_at_1.45.06_PM-removebg-preview (1).png" class="menu-icon" style="width: 24px;" />
+
+    <span>Agent</span>
+  </a>
+</li>
+
+
+    <li routerLinkActive="active">
+      <a routerLink="/backoffice/bookings">
+        <i class="fa-regular fa-square-check"></i>
+        <span>Bookings</span>
+      </a>
+    </li>
+
+    <li>
+      <a>
+        <i class="fa-solid fa-calendar-days"></i>
+        <span>Calender</span>
+      </a>
+    </li>
+
+    <li>
+      <a>
+        <i class="fa-solid fa-suitcase-rolling"></i>
+        <span>Travelers</span>
+      </a>
+    </li>
+
+    <li>
+      <a>
+        <i class="fa-regular fa-clock"></i>
+        <span>Guides</span>
+      </a>
+    </li>
+
+    <li>
+      <a>
+        <i class="fa-regular fa-folder-open"></i>
+        <span>Gallery</span>
+      </a>
+    </li>
+
+    <li>
+      <a>
+        <i class="fa-regular fa-comment-dots"></i>
+        <span>Messages</span>
+      </a>
+    </li>
+
+    <li>
+      <a>
+        <i class="fa-solid fa-gear"></i>
+        <span>Deals</span>
+      </a>
+    </li>
+
+    <li>
+      <a>
+
+        <i class="fa-regular fa-thumbs-up"></i>
+        <span>Feedback</span>
+      </a>
+    </li>
+  </ul>
+
+  <!-- Logout -->
+  <div class="logout">
+    <a routerLink="/agentLogin" style="gap: 10px;
+    display: flex;
+    align-items: center;
+    color: gray;
+">
+      <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      <span>LOGOUT</span>
+    </a>
+  </div>
+</aside>

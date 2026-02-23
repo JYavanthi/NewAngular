@@ -1,0 +1,1715 @@
+@import '../../../styles.scss';
+
+.mainDiv {
+    @extend .flexJustifySpaceBetween;
+    gap: 10px;
+
+    label {
+        @extend .flexJustifyStart;
+        align-items: center;
+        gap: 10px;
+        color: $darkGreyColor;
+    }
+}
+
+
+/* ================= SEAT BASE ================= */
+.seat-container {
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+/* ================= SELECTED SEAT (DARK BLUE) ================= */
+.seat-container.selected {
+    border: 2px solid #0d6efd;   /* DARK BLUE */
+    background-color: #eef4ff;
+}
+
+/* ================= UNAVAILABLE ================= */
+.seat-container.unavailable {
+    opacity: 0.4;
+    pointer-events: none;
+    filter: grayscale(100%);
+}
+
+/* ================= IMAGE ================= */
+.seat-img {
+    width: 30px;
+    height: 50px;
+    display: block;
+}
+
+h4 {
+    font-size: 14px;
+    text-align: center;
+}
+
+
+.seat-img {
+    width: 30px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.seat-img:hover {
+    transform: scale(1.08);
+}
+
+
+
+.unavailable-seat {
+    opacity: 0.4;
+    pointer-events: none;
+    filter: grayscale(100%);
+}
+
+.female-seat {
+    box-shadow: 0 0 6px #ff69b4;
+}
+
+.male-seat {
+    box-shadow: 0 0 6px #4da3ff;
+}
+
+.genderLogo {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    width: 18px;
+}
+
+.firstDiv {
+    width: 25%;
+    background-color: $whiteColor;
+    @extend .paddingBorder;
+
+    div {
+        width: 100%;
+        padding: 5px 0;
+    }
+
+    label img {
+        opacity: 0.6;
+        height: 20px;
+    }
+
+    input {
+        padding: 5px 30px;
+        max-width: 100%;
+    }
+
+    span {
+        color: $violetColor;
+        font-weight: 600;
+    }
+
+    hr {
+        border: 1px solid $darkGreyColor;
+        margin: 10px 0;
+    }
+
+    div:first-of-type {
+        @extend .flexJustifySpaceBetween;
+        width: 95%;
+        font-weight: 600;
+        display: flex;
+        flex-direction: column;
+        padding: 13px;
+    }
+
+    .filterInput {
+        margin: 10px 0;
+
+        span:nth-child(2) {
+            @extend .alignItemsCenter;
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+
+            i {
+                position: absolute;
+                left: 10px;
+                top: 10px;
+            }
+        }
+    }
+}
+
+.secondDiv {
+    @extend .flexDirectionColumn;
+    gap: 10px;
+    width: 75%;
+
+    .headingCard {
+        @extend .flexJustifySpaceBetweenAlignCenter;
+        @extend .paddingBorder;
+        background-color: $whiteColor;
+        gap: 10px;
+
+        span:first-of-type,
+        span:nth-child(2) {
+            @extend .alignItemsCenter;
+            gap: 10px;
+        }
+
+        span:first-of-type {
+            width: 100%;
+
+            input {
+                flex: 1;
+                width: 100%;
+            }
+        }
+
+        input {
+            padding: 5px;
+            width: 100%;
+        }
+    }
+
+    div {
+        .modifyBtn {
+            @extend .violetWhite;
+            border: none;
+            border-radius: 30px;
+            padding: 5px 30px;
+        }
+
+        span {
+            color: $darkGreyColor;
+
+            .fa-bus,
+            .fa-calendar-days {
+                padding: 10px;
+                border-radius: 50%;
+            }
+
+            .fa-bus {
+                color: $violetColor;
+                background-color: $lightVioletColor;
+            }
+
+            .fa-calendar-days {
+                color: #f7e077;
+                background-color: #fff9e1;
+            }
+        }
+    }
+
+    .mobileFilter {
+        @extend .alignItemsCenter;
+        gap: 5px;
+        background-color: $whiteColor;
+        color: $darkGreyColor;
+        padding: 5px 10px;
+        border-radius: 30px;
+        border: none;
+        display: none;
+        width: fit-content;
+    }
+}
+
+.busDetails {
+    background-color: $whiteColor;
+    @extend .paddingBorder;
+
+    .fa-minus::before {
+        content: '\f068 \f068 \f068 \f068';
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 600;
+        margin: 0 5px;
+    }
+
+    .busDetailsFirstRow {
+        @extend .flexJustifySpaceBetweenAlignCenter;
+
+        .busPrice,
+        .busName {
+            pointer-events: none;
+        }
+
+        .busName {
+            @extend .violetWhite;
+            border: none;
+            border-radius: 2px;
+            padding: 2px 10px;
+        }
+
+        .busPrice {
+            background-color: #f69944;
+            color: $whiteColor;
+            padding: 5px 20px;
+            border-radius: 30px;
+            border: none;
+        }
+
+        div {
+            display: contents !important;
+
+            span:first-of-type,
+            span:nth-child(3) {
+                color: black;
+            }
+        }
+
+        @media (max-width: 574px) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            .busName {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+
+            .busPrice {
+                width: 100%;
+                max-width: 35%;
+                margin-top: 5px;
+            }
+
+            div {
+                width: 100%;
+                margin-bottom: 0px;
+                display: flex !important;
+                justify-content: center;
+            }
+        }
+    }
+
+
+    section {
+        font-size: clamp(12px, 2vw, 16px);
+        padding: 0 5px;
+    }
+
+    section:first-of-type {
+        padding: 5px;
+        @extend .flexJustifySpaceBetweenAlignCenter;
+
+        .detailsBtn {
+            display: none;
+        }
+
+
+
+        .viewSeat,
+        .detailsBtn {
+            background-color: $lightVioletColor;
+            color: $violetColor;
+            font-size: $clampFontSizeLarge;
+            border-radius: 30px;
+            border: none;
+            padding: 5px 20px;
+
+            &:hover {
+                @extend .violetWhite;
+                transition: all 0.3s;
+            }
+        }
+
+        section:nth-child(2) {
+            @extend .flexJustifySpaceBetweenAlignCenter;
+            min-width: 45%;
+        }
+    }
+
+    .line {
+        height: 1px;
+        background-color: $darkGreyColor;
+        flex-grow: 1;
+        margin: 0 10px;
+    }
+
+    .features {
+        @extend .flexJustifyStart;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+
+        button {
+            @extend .alignItemsCenter;
+            background-color: $lightGray;
+            border-radius: 5px;
+            border: none;
+            gap: 5px;
+
+            i {
+                font-size: $clampFontSizeMini;
+            }
+        }
+    }
+
+    // .amenities {
+    //     @extend .gridTemplate;
+    //     gap: 10px;
+    //     padding: 10px;
+    //     background-color: #f7f9f9;
+
+    //     span {
+    //         @extend .alignItemsCenter;
+    //         gap: 10px;
+    //     }
+
+    //     img {
+    //         opacity: 0.6;
+    //         height: 20px;
+    //     }
+    // }
+
+    .amenities-list {
+        display: inline-block;
+        margin-right: 10px;
+        flex-wrap: wrap;
+    }
+
+    .boardingDropping {
+        display: flex;
+        background-color: #f7f9f9;
+        gap: 10px;
+
+        .boardingPointContents,
+        .droppingPointContents {
+            display: flex;
+            gap: 10px;
+            font-size: $clampFontSizeSmall;
+            margin-top: 2%;
+            background-color: $whiteColor;
+            padding: 5px 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+
+            th {
+                color: $violetColor;
+                text-align: center;
+            }
+
+            b {
+                color: black;
+            }
+        }
+    }
+
+    .featureReviews {
+        background-color: #f7f9f9;
+        padding: 10px !important;
+        display: flex;
+        gap: 10px;
+
+        .feedbackCard {
+            width: 300px;
+            background-color: $whiteColor;
+            border-radius: 20px;
+            padding: 20px;
+            position: relative;
+            color: $darkGreyColor;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+
+            img {
+                border-radius: 50%;
+                height: 50px;
+            }
+
+            p,
+            .timeDate,
+            div i {
+                font-size: 14px;
+            }
+
+            .userDescription {
+                margin-top: 5%;
+                @extend .flexDirectionColumn;
+
+                span:first-of-type {
+                    font-weight: 600;
+                    color: black;
+                    font-size: $clampFontSizeLarge;
+                }
+
+                span:nth-child(2) {
+                    font-weight: 600;
+                    color: $violetColor;
+                    font-size: $clampFontSizeMedium;
+                }
+            }
+
+            .underline {
+                display: flex;
+                align-items: baseline;
+                gap: 5px;
+
+                hr {
+                    width: 100%;
+                    border: 1px solid;
+                }
+            }
+
+            .timeDate {
+                @extend .flexJustifySpaceBetween;
+
+                i {
+                    color: gold;
+                }
+            }
+        }
+    }
+
+    .bookingPolicy {
+        background-color: #f7f9f9;
+
+        .btns {
+            display: flex;
+            gap: 30px;
+
+            button {
+                border-radius: 3px;
+                font-weight: bold;
+                border: none;
+            }
+        }
+
+        .cancellationPolicy {
+            @extend .alignItemsCenter;
+            gap: 5px;
+            font-size: $clampFontSizeMini;
+            color: $darkGreyColor;
+            justify-content: space-between;
+
+            .policyTable {
+                @extend .paddingBorder;
+
+                th {
+                    @extend .violetWhite;
+                    border-right: 1px solid white;
+                    padding: 0 5px;
+                }
+
+                div {
+                    span:first-of-type {
+                        @extend .flexJustifyCenter;
+
+                        span {
+                            color: $violetColor;
+                        }
+                    }
+                }
+            }
+
+            div:first-of-type,
+            div:nth-child(2),
+            table {
+                width: 100%;
+            }
+
+            thead {
+                text-align: center;
+            }
+
+            tbody tr td:nth-child(2) {
+                font-weight: bold;
+            }
+
+            td {
+                border: 1px solid lightgrey;
+                padding: 10px;
+            }
+
+            ul {
+                @extend .flexDirectionColumn;
+                gap: 10px;
+            }
+
+            .dataChangePolicy {
+                table {
+                    width: 100%;
+
+                    tr {
+                        background-color: white;
+                    }
+
+                    tr td:nth-child(2) {
+                        text-align: center;
+                        font-weight: bold;
+                        color: #3fb05d;
+                    }
+                }
+            }
+        }
+
+        .travelPolicy {
+            .travelPolicies {
+                @extend .alignItemsCenter;
+                gap: 10px;
+                border-bottom: 1px solid darkgray;
+                padding-bottom: 1%;
+
+                img {
+                    height: 25px;
+                }
+
+                span:first-of-type {
+                    @extend .flexDirectionColumn;
+                }
+            }
+
+            .iconDiv {
+                @extend .alignItemsCenter;
+                gap: 20px;
+
+                i {
+                    color: $violetColor;
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+
+    .passengerDtls {
+        background-color: $whiteColor;
+        padding: 20px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        position: fixed;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        overflow-y: auto;
+        max-height: 70vh;
+        width: 90%;
+
+        .passengerHeading {
+            @extend .flexJustifySpaceBetweenAlignCenter;
+
+            .passengerNo {
+                border: 1px solid $violetColor;
+                border-radius: 50%;
+                padding: 1px 6px;
+                background-color: #f1edfc;
+                color: $violetColor;
+                font-weight: 500;
+            }
+
+            .fa-angle-right,
+            .fa-angle-down {
+                cursor: pointer;
+            }
+
+            select {
+                padding: 4px 3px;
+                font-size: 12px;
+            }
+        }
+
+        .passengerBtn {
+            @extend .flexJustifyCenterAlignCenter;
+            gap: 10px;
+        }
+
+        .addExistingDtls,
+        .passengerBtn button {
+            border: none;
+            border-radius: 30px;
+            padding: 3px 12px;
+            font-size: 12px;
+            @extend .violetWhite;
+        }
+
+        .passengerContent {
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            border-top: 5px solid $violetColor;
+            margin-bottom: 10px;
+        }
+
+        .passengeraddress {
+            height: 29px;
+            margin-top: 5px;
+        }
+
+        .passengerage {
+            width: 50px;
+        }
+
+        .passengerPhone {
+            width: 100px;
+        }
+
+        .extraFields {
+            margin: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 15px;
+            margin-left: 120px;
+
+            textarea {
+                height: 28px;
+            }
+
+            .passengerDtlsSaveBtn {
+                @extend .flexJustifySpaceBetweenAlignCenter;
+                gap: 10px;
+
+                button {
+                    @extend .violetWhite;
+                    border: none;
+                    padding: 5px;
+                    border-radius: 5px;
+                }
+            }
+        }
+
+        .gstContainer {
+            margin: 10px;
+        }
+
+        .nameWithCheckbox {
+            color: $whiteColor !important;
+            @extend .flexJustifyCenterAlignCenter;
+            gap: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 4px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select {
+            width: 100%;
+            padding: 5px 0;
+        }
+
+        .info {
+            font-weight: bold;
+            margin-bottom: 15px;
+
+            .fa-user {
+                background-color: #6cc7b6;
+                border-radius: 50px;
+                padding: 10px 12px;
+                color: white;
+            }
+        }
+
+        .tagLine {
+            font-size: $clampFontSizeSmall;
+            margin-top: 15px;
+
+            span {
+
+                span:first-of-type,
+                span:nth-child(2) {
+                    color: blue;
+                }
+            }
+        }
+
+        .pay {
+            @extend .flexJustifySpaceBetween;
+            font-size: $clampFontSizeSmall;
+            margin-top: 15px;
+
+            span:first-of-type {
+                @extend .flexDirectionColumn;
+            }
+
+            button {
+                @extend .violetWhite;
+                border: none;
+                padding: 10px;
+                height: 50px;
+                border-radius: 5px;
+            }
+        }
+    }
+
+    .gstInputFields {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 0 !important;
+
+        input,
+        label {
+            width: 100%;
+            padding: 4px;
+            font-size: 12px;
+        }
+    }
+}
+
+.fa-couch {
+    display: inline-block;
+    width: 25px;
+    height: 30px;
+    color: #eeeff3;
+    transition: color 0.3s ease;
+    font-size: 20px;
+}
+
+
+.seat-icon {
+    font-size: 24px;
+}
+
+
+
+.viewSeats {
+    background-color: $whiteColor;
+    margin: 10px;
+    font-size: $clampFontSizeSmall !important;
+
+    .bothDivs {
+        display: flex;
+        gap: 50px;
+
+        .seat-display-container {
+            @extend .flexDirectionColumn;
+            width: 100%;
+            margin-top: -15px;
+
+            .note {
+                @extend .flexJustifyCenter;
+                font-size: 15px;
+                color: black;
+                background-color: #f1edfc;
+                border-radius: 5px;
+                padding: 3px;
+            }
+
+            .steering-icon {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 8px;
+                align-items: end;
+                margin-right: 15px;
+            }
+
+
+            .bus-layout {
+                @extend .flexDirectionColumn;
+                align-items: center;
+                width: 105%;
+
+                h3 {
+                    font-size: 16px;
+                    font-weight: 300;
+                }
+
+
+                .deck {
+                    background-color: $whiteColor;
+                    width: 85%;
+                    padding: 11px;
+                    border: 1px solid lightgray;
+                    border-radius: 5px;
+                    margin-right: 10px;
+
+                    .seatsAndChairs {
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        align-items: start;
+
+                        .seat-row {
+                            display: grid;
+                            flex-direction: column;
+                            gap: 10px;
+
+                            .seat-container {
+                                position: relative;
+                                @extend .flexDirectionColumn;
+                                align-items: center;
+                                justify-content: center;
+                            }
+
+                            .seatNoPrice {
+                                cursor: pointer;
+                                position: absolute;
+                                left: 35%;
+                                transform: translateX(-50%);
+                                padding: 8px 6px;
+                                border-radius: 3px;
+                                text-align: center;
+                                font-size: 7px;
+                                color: black;
+                                bottom: 5px;
+
+                                span {
+                                    display: block;
+                                    color: $whiteColor;
+                                }
+                            }
+                        }
+
+                        .genderLogo {
+                            cursor: pointer;
+                            position: absolute;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            padding: 8px 3px;
+                            border-radius: 3px;
+                            text-align: center;
+                            font-size: 10px;
+                            color: black;
+                            top: 5px !important;
+
+
+
+                            span {
+                                display: block;
+                                color: $whiteColor;
+                            }
+                        }
+
+
+                        .selected-seat {
+                            color: $violetColor;
+                        }
+
+                        .unavailable-seat {
+                            color: #9e9e9e;
+                            pointer-events: none;
+                        }
+                    }
+
+                    .seatsAndChairs>.seat-row:nth-child(1) {
+                        margin-right: 20px;
+                    }
+                }
+
+                .seaterDeck {
+                    width: 50% !important;
+                }
+            }
+        }
+    }
+
+    .seatLegend {
+        color: $darkGreyColor;
+        width: 100%;
+
+        .boardingDroppingBox {
+            background-color: white;
+            @extend .paddingBorder;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+
+            .heading {
+                @extend .flexJustifySpaceBetween;
+            }
+
+            .details {
+                @extend .flexDirectionColumn;
+                gap: 5px;
+                margin-top: 10px;
+
+                .leftDiv,
+                .rightDiv {
+                    @extend .flexJustifySpaceBetween;
+
+                    span:first-of-type {
+                        @extend .flexDirectionColumn;
+
+                        span:nth-child(2) {
+                            font-size: $clampFontSizeMini;
+                            color: #bababa;
+                        }
+                    }
+                }
+
+                .rightDiv {
+                    span:nth-child(2) {
+                        display: flex;
+
+                        span {
+                            color: $violetColor;
+                        }
+                    }
+                }
+            }
+
+            .seatNo {
+                font-weight: bold;
+                @extend .flexJustifySpaceBetween;
+            }
+
+            .fareDetails {
+                div:first-of-type {
+                    font-size: $clampFontSizeMini;
+                    @extend .flexJustifySpaceBetween;
+
+                    span:first-of-type {
+                        @extend .flexDirectionColumn;
+                    }
+                }
+            }
+
+            .proceedToBook {
+                button {
+                    width: 100%;
+                    border: none;
+                    padding: 5px;
+                    @extend .violetWhite;
+                }
+            }
+
+            .boardingPointContents,
+            .droppingPointContents {
+                height: 30vh !important;
+                overflow-y: auto !important;
+
+                .boardingPoints,
+                .droppingPoints {
+                    @extend .flexJustifyStart;
+                    align-items: baseline;
+                    gap: 50px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+
+}
+
+.amountDiv {
+    @extend .flexJustifySpaceBetween;
+}
+
+.continue {
+    @extend .violetWhite;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled),
+button:not(:disabled) {
+    color: $darkGreyColor;
+}
+
+.active-button {
+    background-color: $violetColor !important;
+    color: $whiteColor !important;
+    transition: all 0.3s ease;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.date-wrapper {
+    @extend .alignItemsCenter;
+    position: relative;
+    display: none;
+
+    .date-button {
+        @extend .violetWhite;
+        @extend .alignItemsCenter;
+        border: none;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        justify-content: center;
+        font-size: 12px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    input[type="date"] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+}
+
+.popupContainer {
+    display: none;
+    position: fixed;
+    top: 15%;
+    transform: translate(0%, 0%);
+    width: 55%;
+    background: $whiteColor;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    z-index: 1000;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.popupContainer.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popupContainer .closeBtn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 16px;
+}
+
+.tableContainer th,
+.tableContainer td,
+.fa-whatsapp {
+    font-size: 12px;
+    padding: 5px;
+}
+
+.fareDtlsWithTax {
+    @extend .flexJustifySpaceBetween;
+    gap: 10px;
+
+    .netTotal {
+        background-color: $violetColor;
+        color: $whiteColor !important;
+        padding: 0 2px;
+    }
+
+    div {
+        @extend .flexDirectionColumn;
+        align-items: end;
+    }
+}
+
+@media (max-width:768px) {
+    .mainDiv {
+        label {
+            align-items: baseline;
+        }
+    }
+
+    .busDetails {
+        .features {
+            font-size: 12px;
+        }
+
+        section:first-of-type {
+            display: flex;
+            justify-content: center;
+
+            .viewSeat {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .firstDiv {
+        display: none;
+        width: 100%;
+        height: 60vh;
+        overflow-y: auto;
+
+        div {
+            text-align: left;
+        }
+
+
+        .multi-select-autocomplete {
+            position: relative !important;
+            display: block !important;
+            width: 100% !important;
+        }
+
+        .multi-select-autocomplete input {
+            width: 100%;
+            display: block !important;
+        }
+
+
+        .multi-select-autocomplete .dropdown-list {
+            position: absolute !important;
+            top: calc(100% + 5px) !important;
+            /* BELOW input */
+            left: 0 !important;
+            width: 100% !important;
+
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+
+            max-height: 220px;
+            overflow-y: auto;
+
+            z-index: 99999 !important;
+            padding: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Each label inside dropdown */
+
+
+
+
+        .filterInput input {
+            width: 100%;
+            display: block;
+        }
+
+    }
+
+    .mobileFilterContent,
+    .popupContainer {
+        display: block;
+    }
+
+    .popupContainer {
+        transform: translate(0%, 14%) !important;
+        padding-top: 4%;
+    }
+
+    .secondDiv {
+        width: 100%;
+
+        .mobileFilter {
+            display: block;
+        }
+
+        .headingCard {
+            align-items: center;
+
+            span:nth-child(2) input,
+            .modifyBtn,
+            .fa-bus,
+            .fa-calendar-days {
+                display: none;
+            }
+
+            .date-wrapper {
+                display: block;
+            }
+        }
+    }
+
+    .timeDate {
+        font-size: 10px !important;
+
+        div i {
+            font-size: 10px !important;
+        }
+    }
+}
+
+@media(max-width: 574px) {
+    .mainDiv {
+        label {
+            align-items: center;
+        }
+    }
+
+    .date-wrapper {
+        .date-button {
+            height: 40px;
+            width: 40px;
+            font-size: 9px;
+        }
+    }
+
+    .popupContainer {
+        padding-top: 8%;
+        width: 85%;
+
+        .closeBtn {
+            font-size: 14px;
+        }
+    }
+
+    .firstDiv {
+        height: 60vh;
+    }
+
+    .fa-minus::before {
+        content: '\f068\f068' !important;
+        font-size: 10px;
+    }
+
+    .busDetails {
+
+        .boardingDropping,
+        .featureReviews,
+        .cancellationPolicy {
+            flex-wrap: wrap;
+        }
+
+        section:first-of-type {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+            section:nth-child(2) {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+            }
+
+            .viewSeat {
+                padding: 5px 10px;
+            }
+
+            .detailsBtn {
+                display: block;
+            }
+
+            .viewSeatDetailsBtn {
+                display: flex;
+                justify-content: space-between;
+                gap: 20px;
+            }
+        }
+    }
+
+    .travelPolicies img {
+        height: 20px !important;
+    }
+
+    .secondDiv .headingCard {
+        span:first-of-type {
+            display: flex;
+            flex-direction: column;
+            gap: 0px;
+        }
+
+        .fa-angle-right {
+            display: none;
+        }
+    }
+
+    .boardingDroppingBox {
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 10px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .boardingDroppingContainer {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .boardingPointsBox,
+    .droppingPointsBox {
+        flex: 1;
+        background: #fdfdfd;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 5px;
+        height: 30vh;
+        overflow-y: auto;
+    }
+
+    .scrollBox {
+        max-height: 26vh;
+        overflow-y: auto;
+        padding-right: 5px;
+    }
+
+    .boardingItem,
+    .droppingItem {
+        border-bottom: 1px solid #eaeaea;
+        padding: 6px 0;
+    }
+
+    .pointDetails {
+        margin-left: 5px;
+        line-height: 1.3;
+    }
+
+    .pointDetails .time {
+        font-size: 13px;
+        color: #444;
+    }
+
+    .pointDetails .place {
+        font-size: 14px;
+        color: #222;
+    }
+
+    .pointDetails .extra {
+        font-size: 12px;
+        color: #666;
+    }
+
+    input[type="radio"] {
+        margin-right: 6px;
+    }
+
+    .amountDiv {
+        font-size: 14px;
+        color: #333;
+    }
+
+    .proceedToBook button {
+        border: none;
+        border-radius: 5px;
+        font-weight: 600;
+    }
+
+    .boardingDroppingBox {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .scrollBox {
+        max-height: 250px;
+        overflow-y: auto;
+    }
+
+    .pointDetails {
+        line-height: 1.2;
+    }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+
+
+}
+
+.seat-display-container {
+    padding: 1rem;
+}
+
+.deck-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.bus-layout {
+    flex: 1 1 45%;
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.seat-row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.seat-container {
+    margin: 0.2rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.seat-icon {
+    font-size: 22px;
+    display: block;
+}
+
+.seat-icon {
+    font-size: 20px;
+    cursor: pointer;
+
+    &.selected-seat {
+        color: white;
+        background-color: #8c52ff;
+        border-radius: 3px;
+        padding: 2px;
+    }
+
+    &.unavailable-seat {
+        color: #ccc;
+        cursor: not-allowed;
+    }
+
+    &.female-seat {
+        color: #ff69b4; // pink
+    }
+
+    &.male-seat {
+        color: #126ec4; // blue
+    }
+}
+
+.seatNoPrice {
+    margin-left: 5px;
+    font-size: 0.85rem;
+}
+
+.seatLegend i {
+    margin-right: 5px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdownBtn {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 200px;
+    border: 1px solid #ddd;
+    z-index: 1;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.dropdown:hover .dropdownContent {
+    display: block;
+}
+
+.dropdownContent label {
+    display: block;
+    padding: 5px;
+}
+
+/* ===================== FIXED 1 + AISLE + 2 SEATER LAYOUT ===================== */
+.seaterDeck {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.seaterDeck .seatsAndChairs {
+    display: flex !important;
+    flex-direction: column;
+    /* stack rows vertically */
+    align-items: center;
+    gap: 10px;
+    margin-left: 13px;
+}
+
+.seaterDeck .seat-row {
+    display: flex;
+    grid-template-columns: 1fr 50px 1.5fr;
+    /* 1 seat | aisle | 2 seats */
+    align-items: center;
+    justify-items: center;
+    width: 150px;
+    /* restrict width */
+}
+
+.seaterDeck .seat-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.seaterDeck .seat-side.left-side {
+    justify-content: flex-end;
+}
+
+.seaterDeck .seat-side.right-side {
+    justify-content: flex-start;
+}
+
+.seaterDeck .aisle {
+    width: 35px;
+}
+
+.deck-wrapper {
+    display: flex;
+}
+
+.seaterDeck .seat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+}
+
+.seaterDeck .seat-icon {
+    font-size: 22px;
+    color: #555;
+}
+
+.seaterDeck .seatNoPrice {
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.steering-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+    width: 150px;
+}
+
+/* Vertical sleeper berth - refined */
+.deck .seat-container .fa-mobile {
+    display: inline-block;
+    width: 34px;
+    height: 79px;
+    border-radius: 6px;
+    background: #f8f9fa;
+    border: 1.5px solid #bfbfbf;
+    color: #ffffff !important;
+    font-size: 22px;
+    text-align: center;
+    line-height: 85px;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12);
+    transition: all 0.25s ease-in-out;
+}
+
+
+
+/* Small white/soft gray base (like a pillow) */
+.deck .seat-container .fa-mobile::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 4px;
+    background: #ffffff;
+    /* changed from black to white */
+    border-radius: 3px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.08);
+    /* subtle depth */
+}
+
+.deck .seat-container .fa-mobile:hover {
+    border-color: #8c52ff;
+    box-shadow: 0 4px 8px rgba(140, 82, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.seatNoPrice {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #333;
+    font-weight: 500;
+    text-align: center;
+}
+
+
+
+.deck .seat-container {
+    position: relative;
+}
+
+/* Tooltip popup */
+.deck .seat-container::before {
+    content: attr(data-seat-info);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    background: #ffffff;
+    color: #222;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease-in-out;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.deck .seat-container::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(2px);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #ffffff transparent transparent transparent;
+    opacity: 0;
+    transition: all 0.25s ease-in-out;
+}
+
+/* Show on hover */
+.deck .seat-container:hover::before,
+.deck .seat-container:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-12px);
+}
+
+.viewSeats .bothDivs .seat-display-container .bus-layout:nth-of-type(2) .deck {
+    padding: 27px !important;
+    width: 100% !important;
+}
+
+/* FEMALE SEAT (Pink) */
+.female-seat {
+    background-color: #ffb6c1 !important;
+    border-color: #ff6f91 !important;
+}
+
+/* MALE SEAT (Blue) */
+.male-seat {
+    background-color: #add8ff !important;
+    border-color: #4aa3ff !important;
+}
+
+.selected-seat {
+    background-color: rgb(117, 117, 218) !important;
+    border-color: rgb(117, 117, 218) !important;
+    color: white !important;
+}
+
+.blocked-seat {
+    background-color: #bcbcbc !important;
+    border-color: #9a9a9a !important;
+    opacity: 0.6;
+}
+
+.active-item {
+    background-color: #007bff;
+    color: white;
+}
+
+.typeAheadDropdownBox {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.bothDiv {
+    width: 70%;
+}

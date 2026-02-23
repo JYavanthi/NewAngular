@@ -1,0 +1,212 @@
+.back-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+
+  button {
+    background: #3d85c6;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
+
+.eticket-container {
+  max-width: 900px;
+  margin: auto;
+  border: 1px solid #ccc;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  font-size: 14px;
+}
+
+.et-top-container {
+  border-bottom: 1px solid #ccc;
+}
+
+.et-row1 {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+}
+
+.et-cancel-text {
+  color: #d60000;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.et-help-text {
+  text-align: right;
+  font-size: 14px;
+}
+
+.et-row2-center {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 200px;
+  padding: 7px;
+  margin: -44px 0px 0px 65px;
+}
+
+.et-logo-right {
+  height: 60px
+}
+
+.et-ticket-title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.et-dharshana {
+  color: #d60000;
+  font-weight: bold;
+}
+
+.trip-header-container {
+  text-align: center;
+  border-bottom: 2px solid #f4c542;
+  padding: 10px;
+}
+
+.trip-header-row {
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  gap: 11px;
+}
+
+.ticket-info-header {
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.ticket-info-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.eticket-journey-details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+
+  .label {
+    color: gray;
+    font-size: 13px;
+  }
+}
+
+.trip-table {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr 1px 1fr;
+  border: 1px solid #ccc;
+}
+
+.divider {
+  background: #ccc;
+}
+
+.trip-col {
+  padding: 15px;
+
+  h3 {
+    color: #d60000;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    font-size: 15px;
+
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+
+  .small-label {
+    font-size: 12px;
+    color: gray;
+  }
+}
+
+.passenger-section {
+  padding: 15px;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      border-bottom: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+  }
+}
+
+.guidelines {
+  padding: 15px;
+
+  h5 {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: bold;
+
+  }
+
+  h5 {
+    text-align: center;
+    margin: 20px 0 10px;
+  }
+}
+
+.guidelines-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.guide-box {
+  background: #f6f6ee;
+  padding: 12px;
+  text-align: center;
+  border-radius: 10px;
+
+  img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+  }
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px;
+
+  button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .download {
+    background: #3d85c6;
+  }
+
+  .email {
+    background: #22c55e;
+  }
+}

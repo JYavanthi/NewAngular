@@ -1,0 +1,120 @@
+<header>
+    <div class="logoWithBarIcon">
+        <ng-container *ngIf="isAdminOrAgent">
+            <div class="sidebar-opener" (click)="sidebarShow = !sidebarShow">
+                <button><i class="fa-solid fa-bars"></i></button>
+            </div>
+
+            <div class="sidebar-slider" [class.sidebar-slide-in]="sidebarShow">
+                <div class="sidebar-close" (click)="sidebarShow = !sidebarShow">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <div class="sidebar-content">
+                    <div class="user">
+                        <i class="fa-solid fa-user"></i>
+                        <div>
+                            <span>Admin</span>
+                            <span style="cursor: pointer;">Logout</span>
+                        </div>
+                    </div>
+
+                    <div class="busDashboard" (click)="toggleContent()">
+                        <span><i class="fa-solid fa-bus"></i>
+                        </span>
+                        <span>
+                            Bus
+                            <i [ngClass]="showContent ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                        </span>
+                        <ng-container *ngIf="showContent">
+
+                            <div [@expandCollapse]>
+                                <ul>
+                                    <li routerLink="/admin/bus-dashboard">Bus Dashboard</li>
+                                </ul>
+                            </div>
+                        </ng-container>
+                        <hr>
+                    </div>
+
+                    <div class="cabDashboard" (click)="poggleContent()">
+                        <span><i class="fa-solid fa-taxi"></i>
+                        </span>
+                        <span>
+                            Cab
+                            <i [ngClass]="Content ? 'fa-solid fa-angle-down' : 'fa-solid fa-angle-right'"></i>
+                        </span>
+                        <ng-container *ngIf="Content">
+                            <div [@expandCollapse]>
+                                <ul>
+                                    <li>Cab Dashboard</li>
+                                </ul>
+                            </div>
+                        </ng-container>
+                        <hr>
+                    </div>
+
+                </div>
+            </div>
+        </ng-container>
+
+        <section class="logoWithNav">
+            <div>
+                <img src="\assets\SancharImg.png" alt="sanchar6t" routerLink="/home">&nbsp;
+            </div>
+            <div class="title">SANCHAR6T</div>
+        </section>
+    </div>
+
+    <section class="loginSignup">
+        <div class="helpAndAgentBtn">
+            <button class="helpBtn" routerLink="/help"><i class="fa-solid fa-headphones"></i> Help</button>
+            <ng-container *ngIf="!isUserLoggedIn">
+                <button class="agentLoginBtn" routerLink="/agentsignup">Agent Login</button>&nbsp;&nbsp;
+            </ng-container>
+        </div>
+        <div class="btn-group">
+            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
+                aria-expanded="false">{{isUserLoggedIn?'My Account':'Customer Login'}}
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="/cancelticket">Cancel Ticket</a></li>
+                <li><a class="dropdown-item">Change Travel Date</a></li>
+                <li><a class="dropdown-item">Show My Ticket</a></li>
+                <li><a class="dropdown-item">Email/SMS</a></li>
+                <ng-container *ngIf="isUserLoggedIn">
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" routerLink="/myprofile">My Profile</a></li>
+                    <li><a class="dropdown-item" routerLink="/my-booking" *ngIf="isUserLoggedIn">My Trips</a></li>
+                </ng-container>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" (click)="loginLogout()">{{isUserLoggedIn?'Logout':'Login/Sign Up'}}</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="menu-icon">
+        <button data-bs-toggle="dropdown">☰</button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Bus</a></li>
+            <li><a class="dropdown-item" href="#">Cab</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" routerLink="/cancelticket">Cancel Ticket</a></li>
+            <li><a class="dropdown-item" routerLink="/my-booking">My Trips</a></li>
+            <li><a class="dropdown-item" href="#">Change Travel Date</a></li>
+            <li><a class="dropdown-item" href="#">Show My Ticket</a></li>
+            <li><a class="dropdown-item" href="#">Email/SMS</a></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" routerLink="/login">Login/Sign Up</a></li>
+        </ul>
+    </div>
+
+</header>
